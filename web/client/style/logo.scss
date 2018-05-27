@@ -1,0 +1,10 @@
+
+.Logo {
+  text-align: center;
+
+  .image {
+    width: calc(100% - 2em);
+    max-width: 700px;
+    display: inline-block !important;
+  }
+}

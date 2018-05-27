@@ -1,0 +1,38 @@
+
+.DiscordPanel {
+  .Channels {
+
+    .category, .voice {
+      cursor: pointer;
+    }
+
+    .text, .user {
+      cursor: default;
+    }
+
+    .list {
+      padding-left: 0 !important;
+    }
+
+    .item {
+      padding-left: 1.6em !important;
+      &.category {
+        padding-left: 0 !important;
+      }
+
+      & > .icon {
+        padding-right: 0 !important;
+      }
+
+      img {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  & > .buttons {
+    margin-bottom: 1em;
+  }
+}

@@ -1,0 +1,16 @@
+
+.Index {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1em 1em 0;
+  background-color: #EDE6D5;
+
+  & > * {
+    margin: 0 0 1em !important;
+  }
+
+  & > .Panels {
+    flex: 1;
+  }
+}

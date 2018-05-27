@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>JanuszV2 CP</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"/>
+	{{#if production}}
+		<link rel="stylesheet" href="/style.css"/>
+	{{/if}}
+</head>
+<body>
+	<div id="root">{{{reactContent}}}</div>
+	<script id="initialData" type="application/json">{{{initialData}}}</script>
+
+	<script type="text/javascript" src="/client.js"></script>
+</body>
+</html>

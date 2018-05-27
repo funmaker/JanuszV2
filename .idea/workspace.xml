@@ -1,11 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/audio/audioSystem/AudioDevice.js" line="23" mnemonic="4" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="06604412-10b9-47fe-aa3d-be44a68b5d76" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/package-lock.json" afterPath="$PROJECT_DIR$/app/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/app/package.json" afterPath="$PROJECT_DIR$/app/package.json" />
-      <change beforePath="$PROJECT_DIR$/app/server.js" afterPath="$PROJECT_DIR$/app/server.js" />
+    <list default="true" id="06604412-10b9-47fe-aa3d-be44a68b5d76" name="Default" comment="Cleanup and react hot loader upgrade">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audioSystem/AudioDevice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audioSystem/AudioSingletonDevice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audioSystem/Cabbles.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audioSystem/Device.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audioSystem/OscilatorInput.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audioSystem/audioSystem.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audioSystem/packets.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audioSystem/systemPanel.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audioSystem/systemRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/franku.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/sounds.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configs.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/JanuszModule.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/JanuszPanel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/discord/DiscordAudioOutput.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/discord/channels.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/discord/client.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/discord/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/discord/router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/components/logo.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/components/modules.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/components/panels.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/style/audioSystem.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/style/discord.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/style/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/style/logo.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/style/panels.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/style/resizer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/style/sounds.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/style/style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/server/helpers/HTTPError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/server/helpers/configs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/static/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack/client.babel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack/client.dev.babel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack/package.babel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack/server.babel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack/server.dev.babel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/app.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/helpers/initialData.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/helpers/initialData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/helpers/requestJSON.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/helpers/requestJSON.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/routes/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/routes/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/style/style.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/prepareDist.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/server/helpers/reactHelper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/server/helpers/reactHelper.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/server/helpers/webpackHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/server/helpers/webpackHelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/server/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/server/views/index.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/web/server/views/index.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/webpack.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/webpack.dev.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,12 +90,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/server.js">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-114">
-              <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="204">
+              <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#48#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,7 +124,30 @@
     <findStrings>
       <find>assets/*</find>
       <find>style</find>
+      <find>async init\(\) \{\n        app \= express\(\)\;\n\n        app\.use\(bodyParser\.urlencoded\(\{ extended\: false \}\)\)\;\n        app\.use\(bodyParser\.json\(\{limit\: \&quot;10mb\&quot;\}\)\)\;\n\n        if \(process\.env\.NODE_ENV \!\=\= \'production\'\) \{\n            console\.log\(\'DEVOLOPMENT ENVIRONMENT\: Turning on WebPack Middleware\.\.\.\'\)\;\n            webpackHelper\.useWebpackMiddleware\(app\)\n        \} else \{\n            console\.log\(\'PRODUCTION ENVIRONMENT\'\)\;\n            app\.use\(\'\/client\.bundle\.js\'\, express\.static\(\'client\.bundle\.js\'\)\)\;\n            app\.use\(\'\/style\.bundle\.css\'\, express\.static\(\'style\.bundle\.css\'\)\)\;\n        \}\n\n        app\.use\(\'static\'\, express\.static\(\'static\'\)\)\;\n\n        app\.use\(require\(\'\.\/server\/helpers\/reactHelper\'\)\.reactMiddleware\)\;\n\n        app\.use\(\'\/\'\, require\(\&quot;\.\/server\/routes\/index\&quot;\)\.router\)\;\n\n        let port \= JSON\.parse\(fs\.readFileSync\(\&quot;package\.json\&quot;\)\)\.port \|\| 3000\;\n        if\(process\.env\.DOCKERIZED\) port \= 80\;\n    \}\n\n    async start\(\) \{\n        app\.listen\(port\)\;</find>
+      <find>colors</find>
+      <find>app</find>
+      <find>./client/app</find>
+      <find>console.lo</find>
+      <find>this.client</find>
+      <find>console.log</find>
+      <find>onJoin</find>
+      <find>opus</find>
+      <find>this.log</find>
+      <find>&quot;Core&quot;.yellow.bold</find>
+      <find>moduleName</find>
+      <find>ModuleName</find>
+      <find>dragging</find>
+      <find>logPrefix</find>
+      <find>logPre</find>
+      <find>'colors</find>
+      <find>&quot;colors&quot;</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>this.app</replace>
+      <replace>discord</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,59 +155,84 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/server.js" />
-        <option value="$PROJECT_DIR$/client.js" />
-        <option value="$PROJECT_DIR$/index.dev.js" />
-        <option value="$PROJECT_DIR$/server/index.dev.js" />
-        <option value="$PROJECT_DIR$/.babelrc" />
+        <option value="$PROJECT_DIR$/web/client/components/modules.jsx" />
+        <option value="$PROJECT_DIR$/web/client/style/audio.less" />
+        <option value="$PROJECT_DIR$/audio/franku.jsx" />
+        <option value="$PROJECT_DIR$/discord/router.js" />
+        <option value="$PROJECT_DIR$/web/client/components/panels.jsx" />
+        <option value="$PROJECT_DIR$/discord/client.jsx" />
+        <option value="$PROJECT_DIR$/web/client/style/discord.less" />
+        <option value="$PROJECT_DIR$/audio/soundSystem/AudioInstance.js" />
         <option value="$PROJECT_DIR$/webpack.dev.config.js" />
-        <option value="$PROJECT_DIR$/server/views/index.handlebars" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/core/index.js" />
+        <option value="$PROJECT_DIR$/audio/soundSystem/AudioDevice.js" />
+        <option value="$PROJECT_DIR$/audio/soundSystem/AudioSingletonDevice.js" />
+        <option value="$PROJECT_DIR$/audio/soundSystem/SoundSystem.js" />
+        <option value="$PROJECT_DIR$/audio/systemRouter.js" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/client.jsx" />
+        <option value="$PROJECT_DIR$/audio/client.jsx" />
+        <option value="$PROJECT_DIR$/web/client/style/style.less" />
+        <option value="$PROJECT_DIR$/audio/sounds.jsx" />
+        <option value="$PROJECT_DIR$/web/client/style/index.less" />
+        <option value="$PROJECT_DIR$/web/client/style/sounds.less" />
+        <option value="$PROJECT_DIR$/discord/DiscordAudioOutput.js" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/OscilatorInput.js" />
+        <option value="$PROJECT_DIR$/audio/index.js" />
+        <option value="$PROJECT_DIR$/audio/router.js" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/Cabbles.jsx.js" />
+        <option value="$PROJECT_DIR$/web/client/style/audioSystem.less" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/AudioSingletonDevice.js" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/AudioDevice.js" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/Device.jsx" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/Cabbles.jsx" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/packets.js" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/systemPanel.jsx" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/audioSystem.js" />
+        <option value="$PROJECT_DIR$/audio/audioSystem/systemRouter.js" />
+        <option value="$PROJECT_DIR$/web/client/app.jsx" />
+        <option value="$PROJECT_DIR$/.babelrc" />
+        <option value="$PROJECT_DIR$/webpack/server.babel.js" />
+        <option value="$PROJECT_DIR$/webpack/server.dev.babel.js" />
+        <option value="$PROJECT_DIR$/webpack/client.babel.js" />
+        <option value="$PROJECT_DIR$/webpack/client.dev.babel.js" />
+        <option value="$PROJECT_DIR$/web/server/helpers/reactHelper.jsx" />
+        <option value="$PROJECT_DIR$/configs.json" />
+        <option value="$PROJECT_DIR$/web/server/helpers/webpackHelper.js" />
+        <option value="$PROJECT_DIR$/discord/index.js" />
+        <option value="$PROJECT_DIR$/core/JanuszModule.js" />
         <option value="$PROJECT_DIR$/client.jsx" />
-        <option value="$PROJECT_DIR$/server/routes/index.js" />
-        <option value="$PROJECT_DIR$/server/routes/sub.js" />
-        <option value="$PROJECT_DIR$/client/style/style.less" />
-        <option value="$PROJECT_DIR$/client/helpers/initialData.js" />
-        <option value="$PROJECT_DIR$/client/helpers/requestJSON.js" />
-        <option value="$PROJECT_DIR$/client/routes/sub.jsx" />
-        <option value="$PROJECT_DIR$/client/app.jsx" />
-        <option value="$PROJECT_DIR$/client/routes/index.jsx" />
-        <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/server/helpers/reactHelper.jsx" />
+        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/app/webpack.dev.config.js" />
-        <option value="$PROJECT_DIR$/app/client/app.jsx" />
-        <option value="$PROJECT_DIR$/app/client.jsx" />
-        <option value="$PROJECT_DIR$/app/server/routes/index.js" />
-        <option value="$PROJECT_DIR$/app/client/routes/index.jsx" />
-        <option value="$PROJECT_DIR$/app/webpack.config.js" />
-        <option value="$PROJECT_DIR$/app/prepareDist.js" />
-        <option value="$PROJECT_DIR$/app/package.json" />
-        <option value="$PROJECT_DIR$/app/server.js" />
+        <option value="$PROJECT_DIR$/web/server/views/index.handlebars" />
+        <option value="$PROJECT_DIR$/web/index.js" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsFlowSettings">
-    <service-enabled>false</service-enabled>
+    <service-enabled>true</service-enabled>
     <exe-path />
-    <annotation-enable>false</annotation-enable>
-    <other-services-enabled>false</other-services-enabled>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/app/dist/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/node_modules" />
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1919" />
+    <option name="x" value="-1" />
     <option name="width" value="1922" />
-    <option name="height" value="1051" />
+    <option name="height" value="1081" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -143,99 +273,69 @@
     </entry>
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="webapp-boilerplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp-boilerplate" type="462c0819:PsiDirectoryNode" />
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="webapp-boilerplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp-boilerplate" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="webapp-boilerplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp-boilerplate" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webapp-boilerplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp-boilerplate" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="helpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webapp-boilerplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp-boilerplate" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webapp-boilerplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp-boilerplate" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webapp-boilerplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp-boilerplate" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="webapp-boilerplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp-boilerplate" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="nodejs_interpreter_path" value="/usr/bin/node" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
-    <property name="javascript.nodejs.core.library.configured.version" value="9.2.0" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.2.1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.prettier" value="true" />
+    <property name="node.js.path.for.package.prettier" value="project" />
+    <property name="node.js.selected.package.prettier" value="" />
+    <property name="nodejs_interpreter_path" value="/usr/bin/node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/server/routes" />
-      <recent name="$PROJECT_DIR$/client/routes" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/audio/audioSystem" />
+      <recent name="$PROJECT_DIR$/web" />
       <recent name="$PROJECT_DIR$/server/helpers" />
       <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/client/style" />
-      <recent name="$PROJECT_DIR$/client" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/web/server/helpers" />
+      <recent name="$PROJECT_DIR$/webpack" />
+      <recent name="$PROJECT_DIR$/audio" />
+      <recent name="$PROJECT_DIR$/core" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -336,7 +436,7 @@
       <envs />
     </configuration>
     <configuration name="Start" type="js.build_tools.npm" factoryName="npm">
-      <package-json value="$PROJECT_DIR$/app/package.json" />
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="start" />
@@ -344,9 +444,6 @@
       <node-interpreter value="project" />
       <envs />
     </configuration>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -365,6 +462,16 @@
       <workItem from="1514245376766" duration="5474000" />
       <workItem from="1519824758741" duration="84000" />
       <workItem from="1519824856666" duration="667000" />
+      <workItem from="1522501839605" duration="4000" />
+      <workItem from="1522501856228" duration="85900000" />
+      <workItem from="1523198415801" duration="1344000" />
+      <workItem from="1523657295310" duration="33198000" />
+      <workItem from="1523873226069" duration="407000" />
+      <workItem from="1523895460837" duration="1148000" />
+      <workItem from="1523910496816" duration="12319000" />
+      <workItem from="1523955097671" duration="14000" />
+      <workItem from="1524217999142" duration="1493000" />
+      <workItem from="1527373984214" duration="4150000" />
     </task>
     <task id="LOCAL-00001" summary="Added README">
       <created>1514245578738</created>
@@ -384,40 +491,43 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39444000" />
+    <option name="totallyTimeSpent" value="179421000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1919" y="0" width="1922" height="1051" extended-state="6" />
+    <frame x="-1" y="0" width="1922" height="1051" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.50319827" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32829374" sideWeight="0.4968017" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40820736" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="FAQ Robot" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2603834" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="MaxCompute Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="MaxCompute Job" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="MaxCompute Job Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="MaxCompute Project Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Cargo" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info id="DB Browser" order="4" />
+      <window_info anchor="bottom" id="DB Execution Console" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5042598" side_tool="true" weight="0.32792208" />
+      <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.49574015" weight="0.32792208" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.4946752" visible="true" weight="0.32792208" />
+      <window_info anchor="right" id="Mongo Explorer" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4978678" weight="0.44588745" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.2603834" />
+      <window_info id="Project Explorer" />
+      <window_info id="Job Explorer" />
+      <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Console" />
+      <window_info anchor="bottom" id="Find" order="7" weight="0.32900432" />
+      <window_info id="Structure" order="5" side_tool="true" weight="0.24973376" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="right" id="FAQ Robot" order="5" />
+      <window_info anchor="bottom" id="MaxCompute Console" order="4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="MaxCompute Job" order="5" />
+      <window_info id="MaxCompute Project Explorer" order="3" weight="0.32960597" />
+      <window_info anchor="right" id="Commander" order="1" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="TypeScript" order="13" />
+      <window_info id="MaxCompute Job Explorer" order="1" weight="0.32960597" />
+      <window_info anchor="right" id="Cargo" order="0" />
+      <window_info anchor="bottom" id="Message" order="6" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info id="npm" order="0" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,151 +568,359 @@
     <option name="LAST_COMMIT_MESSAGE" value="Cleanup and react hot loader upgrade" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server.js" />
-    <entry file="file://$PROJECT_DIR$/package.json" />
-    <entry file="file://$PROJECT_DIR$/server/helpers/reactHelper.jsx" />
-    <entry file="file://$PROJECT_DIR$/client/routes/index.jsx" />
-    <entry file="file://$PROJECT_DIR$/.babelrc" />
-    <entry file="file://$PROJECT_DIR$/client/routes/index.jsx" />
-    <entry file="file://$PROJECT_DIR$/.babelrc" />
-    <entry file="file://$PROJECT_DIR$/assets/css/main.css" />
-    <entry file="file://$PROJECT_DIR$/README.md" />
-    <entry file="file://$PROJECT_DIR$/yarn.lock" />
-    <entry file="file://$PROJECT_DIR$/../collage/webpack.dev.config.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/react-dom/index.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/react-dom/lib/ReactDOM.js" />
-    <entry file="file://$PROJECT_DIR$/static/index.html" />
-    <entry file="file://$PROJECT_DIR$/node_modules/axios/index.d.ts" />
-    <entry file="file://$PROJECT_DIR$/server/helpers/webpackHelper.js" />
-    <entry file="file://$PROJECT_DIR$/.babelrc" />
-    <entry file="file://$PROJECT_DIR$/node_modules/webpack/lib/webpack.js" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/audio/soundSystem/AudioInstance.js" />
+    <entry file="file://$PROJECT_DIR$/webpack.dev.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        <state relative-caret-position="612">
+          <caret line="36" column="59" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.dev.config.js" />
-    <entry file="file://$PROJECT_DIR$/webpack.config.js" />
-    <entry file="file://$PROJECT_DIR$/dist/server.bundle.js" />
-    <entry file="file://$PROJECT_DIR$/dist/client.bundle.js" />
-    <entry file="file://$PROJECT_DIR$/client.jsx" />
-    <entry file="file://$PROJECT_DIR$/server/views/index.handlebars" />
-    <entry file="file://$PROJECT_DIR$/server/routes/sub.js" />
-    <entry file="file://$PROJECT_DIR$/client/routes/sub.jsx" />
-    <entry file="file://$PROJECT_DIR$/client/style/style.less" />
-    <entry file="file://$PROJECT_DIR$/client/helpers/requestJSON.js" />
-    <entry file="file://$PROJECT_DIR$/client/helpers/initialData.js" />
-    <entry file="file://$PROJECT_DIR$/server/routes/index.js" />
-    <entry file="file://$PROJECT_DIR$/client/app.jsx" />
-    <entry file="file://$PROJECT_DIR$/client/routes/index.jsx" />
-    <entry file="file://$PROJECT_DIR$/server.js" />
-    <entry file="file://$PROJECT_DIR$/package.json" />
-    <entry file="file://$PROJECT_DIR$/server/helpers/reactHelper.jsx" />
-    <entry file="file://$PROJECT_DIR$/app/client/style/style.less">
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="425">
+          <caret line="28" column="93" selection-start-line="28" selection-start-column="93" selection-end-line="28" selection-end-column="93" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/node_modules/express/lib/application.js" />
-    <entry file="file://$PROJECT_DIR$/app/webpack.dev.config.js">
+    <entry file="file://$PROJECT_DIR$/web/client/components/modules.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+        <state relative-caret-position="323">
+          <caret line="21" column="81" selection-start-line="21" selection-start-column="81" selection-end-line="21" selection-end-column="81" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/server/helpers/webpackHelper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/client/app.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="33" lean-forward="false" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/server/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="45" lean-forward="false" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/client/routes/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="32" column="32" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/.dockerignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/client.jsx">
+    <entry file="file://$PROJECT_DIR$/web/client/style/sounds.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/prepareDist.js">
+    <entry file="file://$PROJECT_DIR$/audio/sounds.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="79" column="23" lean-forward="true" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/discord.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/node-opus/coverage/lcov-report/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/audioSystem.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="778">
+          <caret line="104" column="18" selection-start-line="104" selection-start-column="18" selection-end-line="104" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audioSystem/AudioSingletonDevice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="63" lean-forward="true" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audioSystem/Device.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="33" column="53" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audioSystem/Cabbles.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audioSystem/audioSystem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audioSystem/packets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audioSystem/systemPanel.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="100" column="34" selection-start-line="100" selection-start-column="34" selection-end-line="100" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="43" lean-forward="true" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/discord/DiscordAudioOutput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audioSystem/AudioDevice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audioSystem/OscilatorInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="50" lean-forward="true" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/app.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack/server.babel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="43" column="56" lean-forward="true" selection-start-line="43" selection-start-column="56" selection-end-line="44" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack/server.dev.babel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="62" column="54" selection-start-line="62" selection-start-column="54" selection-end-line="62" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack/client.babel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="44" column="54" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/helpers/HTTPError.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/helpers/reactHelper.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="6" lean-forward="true" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="20" lean-forward="true" selection-start-column="20" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/helpers/configs.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configs.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="5320" column="10" selection-start-line="5320" selection-start-column="10" selection-end-line="5320" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/logo.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/panels.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-596" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/resizer.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/helpers/webpackHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/discord/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/JanuszModule.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="81" lean-forward="true" selection-start-line="7" selection-start-column="81" selection-end-line="7" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="2" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-          <folding />
+          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#85#131#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/package.json">
+    <entry file="file://$PROJECT_DIR$/.babelrc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="238">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/server.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
-          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="272">
+          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.dockerignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack/client.dev.babel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audioSystem/systemRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="44" column="10" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/views/index.handlebars">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="100" selection-start-line="5" selection-start-column="100" selection-end-line="5" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="75" column="51" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

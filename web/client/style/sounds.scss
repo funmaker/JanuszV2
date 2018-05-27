@@ -1,0 +1,61 @@
+
+.SoundsPanel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 !important;
+
+  .Franku {
+    position: absolute;
+    line-height: 0;
+    bottom: 37px;
+    right: 0;
+    z-index: 10;
+    pointer-events: none;
+
+    canvas {
+      max-width: 100%;
+    }
+  }
+
+  .ui.buttons {
+    border-top: 1px solid rgba(34, 36, 38, .15);
+
+    .button {
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+  }
+
+  .wrapper {
+    flex: 1;
+    overflow: auto;
+    padding: 1em;
+
+    .soundButtons {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      min-height: 1em;
+
+      .button {
+        margin: 0.1em;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-grow: 1;
+      }
+    }
+
+    .title {
+      position: relative;
+
+      .randomButton {
+        position: absolute;
+        right: 1em;
+        top: 0.6em;
+      }
+    }
+  }
+}
