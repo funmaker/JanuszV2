@@ -6,3 +6,4 @@ router.get('/', (req, res) => {
 	res.react(initialData);
 });
 
+router.get("/test", (req, res) => res.send("kek"));

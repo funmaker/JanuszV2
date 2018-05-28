@@ -11,12 +11,19 @@ const token = 'NDI5NjQxNjg2OTg2MTI5NDA4.DaEoUQ.U6oRdJu3z_UVtJ805rP0GQ5f-PQ';
 export default class DiscordModule extends JanuszModule {
 	static ModuleName = "Discord".blue.bold;
 	
-	constructor() {
+	constructor(reloadedModule) {
 		super();
+		if(reloadedModule) {
+			this.client = reloadedModule.client;
+		}
 	}
 	
 	async init() {
-		this.client = new Discord.Client();
+		if(!this.client) this.client = new Discord.Client();
+		else {
+			this.client.removeAllListeners();
+		}
+		
 		this.client.on('ready', () => {
 		
 		});
@@ -48,7 +55,13 @@ export default class DiscordModule extends JanuszModule {
 	}
 	
 	async start() {
-		await this.client.login(token);
+		if(!this.client.uptime) {
+			await this.client.login(token);
+		}
+	}
+	
+	async stop() {
+		if(this.client) await this.client.destroy();
 	}
 	
 	getRouter() {

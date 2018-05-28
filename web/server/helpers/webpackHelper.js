@@ -6,7 +6,7 @@ import express from "express";
 
 let cachedRouter = null; // Cache for Server Side Hot Module Replacement
 
-export const mount = () => {
+export const mount = webModule => {
 	if(cachedRouter) return cachedRouter;
 	
 	const router = cachedRouter = express.Router();
@@ -18,10 +18,12 @@ export const mount = () => {
 	}));
 	
 	router.use(webpackHotMiddleware(compiler, {
-		log: console.log,
+		log: (...logs) => webModule.constructor.log(...logs),
 		path: '/__webpack_hmr',
 		heartbeat: 10 * 1000
 	}));
+	
+	webModule.constructor.log(`Webpack Hot Middleware has been ${"enabled".cyan.bold}!`);
 	
 	return router;
 };

@@ -50,6 +50,10 @@ export default class AudioModule extends JanuszModule {
 	
 	}
 	
+	async stop() {
+	
+	}
+	
 	getRouter() {
 		return audioRouter(this);
 	}

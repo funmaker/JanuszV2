@@ -12,6 +12,7 @@ export default {
 	context: root,
 	watch: true,
 	devtool: 'source-map',
+	stats: 'errors-only',
 	externals: [nodeExternals({
 		whitelist: ['webpack/hot/signal'],
 	})],

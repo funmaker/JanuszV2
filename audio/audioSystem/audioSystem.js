@@ -9,9 +9,6 @@ export default new class AudioSystem extends EventEmitter {
 	registerDeviceTypes(deviceTypes) {
 		this.deviceTypes = new Set(deviceTypes);
 		this.devices.clear();
-		for(let deviceType of deviceTypes) {
-			new deviceType(0, 0);
-		}
 	}
 	
 	removeDevice(device) {

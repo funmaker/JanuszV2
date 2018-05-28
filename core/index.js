@@ -30,6 +30,15 @@ export default class JanuszCore extends JanuszModule {
 		}));
 	}
 	
+	async stop() {
+		JanuszCore.log(`Stopping ${this.modules.length} modules...`);
+		let count = 0;
+		await Promise.all(this.modules.map(async module => {
+			await module.stop();
+			JanuszCore.log(`${module.constructor.ModuleName} Stopped. ${++count}/${this.modules.length}`);
+		}));
+	}
+	
 	getModule(type) {
 		return this.modules.find(module => module instanceof type);
 	}

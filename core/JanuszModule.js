@@ -14,4 +14,8 @@ export default class JanuszModule {
 	async start() {
 	
 	}
+	
+	async stop() {
+	
+	}
 }
