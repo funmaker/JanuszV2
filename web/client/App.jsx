@@ -4,12 +4,12 @@ import {setInitialData} from "./helpers/initialData";
 import isNode from 'detect-node';
 import {hot} from "react-hot-loader";
 import Index from "./routes/index";
-import * as AudioSystemClient from '../../audio/audioSystem/systemPanel';
-import * as SoundsClient from '../../audio/sounds';
-import * as DiscordClient from '../../discord/client';
+import * as AudioClient from './panels/audio/AudioPanel';
+import * as SoundsClient from './panels/sounds/SoundsPanel';
+import * as DiscordClient from './panels/discord/DiscordPanel';
 
 export const clientModules = [
-	AudioSystemClient,
+	AudioClient,
 	SoundsClient,
 	DiscordClient,
 ];

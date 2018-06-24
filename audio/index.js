@@ -1,65 +1,174 @@
 import JanuszModule from "../core/JanuszModule";
 import fs from 'fs-extra';
 import {janusz, rootDir} from "../index";
-import path from 'path';
-import audioRouter from './router';
-import audioSystem from "./audioSystem/audioSystem";
-import OscilatorInput from "./audioSystem/OscilatorInput";
+import * as packets from "./packets";
+import uuid from "uuid/v4";
+import audioRouter, {sendAll, clients} from './router';
+import OscillatorInput from "./OscillatorInput";
+
+export const SAMPLE_RATE = 48000;
+export const BUFFER_SIZE = 4800;
 
 export default class AudioModule extends JanuszModule {
-	static ModuleName = "Audio".green.bold;
-	
-	get allSounds() {
-		let sounds = [];
-		const scan = (arr) => arr.forEach(sound => {
-			if(sound.type === "sound") {
-				sounds.push(sound);
-			} else {
-				scan(sound.elements);
-			}
-		});
-		scan(this.sounds);
-		return sounds;
-	}
+	static ModuleName = "Audio".green.dim.bold;
+	deviceTypes = new Map();
+	devices = new Map();
+	connections = new Map();
 	
 	async init() {
-		let files = 0;
-		let folders = 0;
-		const scanSounds = async (dirPath = path.join(rootDir, "sounds")) => Promise.all(
-			(await fs.readdir(dirPath)).map(async file => {
-				const filePath = path.join(dirPath, file);
-				const stat = await fs.stat(filePath);
-				if(stat.isDirectory()) {
-					folders++;
-					return {type: "folder", filename: file, path: filePath, elements: await scanSounds(filePath)};
-				} else {
-					files++;
-					return {type: "sound", filename: file, path: filePath};
-				}
-			}),
-		);
-		this.sounds = await scanSounds();
-		AudioModule.log(`Loaded ${files} sounds found inside ${folders + 1} folders.`);
+		const deviceTypes = janusz.flatMap(mod => mod.getAudioDevices);
 		
-		const devices = janusz.flatMap(mod => mod.getAudioDevices);
-		audioSystem.registerDeviceTypes(janusz.flatMap(mod => mod.getAudioDevices));
-		AudioModule.log(`Registered ${devices.length} audio devices.`);
+		for(let Dt of deviceTypes) {
+			this.deviceTypes.set(Dt.deviceName, Dt);
+		}
+		
+		await this.load();
+		
+		sendAll(packets.initPacket(this));
+		AudioModule.log(`Registered ${deviceTypes.length} audio devices.`);
 	}
 	
 	async start() {
-	
+		this.tickInterval = setInterval(this.onTick, BUFFER_SIZE / SAMPLE_RATE * 1000 );
 	}
 	
 	async stop() {
+		await this.save();
+		AudioModule.log("Closing " + clients.size + " clients");
+		clients.forEach(client => client.close());
+		this.deviceTypes.forEach(type => type.devices.forEach(dev => this.removeDevice(dev.uuid)));
+		this.devices.forEach(dev => this.removeDevice(dev.uuid));
+	}
 	
+	getAudioDevices() {
+		return [OscillatorInput];
 	}
 	
 	getRouter() {
 		return audioRouter(this);
 	}
 	
-	getAudioDevices() {
-		return [OscilatorInput];
+	async onReloadOther() {
+		await this.save();
+		this.deviceTypes.forEach(type => type.devices.forEach(dev => this.removeDevice(dev.uuid)));
+		this.devices.forEach(dev => this.removeDevice(dev.uuid));
+		this.deviceTypes.clear();
+		
+		const deviceTypes = janusz.flatMap(mod => mod.getAudioDevices);
+		
+		for(let Dt of deviceTypes) {
+			this.deviceTypes.set(Dt.deviceName, Dt);
+		}
+		
+		await this.load();
+	}
+	
+	async save() {
+		const state = {
+			devices: [...this.devices.values()].map(dev => dev.getState()),
+			connections: [...this.connections.keys()].map(uuid => this.getConnectionState(uuid)),
+		};
+		await fs.writeFile("./audioState.json", JSON.stringify(state));
+	}
+	
+	async load() {
+		try {
+			let kek = await fs.readFile("./audioState.json", "utf8");
+			const state = JSON.parse(kek.trim());
+			for(let device of state.devices) {
+				if(!this.deviceTypes.has(device.name)) {
+					AudioModule.error("Unknown device name: ", device.name);
+					continue;
+				}
+				this.addDevice(device.name, device);
+			}
+			for(let connection of state.connections) {
+				if(!this.devices.has(connection.from) || !this.devices.has(connection.to)) {
+					AudioModule.error("Invalid connection: ", connection);
+					continue;
+				}
+				const from = this.devices.get(connection.from);
+				const to = this.devices.get(connection.to);
+				if(!from) {
+					AudioModule.error("Unknown device: ", connection.from);
+					continue;
+				}
+				if(!to) {
+					AudioModule.error("Unknown device: ", connection.to);
+					continue;
+				}
+				this.connectDevices(from, to, connection.input, connection.output, connection.uuid);
+			}
+		} catch(e) {
+			AudioModule.error("Failed to load state.");
+			AudioModule.error(e);
+		}
+	}
+	
+	addDevice(deviceName, state) {
+		let device = new (this.deviceTypes.get(deviceName))(state);
+		this.devices.set(device.uuid, device);
+		device.audioModule = this;
+		
+		sendAll(packets.devicesUpdatePacket({[device.uuid]: device.getState()}));
+		
+		return device;
+	}
+	
+	removeDevice(uuid) {
+		let device = this.devices.get(uuid);
+		device.remove();
+		this.devices.delete(uuid);
+		
+		for(let connection of device.connections.values()) {
+			this.removeConnection(connection.uuid);
+		}
+		
+		sendAll(packets.devicesUpdatePacket({[device.uuid]: null}));
+	}
+	
+	connectDevices(from, to, output, input, id = uuid()) {
+		let connection = {
+			uuid: id, from, to, output, input,
+		};
+		this.connections.set(connection.uuid, connection);
+		from.connections.set(connection.uuid, connection);
+		to.connections.set(connection.uuid, connection);
+		
+		sendAll(packets.connectionsUpdatePacket({
+			[connection.uuid]: this.getConnectionState(connection.uuid),
+		}));
+		
+		return connection;
+	}
+	
+	removeConnection(uuid) {
+		let connection = this.connections.get(uuid);
+		this.connections.delete(uuid);
+		connection.from.connections.delete(uuid);
+		connection.to.connections.delete(uuid);
+		
+		sendAll(packets.connectionsUpdatePacket({
+			[uuid]: null,
+		}));
+		
+		return connection;
+	}
+	
+	getConnectionState(uuid) {
+		let connection = this.connections.get(uuid);
+		return {
+			uuid: connection.uuid,
+			from: connection.from.uuid,
+			to: connection.to.uuid,
+			output: connection.output,
+			input: connection.input,
+		};
+	}
+	
+	onTick = () => {
+		this.devices.forEach(device => device.refresh());
+		this.devices.forEach(device => device.tick());
 	}
 }
 

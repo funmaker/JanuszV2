@@ -3,5 +3,8 @@
 /prod
 /build
 /node_modules
-/sounds/*
-!/sounds/.gitkeep
+/sounds/sounds/*
+!/sounds/sounds/.gitkeep
+/key.pem
+/cert.pem
+/audioState.json

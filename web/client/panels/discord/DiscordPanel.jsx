@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Dimmer, Dropdown, Loader} from "semantic-ui-react";
-import requestJSON from "../web/client/helpers/requestJSON";
-import Channels from './channels';
+import requestJSON from "../../../client/helpers/requestJSON";
+import Channels from './Channels';
 
 export class Panel extends React.Component {
 	constructor(props) {

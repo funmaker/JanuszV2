@@ -1,7 +1,7 @@
 import React from 'react';
-import {Dimmer, Loader} from "semantic-ui-react";
+import {Button, Dimmer, Loader, Dropdown} from "semantic-ui-react";
 import isNode from 'detect-node';
-import * as packets from "./packets";
+import * as packets from "../../../../audio/packets";
 import Cabbles from "./Cabbles";
 import Device from "./Device";
 
@@ -9,13 +9,42 @@ const nullImage = isNode ? {} : document.createElement('IMG');
 nullImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 export class Panel extends React.Component {
+	constructor(props) {
+		super(props);
+		
+		this.state = {
+			loading: true,
+			posx: 0,
+			posy: 0,
+			devices: {},
+			connections: {},
+			types: [],
+			dragging: null,
+			draggingOrig: null,
+		};
+		
+		if(!isNode) {
+			this.reconnectWS();
+		}
+	}
+	
+	componentWillUnmount() {
+		this.ws.removeEventListener("close", this.handleClose);
+		this.ws.removeEventListener("message", this.handleMessage);
+		this.ws.close();
+	}
+	
 	handleClose = (code, reason) => {
 		console.log(code, reason);
 		this.setState({
+			devices: {},
+			connections: {},
+			types: [],
 			loading: true,
 		});
 		this.reconnectWS();
 	};
+	
 	handleMessage = msg => {
 		msg = JSON.parse(msg.data);
 		
@@ -25,47 +54,42 @@ export class Panel extends React.Component {
 					loading: false,
 					devices: msg.devices,
 					connections: msg.connections,
+					types: msg.types,
 				});
 				break;
 			
 			case packets.types.DEVICES_UPDATE:
+				let devices = {...this.state.devices};
+				
 				for(let uuid of Object.keys(msg.devices)) {
 					if(msg.devices[uuid] === null) {
-						msg.devices[uuid] = undefined;
+						delete devices[uuid];
 					} else {
-						msg.devices[uuid] = {
-							...this.state.devices[uuid],
+						devices[uuid] = {
+							...devices[uuid],
 							...msg.devices[uuid],
 						};
 					}
 				}
 				
-				this.setState({
-					devices: {
-						...this.state.devices,
-						...msg.devices,
-					},
-				});
+				this.setState({devices});
 				break;
 			
 			case packets.types.CONNECTIONS_UPDATE:
+				let connections = {...this.state.connections};
+				
 				for(let uuid of Object.keys(msg.connections)) {
 					if(msg.connections[uuid] === null) {
-						msg.connections[uuid] = undefined;
+						delete connections[uuid];
 					} else {
-						msg.connections[uuid] = {
-							...this.state.connections[uuid],
+						connections[uuid] = {
+							...connections[uuid],
 							...msg.connections[uuid],
 						};
 					}
 				}
 				
-				this.setState({
-					connections: {
-						...this.state.connections,
-						...msg.connections,
-					},
-				});
+				this.setState({connections});
 				break;
 			
 			default:
@@ -73,6 +97,27 @@ export class Panel extends React.Component {
 				break;
 		}
 	};
+	
+	reconnectWS() {
+		this.ws = new WebSocket(`ws://${location.host}/audio`);
+		this.ws.addEventListener("open", () => {
+			console.log("Connection open");
+			this.setState({
+				loading: true,
+				devices: {},
+			});
+		});
+		this.ws.addEventListener("close", (code, reason) => {
+			console.log("Connection closed");
+			this.handleClose(code, reason);
+		});
+		this.ws.addEventListener("error", err => {
+			console.log("Connection error: ", err);
+			this.ws.close();
+		});
+		this.ws.addEventListener('message', this.handleMessage);
+	}
+	
 	onMouseMove = ev => {
 		if((ev.buttons & 1) === 0) return;
 		if(ev.target !== this.div) return;
@@ -82,6 +127,7 @@ export class Panel extends React.Component {
 			posy: this.state.posy + ev.nativeEvent.movementY,
 		});
 	};
+	
 	onDragStart = ev => {
 		const target = ev.target;
 		const uuid = target.dataset.uuid;
@@ -92,6 +138,7 @@ export class Panel extends React.Component {
 		ev.dataTransfer.setData("posy", device.posy);
 		ev.dataTransfer.setDragImage(nullImage, 0, 0);
 	};
+	
 	onDragLeave = ev => {
 		if(ev.dataTransfer.getData("type") !== "device") return;
 		const uuid = ev.dataTransfer.getData("uuid");
@@ -107,6 +154,7 @@ export class Panel extends React.Component {
 			},
 		});
 	};
+	
 	onDragOver = ev => {
 		if(ev.dataTransfer.getData("type") !== "device") return;
 		const uuid = ev.dataTransfer.getData("uuid");
@@ -127,6 +175,7 @@ export class Panel extends React.Component {
 			},
 		});
 	};
+	
 	onDrop = ev => {
 		if(ev.dataTransfer.getData("type") !== "device") return;
 		const uuid = ev.dataTransfer.getData("uuid");
@@ -134,50 +183,32 @@ export class Panel extends React.Component {
 		const device = this.state.devices[uuid];
 		this.ws.send(packets.deviceMovePacket(uuid, device.posx, device.posy));
 	};
+	
 	onConnect = (from, to, output, input) => {
+		for(let connection of Object.values(this.state.connections)) {
+			if(connection.from === from &&
+				connection.to === to &&
+				connection.output === output &&
+				connection.input === input) {
+				this.ws.send(packets.deviceDisconnectPacket(connection.uuid));
+				return;
+			}
+		}
 		this.ws.send(packets.deviceConnectPacket(from, to, output, input));
 	};
 	
-	constructor(props) {
-		super(props);
-		
-		this.state = {
-			loading: true,
-			posx: 0,
-			posy: 0,
-			devices: {},
-			connections: {},
-			dragging: null,
-			draggingOrig: null,
-		};
-		
-		if(!isNode) {
-			this.reconnectWS();
-		}
-	}
+	addDevice = (ev, {value: deviceName}) => {
+		this.ws.send(packets.deviceAddPacket(deviceName));
+	};
 	
-	componentWillUnmount() {
-		this.ws.removeEventListener("close", this.handleClose);
-		this.ws.removeEventListener("message", this.handleMessage);
-		this.ws.close();
-	}
-	
-	reconnectWS() {
-		this.ws = new WebSocket(`ws://${location.host}/audio/system`);
-		this.ws.addEventListener("open", () => {
-			this.setState({
-				loading: true,
-				devices: {},
-			});
-		});
-		this.ws.addEventListener("close", this.handleClose);
-		this.ws.addEventListener('message', this.handleMessage);
-	}
+	removeDevice = uuid => {
+		this.ws.send(packets.deviceRemovePacket(uuid));
+	};
 	
 	render() {
-		const {posx, posy, devices, connections, loading} = this.state;
+		const {posx, posy, devices, connections, types, loading} = this.state;
 		
-		return <div className="AudioManager"
+		return <div className="AudioPanel"
 		            onMouseMove={this.onMouseMove}
 		            onDragOver={this.onDragOver}
 		            onDragLeave={this.onDragLeave}
@@ -187,14 +218,29 @@ export class Panel extends React.Component {
 			<div className="offset"
 			     ref={div => this.offsetDiv = div}
 			     style={{transform: `translate(${posx}px, ${posy}px)`}}>
+				<Dimmer active={loading} inverted><Loader size="huge"/></Dimmer>
 				{Object.values(devices).map(device =>
 					<Device device={device}
 					        key={device.uuid}
+					        onRemove={this.removeDevice}
 					        onConnect={this.onConnect}
 					        onDragStart={this.onDragStart}/>)}
+				<Cabbles devices={devices} connections={connections}/>
 			</div>
-			<Cabbles devices={devices} connections={connections} posx={posx} posy={posy}/>
-			<Dimmer active={loading} inverted><Loader/></Dimmer>
+			<div className="audioButtons">
+				<Dropdown trigger={<Button icon="add" />}
+				          icon={null}
+				          options={types.map(type => ({
+					          value: type.deviceName,
+					          text: type.deviceName,
+					          disabled: type.singleton && Object.values(devices).some(device => device.name === type.deviceName)
+				          }))}
+				          upward
+									direction="left"
+									onChange={this.addDevice}
+									selectOnBlur={false}
+									value={false}/>
+			</div>
 		</div>;
 	}
 }

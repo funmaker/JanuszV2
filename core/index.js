@@ -39,6 +39,13 @@ export default class JanuszCore extends JanuszModule {
 		}));
 	}
 	
+	async afterReload() {
+		await Promise.all(this.modules.map(async module => {
+			await module.stop();
+			JanuszCore.log(`${module.constructor.ModuleName} Stopped. ${++count}/${this.modules.length}`);
+		}));
+	}
+	
 	getModule(type) {
 		return this.modules.find(module => module instanceof type);
 	}
@@ -47,7 +54,7 @@ export default class JanuszCore extends JanuszModule {
 		let res = [];
 		for(let module of this.modules) {
 			let ret = fun(module);
-			if(typeof ret === "function") ret = ret();
+			if(typeof ret === "function") ret = ret.call(module);
 			if(typeof ret === "undefined") continue;
 			if(ret === null) continue;
 			if(Array.isArray(ret)) {

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOMServer from 'react-dom/server';
 import {StaticRouter} from "react-router";
 import index from '../views/index.handlebars';
-import App from "../../client/app";
+import App from "../../client/App";
 import HTTPError from "./HTTPError";
 
 const removeTags = /[&<>]/g;

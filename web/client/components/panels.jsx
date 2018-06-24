@@ -1,7 +1,7 @@
 import React from 'react';
 import {Icon, Segment} from "semantic-ui-react";
 import SplitPane from 'react-split-pane'
-import {findClientModule} from "../app";
+import {findClientModule} from "../App";
 
 export function PanelTab({name, active, onDelete, onClick}) {
 	function onDragStart(ev) {

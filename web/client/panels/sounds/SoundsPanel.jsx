@@ -1,7 +1,7 @@
 import React from 'react';
-import requestJSON from "../web/client/helpers/requestJSON";
+import requestJSON from "../../../client/helpers/requestJSON";
 import {Accordion, Button, Dimmer, Icon, Loader} from "semantic-ui-react";
-import Franku, {trigger, triggerCallbacks} from "./franku";
+import Franku, {trigger, triggerCallbacks} from "./Franku";
 
 function Sounds({elements}) {
 	let folders = elements.filter(sound => sound.type === "folder").sort((a, b) => a.name.localeCompare(b.name));
@@ -30,13 +30,13 @@ class Sound extends React.Component {
 	}
 	
 	async playSound() {
-		await requestJSON({pathname: "/audio/play", search: {sound: this.props.sound.path}});
+		await requestJSON({pathname: "/sounds/play", search: {sound: this.props.sound.path}});
 		trigger();
 	}
 	
 	async playRandomSound(ev) {
 		ev.stopPropagation();
-		await requestJSON({pathname: "/audio/play", search: {sound: this.props.sound.path + "/*"}});
+		await requestJSON({pathname: "/sounds/play", search: {sound: this.props.sound.path + "/*"}});
 		trigger();
 	}
 	
@@ -77,7 +77,7 @@ export class Panel extends React.Component {
 	}
 	
 	async componentDidMount() {
-		const sounds = await requestJSON({pathname: "/audio/sounds"});
+		const sounds = await requestJSON({pathname: "/sounds/list"});
 		this.setState({
 			sounds,
 			loading: false,
@@ -100,12 +100,12 @@ export class Panel extends React.Component {
 	}
 	
 	async playRandomSound() {
-		await requestJSON({pathname: "/audio/play", search: {sound: "*"}});
+		await requestJSON({pathname: "/sounds/play", search: {sound: "*"}});
 		trigger();
 	}
 	
 	async stopSounds() {
-		await requestJSON({pathname: "/audio/stopSounds"});
+		await requestJSON({pathname: "/sounds/stopSounds"});
 	}
 	
 	render() {

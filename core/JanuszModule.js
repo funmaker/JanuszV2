@@ -7,6 +7,10 @@ export default class JanuszModule {
 		console.log(logPrefix(this.ModuleName), ...args);
 	}
 	
+	static error(...args) {
+		console.error(logPrefix(this.ModuleName), ...args);
+	}
+	
 	async init() {
 	
 	}
@@ -16,6 +20,10 @@ export default class JanuszModule {
 	}
 	
 	async stop() {
+	
+	}
+	
+	async onReloadOther() {
 	
 	}
 }

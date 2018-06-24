@@ -1,12 +1,12 @@
 import PromiseRouter from "express-promise-router";
 
-export default function discordRouter(discord) {
+export default function discordRouter(discordModule) {
 	const router = PromiseRouter();
 	
 	router.get("/guilds/:id/:channel/join", async (req, res) => {
 		const data = {};
 		
-		const guild = discord.guilds.get(req.params.id);
+		const guild = discordModule.client.guilds.get(req.params.id);
 		const channel = guild.channels.get(req.params.channel);
 		await channel.join();
 		guild.sync();
@@ -17,7 +17,7 @@ export default function discordRouter(discord) {
 	router.get("/guilds/:id/disconnect", async (req, res) => {
 		const data = {};
 		
-		const guild = discord.guilds.get(req.params.id);
+		const guild = discordModule.client.guilds.get(req.params.id);
 		if(guild.voiceConnection) {
 			guild.voiceConnection.disconnect();
 		}
@@ -28,7 +28,7 @@ export default function discordRouter(discord) {
 	router.get("/guilds/:id", async (req, res) => {
 		const data = {};
 		
-		const guild = discord.guilds.get(req.params.id);
+		const guild = discordModule.client.guilds.get(req.params.id);
 		
 		const channelMap = channel => {
 			if(channel.type === "text") {
@@ -66,7 +66,7 @@ export default function discordRouter(discord) {
 	});
 	
 	router.get("/guilds", async (req, res) => {
-		const data = discord.guilds.map(guild => ({
+		const data = discordModule.client.guilds.map(guild => ({
 			id: guild.id,
 			name: guild.name,
 			members: guild.memberCount,

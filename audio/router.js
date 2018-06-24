@@ -1,79 +1,97 @@
 import PromiseRouter from "express-promise-router";
-import {findModule} from "../index";
-import DiscordModule from "../discord";
-import {Readable} from "stream";
-import systemRouter from './audioSystem/systemRouter.js'
+import * as packets from "./packets";
+
+export const clients = new Set();
+export const sendAll = msg => clients.forEach(client => client.send(msg, err => err && client.close()));
 
 export default function audioRouter(audioModule) {
 	const router = PromiseRouter();
 	
-	router.get('/play', async (req, res) => {
-		let path = req.query.sound.split("/");
-		
-		if(req.query.sound === "*") {
-			console.log("kek");
-			
-			let counter = 0;
-			const stream = new Readable({
-				async read(size) {
-					console.log(counter);
-					if(size % 2) size++;
-					let buffer = Buffer.alloc(size);
-					for(let i = 0; i + 1 < size; i += 2) {
-						counter++;
-						buffer.writeInt16LE(Math.sin(counter * Math.PI / 48000 * 60 * (1 + Math.cos(counter * Math.PI / 48000) / 4)) * 16000, i);
-					}
-					stream.push(buffer);
-				},
-			});
-			
-			
-			for(const connection of findModule(DiscordModule).client.voiceConnections.values()) {
-				connection.on('error', console.error);
-				const dispatcher = connection.playConvertedStream(stream);
-				dispatcher.on('error', console.error);
-				console.log("playing on", connection.channel.guild.name);
+	async function handleMessage(msg, ws) {
+		switch(msg.type) {
+			case packets.types.DEVICE_ADD: {
+				if(!audioModule.deviceTypes.get(msg.deviceName)) throw Error(`Unknown device type: ${msg.deviceName}`);
+				
+				audioModule.addDevice(msg.deviceName);
+				
+				await audioModule.save();
+				break;
+			}
+			case packets.types.DEVICE_REMOVE: {
+				if(!audioModule.devices.get(msg.uuid)) throw Error(`Unknown device: ${msg.uuid}`);
+				
+				audioModule.removeDevice(msg.uuid);
+				
+				await audioModule.save();
+				break;
 			}
 			
-			return;
-		}
-		
-		let sounds = {elements: audioModule.sounds, type: "folder"};
-		for(let p of path) {
-			if(!sounds || sounds.type !== "folder") return res.status(404).send();
-			sounds = sounds.elements.find(sound => sound.filename === p);
-		}
-		if(!sounds) return res.status(404).send();
-		
-		findModule(DiscordModule).playSound(sounds);
-		
-		res.json({});
-	});
-	
-	router.get("/sounds", async (req, res) => {
-		const soundMap = path => sound => {
-			if(sound.type === "folder") {
-				return {
-					type: "folder",
-					name: sound.filename,
-					path: path + sound.filename,
-					elements: sound.elements.map(soundMap(path + sound.filename + "/")),
-				};
-			} else {
-				return {
-					type: "sound",
-					name: sound.filename,
-					path: path + sound.filename,
-				};
+			case packets.types.DEVICE_MOVE: {
+				const device = audioModule.devices.get(msg.uuid);
+				if(!device) throw Error(`Unknown device: ${msg.uuid}`);
+				
+				device.posx = msg.posx;
+				device.posy = msg.posy;
+				sendAll(packets.devicesUpdatePacket({
+					[msg.uuid]: {posx: msg.posx, posy: msg.posy},
+				}));
+				await audioModule.save();
+				break;
 			}
-		};
-		
-		const data = audioModule.sounds.map(soundMap(""));
-		
-		res.json(data);
-	});
+			
+			case packets.types.DEVICE_CONNECT: {
+				const {from: fromUUID, to: toUUID, output, input} = msg;
+				
+				const from = audioModule.devices.get(fromUUID);
+				const to = audioModule.devices.get(toUUID);
+				if(!from) throw Error(`Unknown device: ${fromUUID}`);
+				if(!to) throw Error(`Unknown device: ${toUUID}`);
+				
+				audioModule.connectDevices(from, to, output, input);
+				await audioModule.save();
+				break;
+			}
+			
+			case packets.types.DEVICE_DISCONNECT: {
+				let {uuid} = msg;
+				
+				const connection = audioModule.connections.get(uuid);
+				if(!connection) throw Error(`Unknown connection: ${uuid}`);
+				
+				audioModule.removeConnection(uuid);
+				await audioModule.save();
+				break;
+			}
+			
+			default:
+				console.error("Unknown packet: " + msg.type, msg);
+				break;
+		}
+	}
 	
-	router.use("/system", systemRouter(audioModule));
+	router.ws('/', (ws, req) => {
+		clients.add(ws);
+		
+		ws.on('error', (err) => {
+			console.error(err);
+			clients.delete(ws);
+			ws.close();
+		});
+		ws.on('close', (code, reason) => {
+			clients.delete(ws);
+		});
+		ws.on('message', async msg => {
+			try {
+				await handleMessage(JSON.parse(msg), ws);
+			} catch(e) {
+				console.error(e);
+				ws.close();
+			}
+		});
+		
+		ws.send(packets.initPacket(audioModule));
+	});
 	
 	return router;
 }
+

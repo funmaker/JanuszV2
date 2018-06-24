@@ -1,5 +1,5 @@
 import React from "react";
-import {clientModules} from "../app";
+import {clientModules} from "../App";
 import {Segment} from "semantic-ui-react";
 
 function onDragOver(ev) {

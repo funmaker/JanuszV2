@@ -6,9 +6,11 @@ import JanuszCore from "./core";
 export const rootDir = __dirname;
 
 const requireModules = () => [
-	require("./discord").default,
-	require("./audio").default,
 	require("./web").default,
+	require("./audio").default,
+	require("./sounds").default,
+	require("./discord").default,
+	require("./mumble").default,
 ];
 const prefix = logPrefix("Janusz".yellow.bold);
 
@@ -26,22 +28,37 @@ export const findModule = Type => janusz.modules.find(mod => mod instanceof Type
 	console.log(`${prefix} All modules have been started. ${"Janusz".yellow.bold} is ready for action.`);
 })().catch(console.error);
 
+process.on('unhandledRejection', (reason, p) => {
+	console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+});
+
 if(module.hot) {
-	module.hot.accept(["./discord", "./audio", "./web"], () => (async () => {
+	module.hot.accept(["./discord", "./audio", "./web", "./mumble", "./sounds"], () => (async () => {
 		const newModules = requireModules();
-		console.log(`${prefix} Reloading ${newModules.filter((Mod, n) => !(janusz.modules[n] instanceof Mod)).length} modules...`);
+		let changed = [];
 		
 		for(let n = 0; n < newModules.length; n++) {
 			if(!(janusz.modules[n] instanceof newModules[n])) {
-				const oldModule = janusz.modules[n];
-				const newModule = new newModules[n](oldModule);
-				await oldModule.stop();
-				janusz.modules[n] = newModule;
-				await newModule.init();
-				await newModule.start();
-				console.log(`${prefix} ${newModules[n].ModuleName} Reloaded.`);
+				changed.push(n);
 			}
 		}
+		
+		console.log(`${prefix} Reloading ${changed.length} modules...`);
+		
+		let reloadModules = changed.map(id => ({
+			oldMod: janusz.modules[id],
+			newMod: new newModules[id](janusz.modules[id]),
+			id,
+		}));
+		await Promise.all(reloadModules.map(async ({oldMod}) => await oldMod.stop()));
+		reloadModules.forEach(({id, newMod}) => janusz.modules[id] = newMod);
+		await Promise.all(reloadModules.map(async ({newMod}) => await newMod.init()));
+		await Promise.all(reloadModules.map(async ({newMod}) => await newMod.start()));
+		
+		await Promise.all(Object.keys(janusz.modules).filter(id => !changed.includes(parseInt(id)))
+																								 .map(id => janusz.modules[id].onReloadOther()));
+		
+		console.log(`${prefix} Reload complete`);
 	})().catch(console.error));
 	
 	module.hot.accept(["./core"], () => (async () => {
@@ -59,8 +76,6 @@ if(module.hot) {
 		
 		console.log(`${prefix} All modules have been started. ${"Janusz".yellow.bold} is ready for action.`);
 	})().catch(console.error));
+	
+	module.hot.accept(["./core/JanuszModule"], () => {});
 }
-
-process.on('unhandledRejection', (reason, p) => {
-	console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
-});
