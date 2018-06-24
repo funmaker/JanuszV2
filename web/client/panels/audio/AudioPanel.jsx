@@ -132,32 +132,37 @@ export class Panel extends React.Component {
 		const target = ev.target;
 		const uuid = target.dataset.uuid;
 		const device = this.state.devices[uuid];
-		ev.dataTransfer.setData("type", "device");
-		ev.dataTransfer.setData("uuid", uuid);
-		ev.dataTransfer.setData("posx", device.posx);
-		ev.dataTransfer.setData("posy", device.posy);
+		
+		ev.stopPropagation();
+		ev.dataTransfer.setData("firefox", "sucks");
+		window.dataTransfer.clearData();
+		window.dataTransfer.setData("type", "device");
+		window.dataTransfer.setData("uuid", uuid);
+		window.dataTransfer.setData("posx", device.posx);
+		window.dataTransfer.setData("posy", device.posy);
 		ev.dataTransfer.setDragImage(nullImage, 0, 0);
+		ev.dataTransfer.effectAllowed = "move";
 	};
 	
 	onDragLeave = ev => {
-		if(ev.dataTransfer.getData("type") !== "device") return;
-		const uuid = ev.dataTransfer.getData("uuid");
+		if(window.dataTransfer.getData("type") !== "device") return;
+		const uuid = window.dataTransfer.getData("uuid");
 		const device = this.state.devices[uuid];
-		this.setState({
-			devices: {
-				...this.state.devices,
-				[uuid]: {
-					...device,
-					posx: ev.dataTransfer.getData("posx"),
-					posy: ev.dataTransfer.getData("posy"),
-				},
-			},
-		});
+		// this.setState({
+		// 	devices: {
+		// 		...this.state.devices,
+		// 		[uuid]: {
+		// 			...device,
+		// 			posx: parseInt(window.dataTransfer.getData("posx")),
+		// 			posy: parseInt(window.dataTransfer.getData("posy")),
+		// 		},
+		// 	},
+		// });
 	};
 	
 	onDragOver = ev => {
-		if(ev.dataTransfer.getData("type") !== "device") return;
-		const uuid = ev.dataTransfer.getData("uuid");
+		if(window.dataTransfer.getData("type") !== "device") return;
+		const uuid = window.dataTransfer.getData("uuid");
 		ev.preventDefault();
 		const device = this.state.devices[uuid];
 		const offset = this.offsetDiv.getBoundingClientRect();
@@ -165,20 +170,22 @@ export class Panel extends React.Component {
 		let posy = ev.screenY - offset.y - 100;
 		posx = 16 * Math.round(posx / 16);
 		posy = 16 * Math.round(posy / 16);
-		this.setState({
-			devices: {
-				...this.state.devices,
-				[uuid]: {
-					...device,
-					posx, posy,
+		if(device.posx !== posx || device.posy !== posy) {
+			this.setState({
+				devices: {
+					...this.state.devices,
+					[uuid]: {
+						...device,
+						posx, posy,
+					},
 				},
-			},
-		});
+			});
+		}
 	};
 	
 	onDrop = ev => {
-		if(ev.dataTransfer.getData("type") !== "device") return;
-		const uuid = ev.dataTransfer.getData("uuid");
+		if(window.dataTransfer.getData("type") !== "device") return;
+		const uuid = window.dataTransfer.getData("uuid");
 		ev.preventDefault();
 		const device = this.state.devices[uuid];
 		this.ws.send(packets.deviceMovePacket(uuid, device.posx, device.posy));

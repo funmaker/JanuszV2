@@ -5,8 +5,9 @@ import {findClientModule} from "../App";
 
 export function PanelTab({name, active, onDelete, onClick}) {
 	function onDragStart(ev) {
-		ev.dataTransfer.setData("januszTab", "true");
-		ev.dataTransfer.setData("name", name);
+		ev.dataTransfer.setData("firefox", "sucks");
+		window.dataTransfer.setData("januszTab", "true");
+		window.dataTransfer.setData("name", name);
 	}
 	
 	function onDragEnd(ev) {
@@ -39,15 +40,15 @@ export default class Panels extends React.Component {
 	}
 	
 	async onTabsDrop(ev) {
-		if(ev.dataTransfer.getData("januszTab") === "true") {
+		if(window.dataTransfer.getData("januszTab") === "true") {
 			ev.preventDefault();
 			
-			this.props.onChange([...this.props.panels, ev.dataTransfer.getData("name")]);
+			this.props.onChange([...this.props.panels, window.dataTransfer.getData("name")]);
 		}
 	}
 	
 	async onContentDrop(ev) {
-		if(ev.dataTransfer.getData("januszTab") === "true") {
+		if(window.dataTransfer.getData("januszTab") === "true") {
 			let target = ev.currentTarget;
 			ev.preventDefault();
 			
@@ -60,18 +61,18 @@ export default class Panels extends React.Component {
 			if(x > y && x > 1 - y) {
 				newPanels.vertical = true;
 				newPanels.first = panels;
-				newPanels.second = [ev.dataTransfer.getData("name")];
+				newPanels.second = [window.dataTransfer.getData("name")];
 			} else if(x < y && x < 1 - y) {
 				newPanels.vertical = true;
-				newPanels.first = [ev.dataTransfer.getData("name")];
+				newPanels.first = [window.dataTransfer.getData("name")];
 				newPanels.second = panels;
 			} else if(y > x && y > 1 - x) {
 				newPanels.vertical = false;
 				newPanels.first = panels;
-				newPanels.second = [ev.dataTransfer.getData("name")];
+				newPanels.second = [window.dataTransfer.getData("name")];
 			} else if(y < x && y < 1 - x) {
 				newPanels.vertical = false;
-				newPanels.first = [ev.dataTransfer.getData("name")];
+				newPanels.first = [window.dataTransfer.getData("name")];
 				newPanels.second = panels;
 			}
 			onChange(newPanels);
@@ -79,15 +80,15 @@ export default class Panels extends React.Component {
 	}
 	
 	async onEmptyDrop(ev) {
-		if(ev.dataTransfer.getData("januszTab") === "true") {
+		if(window.dataTransfer.getData("januszTab") === "true") {
 			ev.preventDefault();
 			
-			this.props.onChange([ev.dataTransfer.getData("name")]);
+			this.props.onChange([window.dataTransfer.getData("name")]);
 		}
 	}
 	
 	onDragOver(ev) {
-		if(ev.dataTransfer.getData("januszTab") === "true") {
+		if(window.dataTransfer.getData("januszTab") === "true") {
 			ev.preventDefault();
 		}
 	}

@@ -14,36 +14,38 @@ export default class Device extends React.Component {
 		const uuid = target.dataset.device;
 		
 		ev.stopPropagation();
-		ev.dataTransfer.setData("type", "link");
-		ev.dataTransfer.setData("uuid", uuid);
-		ev.dataTransfer.setData("port", port);
-		ev.dataTransfer.setData("kind", kind);
+		ev.dataTransfer.setData("firefox", "sucks");
+		window.dataTransfer.clearData();
+		window.dataTransfer.setData("type", "link");
+		window.dataTransfer.setData("uuid", uuid);
+		window.dataTransfer.setData("port", port);
+		window.dataTransfer.setData("kind", kind);
 		ev.dataTransfer.setDragImage(nullImage, 0, 0);
 		ev.dataTransfer.effectAllowed = "link";
 	};
 	
 	onDragOver = ev => {
-		if(ev.dataTransfer.getData("type") !== "link") return;
-		if(ev.target.dataset.kind === ev.dataTransfer.getData("kind")) return;
+		if(window.dataTransfer.getData("type") !== "link") return;
+		if(ev.target.dataset.kind === window.dataTransfer.getData("kind")) return;
 		ev.dataTransfer.dropEffect = "link";
 		ev.preventDefault();
 	};
 	
 	onDrop = ev => {
-		if(ev.dataTransfer.getData("type") !== "link") return;
-		if(ev.target.dataset.kind === ev.dataTransfer.getData("kind")) return;
+		if(window.dataTransfer.getData("type") !== "link") return;
+		if(ev.target.dataset.kind === window.dataTransfer.getData("kind")) return;
 		const target = ev.target;
 		let input, to, output, from;
-		if(ev.dataTransfer.getData("kind") === "output") {
+		if(window.dataTransfer.getData("kind") === "output") {
 			input = parseInt(target.dataset.port);
 			to = target.dataset.device;
-			output = parseInt(ev.dataTransfer.getData("port"));
-			from = ev.dataTransfer.getData("uuid");
+			output = parseInt(window.dataTransfer.getData("port"));
+			from = window.dataTransfer.getData("uuid");
 		} else {
 			output = parseInt(target.dataset.port);
 			from = target.dataset.device;
-			input = parseInt(ev.dataTransfer.getData("port"));
-			to = ev.dataTransfer.getData("uuid");
+			input = parseInt(window.dataTransfer.getData("port"));
+			to = window.dataTransfer.getData("uuid");
 		}
 		
 		this.props.onConnect(from, to, output, input);

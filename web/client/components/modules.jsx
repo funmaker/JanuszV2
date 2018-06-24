@@ -3,14 +3,16 @@ import {clientModules} from "../App";
 import {Segment} from "semantic-ui-react";
 
 function onDragOver(ev) {
-	if(ev.dataTransfer.getData("januszTab") === "true") {
+	if(window.dataTransfer.getData("januszTab") === "true") {
 		ev.preventDefault();
 	}
 }
 
 function onDragStart(ev, name) {
-	ev.dataTransfer.setData("januszTab", "true");
-	ev.dataTransfer.setData("name", name);
+	ev.dataTransfer.setData("firefox", "sucks");
+	window.dataTransfer.clearData();
+	window.dataTransfer.setData("januszTab", "true");
+	window.dataTransfer.setData("name", name);
 }
 
 export default function Modules() {

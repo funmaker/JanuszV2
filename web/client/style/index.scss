@@ -1,6 +1,6 @@
 
 .Index {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 1em 1em 0;
@@ -12,5 +12,6 @@
 
   & > .Panels {
     flex: 1;
+    overflow: hidden;
   }
 }

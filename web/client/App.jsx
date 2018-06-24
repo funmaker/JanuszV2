@@ -8,6 +8,19 @@ import * as AudioClient from './panels/audio/AudioPanel';
 import * as SoundsClient from './panels/sounds/SoundsPanel';
 import * as DiscordClient from './panels/discord/DiscordPanel';
 
+if(!isNode) {
+	try {
+		window.dataTransfer = new DataTransfer();
+	} catch(e) {
+		let data = {};
+		window.dataTransfer = {
+			setData: (name, value) => data[name] = value,
+			getData: (name) => data[name],
+			clearData: () => data = {} ,
+		};
+	}
+}
+
 export const clientModules = [
 	AudioClient,
 	SoundsClient,

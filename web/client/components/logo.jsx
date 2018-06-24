@@ -2,7 +2,7 @@ import React from 'react';
 import {Image} from "semantic-ui-react";
 
 function onDragOver(ev) {
-	if(ev.dataTransfer.getData("januszTab") === "true") {
+	if(window.dataTransfer.getData("januszTab") === "true") {
 		ev.preventDefault();
 	}
 }
