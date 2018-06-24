@@ -82,7 +82,10 @@ export default class AudioDevice {
 				for(let n = 0; n < BUFFER_SIZE; n++) {
 					const a = buffer.readInt16LE(n * 2);
 					const b = buf.readInt16LE(n * 2);
-					buffer.writeInt16LE(a + b - a * b * Math.sign(a) / 33000, n * 2);
+					let val = a + b - a * b * Math.sign(a) / 32767;
+					if(val < -32768) val = 32768;
+					if(val > 32767) val = 32767;
+					buffer.writeInt16LE(val, n);
 				}
 			}
 			

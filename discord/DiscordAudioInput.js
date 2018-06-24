@@ -54,7 +54,10 @@ export default discordModule => class DiscordAudioInput extends AudioSingletonDe
 			for(let n = 0; n < buffer.length / 2; n += 2) {
 				const a = buffer.readInt16LE(n * 2);
 				const b = output.readInt16LE(n);
-				output.writeInt16LE(a + b - a * b * Math.sign(a) / 32800, n);
+				let val = a + b - a * b * Math.sign(a) / 32767;
+				if(val < -32768) val = 32768;
+				if(val > 32767) val = 32767;
+				output.writeInt16LE(val, n);
 			}
 		}
 	}

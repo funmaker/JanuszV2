@@ -5,56 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06604412-10b9-47fe-aa3d-be44a68b5d76" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/audio/OscillatorInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/packets.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/discord/DiscordAudioInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mumble/MumbleAudioInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mumble/MumbleAudioOutput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/sounds/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/client/panels/audio/Cabbles.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/audioSystem/AudioDevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/audio/AudioDevice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/audioSystem/AudioSingletonDevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/audio/AudioSingletonDevice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/audioSystem/Cabbles.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/audioSystem/Device.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/audio/Device.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/audioSystem/OscilatorInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/SoundsInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/audioSystem/audioSystem.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/audioSystem/packets.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/audioSystem/systemPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/audioSystem/systemRouter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/franku.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/sounds/Franku.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/audio/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/audio/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/sounds.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/sounds/SoundsPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/JanuszModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/JanuszModule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/JanuszPanel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discord/DiscordAudioOutput.js" beforeDir="false" afterPath="$PROJECT_DIR$/discord/DiscordAudioOutput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discord/channels.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/discord/Channels.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discord/client.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/discord/DiscordPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discord/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/discord/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discord/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/discord/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/mumble/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/components/modules.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/components/modules.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/components/panels.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/components/panels.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/style/audioSystem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/audio.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/style/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/server/helpers/reactHelper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/server/helpers/reactHelper.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack/server.dev.babel.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack/server.dev.babel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/AudioDevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/audio/AudioDevice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discord/DiscordAudioInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/discord/DiscordAudioInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/SoundsInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/SoundsInput.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -69,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sounds/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
+            <state relative-caret-position="726">
               <caret line="112" column="71" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="71" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
@@ -93,11 +47,32 @@
       <file leaf-file-name="SoundsInput.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sounds/SoundsInput.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="420">
+              <caret line="37" column="40" lean-forward="true" selection-start-line="37" selection-start-column="40" selection-end-line="41" selection-end-column="36" />
               <folding>
                 <element signature="e#0#65#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AudioDevice.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/audio/AudioDevice.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DiscordAudioInput.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/discord/DiscordAudioInput.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="444">
+              <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -187,17 +162,17 @@
         <option value="$PROJECT_DIR$/core/index.js" />
         <option value="$PROJECT_DIR$/audio/OscillatorInput.js" />
         <option value="$PROJECT_DIR$/discord/index.js" />
-        <option value="$PROJECT_DIR$/audio/AudioDevice.js" />
         <option value="$PROJECT_DIR$/mumble/MumbleAudioInput.js" />
         <option value="$PROJECT_DIR$/mumble/MumbleAudioOutput.js" />
-        <option value="$PROJECT_DIR$/discord/DiscordAudioInput.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/discord/DiscordAudioOutput.js" />
         <option value="$PROJECT_DIR$/webpack/server.dev.babel.js" />
         <option value="$PROJECT_DIR$/web/client/panels/sounds/SoundsPanel.jsx" />
         <option value="$PROJECT_DIR$/sounds/index.js" />
-        <option value="$PROJECT_DIR$/sounds/SoundsInput.js" />
         <option value="$PROJECT_DIR$/sounds/router.js" />
+        <option value="$PROJECT_DIR$/sounds/SoundsInput.js" />
+        <option value="$PROJECT_DIR$/discord/DiscordAudioInput.js" />
+        <option value="$PROJECT_DIR$/audio/AudioDevice.js" />
       </list>
     </option>
   </component>
@@ -241,6 +216,22 @@
               <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
               <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
               <item name="discord" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="mumble" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="sounds" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="sounds" type="462c0819:PsiDirectoryNode" />
+              <item name="sounds" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
@@ -355,7 +346,7 @@
       <workItem from="1529146202390" duration="27125000" />
       <workItem from="1529320671235" duration="194000" />
       <workItem from="1529512206250" duration="12265000" />
-      <workItem from="1529754839477" duration="54898000" />
+      <workItem from="1529754839477" duration="56900000" />
     </task>
     <task id="LOCAL-00001" summary="Added README">
       <created>1514245578738</created>
@@ -392,21 +383,28 @@
       <option name="project" value="LOCAL" />
       <updated>1527547402357</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Mumble Support&#10;Discord Support&#10;Audio System&#10;Sound File Watch">
+      <created>1529855462832</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1529855462833</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101552000" />
+    <option name="totallyTimeSpent" value="103554000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1922" height="1055" extended-state="7" />
+    <frame x="-1" y="0" width="1922" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info id="DB Browser" order="4" />
       <window_info anchor="bottom" id="DB Execution Console" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50692225" side_tool="true" weight="0.27056277" />
-      <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.49574015" weight="0.32792208" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5058573" side_tool="true" weight="0.32792208" />
+      <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.4941427" weight="0.32792208" />
       <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.49307775" visible="true" weight="0.27056277" />
       <window_info anchor="right" id="Mongo Explorer" order="3" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4978678" weight="0.44588745" />
@@ -472,7 +470,8 @@
     <MESSAGE value="Cleanup and react hot loader upgrade" />
     <MESSAGE value="Basic modules and configs." />
     <MESSAGE value="Hot Module Replacement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hot Module Replacement" />
+    <MESSAGE value="Mumble Support&#10;Discord Support&#10;Audio System&#10;Sound File Watch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mumble Support&#10;Discord Support&#10;Audio System&#10;Sound File Watch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -755,13 +754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mumble/MumbleAudioInput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack/server.dev.babel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -801,16 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/audio/AudioDevice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/discord/DiscordAudioOutput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -818,13 +800,6 @@
           <folding>
             <element signature="e#0#65#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/discord/DiscordAudioInput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -838,16 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sounds/SoundsInput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sounds/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -857,10 +822,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sounds/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
+        <state relative-caret-position="726">
           <caret line="112" column="71" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="71" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sounds/SoundsInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="37" column="40" lean-forward="true" selection-start-line="37" selection-start-column="40" selection-end-line="41" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mumble/MumbleAudioInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/discord/DiscordAudioInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/AudioDevice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
