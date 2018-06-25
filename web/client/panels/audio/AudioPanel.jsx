@@ -101,16 +101,12 @@ export class Panel extends React.Component {
 	reconnectWS() {
 		this.ws = new WebSocket(`ws://${location.host}/audio`);
 		this.ws.addEventListener("open", () => {
-			console.log("Connection open");
 			this.setState({
 				loading: true,
 				devices: {},
 			});
 		});
-		this.ws.addEventListener("close", (code, reason) => {
-			console.log("Connection closed");
-			this.handleClose(code, reason);
-		});
+		this.ws.addEventListener("close", this.handleClose);
 		this.ws.addEventListener("error", err => {
 			console.log("Connection error: ", err);
 			this.ws.close();
