@@ -37,7 +37,7 @@ export default soundsModule => class SoundsInput extends AudioSingletonDevice {
 				const a = buffer.readInt16LE(n);
 				const b = output.readInt16LE(n);
 				let val = a + b - a * b * Math.sign(a) / 32767;
-				if(val < -32768) val = 32768;
+				if(val < -32768) val = -32768;
 				if(val > 32767) val = 32767;
 				output.writeInt16LE(val, n);
 			}
