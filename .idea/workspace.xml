@@ -4,23 +4,32 @@
     <bookmark url="file://$PROJECT_DIR$/audio/AudioDevice.js" line="32" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06604412-10b9-47fe-aa3d-be44a68b5d76" name="Default" comment="Security update.&#10;Standarized configs and">
-      <change afterPath="$PROJECT_DIR$/configs.template.json" afterDir="false" />
+    <list default="true" id="06604412-10b9-47fe-aa3d-be44a68b5d76" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/web/client/routes/login.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/routes/logout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/client/style/login.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/server/helpers/requireLogin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/AudioDevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/audio/AudioDevice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/audio/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/audio/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configs.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discord/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/discord/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mumble/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/mumble/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/panels/audio/Device.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/audio/Device.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/style/audio.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/audio.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs.template.json" beforeDir="false" afterPath="$PROJECT_DIR$/configs.template.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/components/modules.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/components/modules.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/helpers/requestJSON.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/helpers/requestJSON.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/routes/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/routes/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/audio.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/panels/audio.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/discord.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/panels/discord.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/logo.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/components/logo.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/panels.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/components/panels.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/resizer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/components/resizer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/sounds.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/panels/sounds.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/server/helpers/configs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/server/routes/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -35,65 +44,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AudioPanel.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2261">
-              <caret line="169" column="36" selection-start-line="169" selection-start-column="36" selection-end-line="169" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configs.template.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configs.template.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configs.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configs.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mumble/index.js">
+        <entry file="file://$PROJECT_DIR$/web/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="23" column="51" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1496">
-              <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
+            <state relative-caret-position="241">
+              <caret line="112" column="97" selection-start-line="112" selection-start-column="85" selection-end-line="112" selection-end-column="97" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
+                <element signature="e#0#48#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.js">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="45" column="100" selection-start-line="45" selection-start-column="100" selection-end-line="45" selection-end-column="100" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="83">
+              <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -109,7 +76,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>The following modules couldn't be hot updated</find>
       <find>SIGINT</find>
       <find>8</find>
       <find>console.log\(.*\.size</find>
@@ -139,6 +105,7 @@
       <find>token</find>
       <find>kek</find>
       <find>modules</find>
+      <find>sess</find>
     </findStrings>
     <replaceStrings>
       <replace>7</replace>
@@ -157,17 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sounds/sounds.jsx" />
-        <option value="$PROJECT_DIR$/audio/systemPanel.jsx" />
-        <option value="$PROJECT_DIR$/audio/audioPanel.jsx" />
-        <option value="$PROJECT_DIR$/discord/client.jsx" />
-        <option value="$PROJECT_DIR$/web/client/style/style.scss" />
-        <option value="$PROJECT_DIR$/discord/DiscordPanel.jsx" />
-        <option value="$PROJECT_DIR$/sounds/SoundsPanel.jsx" />
-        <option value="$PROJECT_DIR$/audio/AudioPanel.jsx" />
-        <option value="$PROJECT_DIR$/discord/router.js" />
-        <option value="$PROJECT_DIR$/web/panels/discord/DiscordPanel.jsx" />
-        <option value="$PROJECT_DIR$/web/panels/sounds/SoundsPanel.jsx" />
         <option value="$PROJECT_DIR$/audio/AudioSingletonDevice.js" />
         <option value="$PROJECT_DIR$/web/panels/audio/Device.jsx" />
         <option value="$PROJECT_DIR$/audio/packets.js" />
@@ -178,7 +134,6 @@
         <option value="$PROJECT_DIR$/web/client/panels/audio/Board.jsx" />
         <option value="$PROJECT_DIR$/web/server/helpers/reactHelper.jsx" />
         <option value="$PROJECT_DIR$/audio/OscilatorInput.js" />
-        <option value="$PROJECT_DIR$/audio/router.js" />
         <option value="$PROJECT_DIR$/audio/OscillatorInput.js" />
         <option value="$PROJECT_DIR$/mumble/MumbleAudioInput.js" />
         <option value="$PROJECT_DIR$/mumble/MumbleAudioOutput.js" />
@@ -190,24 +145,36 @@
         <option value="$PROJECT_DIR$/discord/DiscordAudioInput.js" />
         <option value="$PROJECT_DIR$/web/client/components/logo.jsx" />
         <option value="$PROJECT_DIR$/web/client/panels/audio/Cabbles.jsx" />
-        <option value="$PROJECT_DIR$/web/client/style/index.scss" />
-        <option value="$PROJECT_DIR$/web/client/App.jsx" />
         <option value="$PROJECT_DIR$/web/client/components/panels.jsx" />
-        <option value="$PROJECT_DIR$/web/client/components/modules.jsx" />
         <option value="$PROJECT_DIR$/audio/AudioDevice.js" />
         <option value="$PROJECT_DIR$/web/client/style/audio.scss" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/web/index.js" />
         <option value="$PROJECT_DIR$/discord/index.js" />
         <option value="$PROJECT_DIR$/audio/index.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/sounds/index.js" />
         <option value="$PROJECT_DIR$/web/client/panels/audio/Device.jsx" />
         <option value="$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx" />
-        <option value="$PROJECT_DIR$/configs.json" />
-        <option value="$PROJECT_DIR$/configs.template.json" />
         <option value="$PROJECT_DIR$/mumble/index.js" />
         <option value="$PROJECT_DIR$/core/index.js" />
+        <option value="$PROJECT_DIR$/web/client/helpers/authMiddleware.js" />
+        <option value="$PROJECT_DIR$/web/client/helpers/requireLogin.js" />
+        <option value="$PROJECT_DIR$/web/client/routes/index.jsx" />
+        <option value="$PROJECT_DIR$/web/client/style/index.scss" />
+        <option value="$PROJECT_DIR$/web/client/style/style.scss" />
+        <option value="$PROJECT_DIR$/web/client/helpers/requestJSON.js" />
+        <option value="$PROJECT_DIR$/configs.template.json" />
+        <option value="$PROJECT_DIR$/configs.json" />
+        <option value="$PROJECT_DIR$/web/client/style/login.scss" />
+        <option value="$PROJECT_DIR$/web/client/style/components/panels.scss" />
+        <option value="$PROJECT_DIR$/web/client/routes/login.jsx" />
+        <option value="$PROJECT_DIR$/web/client/App.jsx" />
+        <option value="$PROJECT_DIR$/web/client/routes/logout.jsx" />
+        <option value="$PROJECT_DIR$/web/server/routes/index.js" />
+        <option value="$PROJECT_DIR$/web/index.js" />
+        <option value="$PROJECT_DIR$/web/server/helpers/requireLogin.js" />
+        <option value="$PROJECT_DIR$/audio/router.js" />
+        <option value="$PROJECT_DIR$/web/client/components/modules.jsx" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -226,7 +193,7 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2094" />
+    <option name="x" value="-1" />
     <option name="width" value="1922" />
     <option name="height" value="1055" />
   </component>
@@ -245,22 +212,45 @@
             <path>
               <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
               <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
-              <item name="audio" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
-              <item name="mumble" type="462c0819:PsiDirectoryNode" />
+              <item name="sounds" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
               <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -278,13 +268,15 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/server/helpers" />
+      <recent name="$PROJECT_DIR$/web/client/style/components" />
+      <recent name="$PROJECT_DIR$/web/client/style/panels" />
       <recent name="$PROJECT_DIR$/web/client" />
       <recent name="$PROJECT_DIR$/web/panels/sounds" />
-      <recent name="$PROJECT_DIR$/web/panels/discord" />
-      <recent name="$PROJECT_DIR$/web/panels/audio" />
-      <recent name="$PROJECT_DIR$/sounds" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/client/routes" />
+      <recent name="$PROJECT_DIR$/web/client/style" />
       <recent name="$PROJECT_DIR$/audio" />
       <recent name="$PROJECT_DIR$/discord" />
       <recent name="$PROJECT_DIR$/mumble" />
@@ -344,7 +336,7 @@
       <workItem from="1529146202390" duration="27125000" />
       <workItem from="1529320671235" duration="194000" />
       <workItem from="1529512206250" duration="12265000" />
-      <workItem from="1529754839477" duration="72639000" />
+      <workItem from="1529754839477" duration="85314000" />
     </task>
     <task id="LOCAL-00001" summary="Added README">
       <created>1514245578738</created>
@@ -395,25 +387,32 @@
       <option name="project" value="LOCAL" />
       <updated>1529875735363</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Security update.&#10;Standardized configs and states&#10;Audio System Panel bugfixes">
+      <created>1529935189434</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1529935189434</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119293000" />
+    <option name="totallyTimeSpent" value="131968000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1919" y="0" width="1922" height="1055" extended-state="6" />
+    <frame x="-1" y="0" width="1922" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info id="DB Browser" order="4" />
       <window_info anchor="bottom" id="DB Execution Console" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5058573" side_tool="true" weight="0.32792208" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50692225" side_tool="true" weight="0.27056277" />
       <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.4941427" weight="0.32792208" />
       <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49307775" weight="0.27056277" />
       <window_info anchor="right" id="Mongo Explorer" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4978678" weight="0.44588745" />
-      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.1970181" />
+      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4978678" visible="true" weight="0.44588745" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.1970181" />
       <window_info id="Project Explorer" order="7" />
       <window_info id="Job Explorer" order="7" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
@@ -477,7 +476,8 @@
     <MESSAGE value="Hot Module Replacement" />
     <MESSAGE value="Mumble Support&#10;Discord Support&#10;Audio System&#10;Sound File Watch" />
     <MESSAGE value="Compatibility fixes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Compatibility fixes." />
+    <MESSAGE value="Security update.&#10;Standardized configs and states&#10;Audio System Panel bugfixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Security update.&#10;Standardized configs and states&#10;Audio System Panel bugfixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -485,100 +485,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/discord.js/src/client/voice/VoiceBroadcast.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="279" column="2" selection-start-line="279" selection-start-column="2" selection-end-line="279" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/semantic-ui-react/dist/umd/semantic-ui-react.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="1071" column="46" selection-start-line="1071" selection-start-column="46" selection-end-line="1071" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/JanuszPanel.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/audio/OscillatorInput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mumble/lib/MumbleOutputStream.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="34" column="41" lean-forward="true" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mumble/lib/MumbleClient.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="395" selection-start-line="395" selection-end-line="395" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mumble/lib/MumbleConnection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="163" column="60" lean-forward="true" selection-start-line="163" selection-start-column="60" selection-end-line="163" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mumble/MumbleAudioOutput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack/server.dev.babel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="39" column="30" lean-forward="true" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack/server.babel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/panels/sounds/Franku.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/sync/programing/praca/janusz-v2/sounds/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/audio/AudioSingletonDevice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/client/panels/sounds/SoundsPanel.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -586,13 +492,6 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sounds/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -613,24 +512,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/style/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/discord/DiscordAudioInput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
           <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/routes/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -660,43 +545,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/App.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/style/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="8" lean-forward="true" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/components/panels.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/components/modules.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/discord/DiscordAudioOutput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -707,17 +555,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/audio/AudioDevice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="51" column="17" lean-forward="true" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/style/audio.scss">
+    <entry file="file://$PROJECT_DIR$/web/client/style/panels/audio.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="103" column="34" lean-forward="true" selection-start-line="103" selection-start-column="34" selection-end-line="103" selection-end-column="34" />
@@ -751,13 +589,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="12" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/server/helpers/configs.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -768,26 +599,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="18" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/audio/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="113" column="17" selection-start-line="113" selection-start-column="17" selection-end-line="113" selection-end-column="17" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
           </folding>
@@ -811,41 +622,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="169" column="36" selection-start-line="169" selection-start-column="36" selection-end-line="169" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configs.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configs.template.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mumble/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="23" column="51" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/JanuszModule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="35" lean-forward="true" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -861,11 +641,237 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
+        <state relative-caret-position="1190">
           <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2261">
+          <caret line="169" column="36" selection-start-line="169" selection-start-column="36" selection-end-line="169" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/AudioDevice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="51" column="17" lean-forward="true" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/JanuszModule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="35" lean-forward="true" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/discord.js/src/structures/Message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="434" column="2" selection-start-line="434" selection-start-column="2" selection-end-line="434" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/helpers/reactHelper.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="41" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/components/panels.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-226">
+          <caret line="130" column="21" selection-start-line="130" selection-start-column="14" selection-end-line="130" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/helpers/requestJSON.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configs.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configs.template.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/login.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-router/Redirect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1730" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/routes/login.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="59" column="58" lean-forward="true" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/components/panels.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/routes/logout.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sounds/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/helpers/requireLogin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-532">
+          <caret line="113" column="17" selection-start-line="113" selection-start-column="17" selection-end-line="113" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/components/modules.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/routes/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="112" column="97" selection-start-line="112" selection-start-column="85" selection-end-line="112" selection-end-column="97" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
         </state>
       </provider>
     </entry>

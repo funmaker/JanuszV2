@@ -1,5 +1,4 @@
 {
-	"port": 3900,
 	"discord": {
 		"token": "BOT_TOKEN"
 	},
@@ -8,5 +7,10 @@
 		"url": "mumble://HOST:PORT",
 		"cert": "./cert.pem",
 		"key": "./key.pem"
+	},
+	"web": {
+		"port": 3900,
+		"sessionSecret": "keyboard cat",
+		"password": "MAIN_PASSWORD"
 	}
 }

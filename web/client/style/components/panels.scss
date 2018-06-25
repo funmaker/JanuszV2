@@ -53,10 +53,30 @@
     border-left: 1px solid rgba(127, 127, 127, 0.3);
     margin-left: -1px;
   }
+  &.button {
+    cursor: pointer;
+    .icon {
+      margin: 0;
+    }
+
+    &:hover {
+      background-color: #313233;
+    }
+  }
 }
 
 .Modules {
   padding: 0 !important;
   overflow-x: auto;
   white-space: nowrap;
+
+  & > * {
+    float: left;
+  }
+
+  & > .logoutButton {
+    float: right;
+    color: cyan;
+    border-left: 1px solid rgba(127, 127, 127, 0.3);
+  }
 }

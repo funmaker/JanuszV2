@@ -5,7 +5,7 @@ import Logo from "../components/logo";
 import Panels from "../components/panels";
 import Modules from "../components/modules";
 
-export default class Index extends React.Component {
+export default class IndexPage extends React.Component {
 	constructor() {
 		super();
 		
@@ -34,7 +34,7 @@ export default class Index extends React.Component {
 	
 	render() {
 		return (
-			<div className="Index">
+			<div className="IndexPage">
 				<Logo/>
 				<Panels panels={this.state.panels} onChange={this.panelsChange}/>
 				<Modules/>

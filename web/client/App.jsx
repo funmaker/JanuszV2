@@ -3,7 +3,9 @@ import {Route, Switch, withRouter} from "react-router";
 import {setInitialData} from "./helpers/initialData";
 import isNode from 'detect-node';
 import {hot} from "react-hot-loader";
-import Index from "./routes/index";
+import IndexPage from "./routes/index";
+import LoginPage from "./routes/login";
+import LogoutPage from "./routes/logout";
 import * as AudioClient from './panels/audio/AudioPanel';
 import * as SoundsClient from './panels/sounds/SoundsPanel';
 import * as DiscordClient from './panels/discord/DiscordPanel';
@@ -53,7 +55,9 @@ class App extends React.Component {
 	render() {
 		return (
 			<Switch>
-				<Route path="/" exact component={Index}/>
+				<Route path="/" exact component={IndexPage}/>
+				<Route path="/core/login" exact component={LoginPage}/>
+				<Route path="/core/logout" exact component={LogoutPage}/>
 			</Switch>
 		)
 	}

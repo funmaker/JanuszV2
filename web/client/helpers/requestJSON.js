@@ -4,7 +4,7 @@ import qs from 'query-string';
 
 const CancelToken = axios.CancelToken;
 
-export default async function requestJSON({method, href, host, pathname, search, cancelCb}) {
+export default async function requestJSON({method, href, host, pathname, search, cancelCb, data}) {
 	if(isNode) return new Promise(() => {
 	});
 	
@@ -20,6 +20,7 @@ export default async function requestJSON({method, href, host, pathname, search,
 	const response = await axios({
 		method: method.toLowerCase(),
 		url: href,
+		data,
 		cancelToken: cancelCb ? new CancelToken(cancelCb) : undefined,
 	});
 	

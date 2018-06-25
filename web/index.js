@@ -5,12 +5,15 @@ import express from "express";
 import http from 'http';
 import ExpressWS from 'express-ws';
 import morgan from 'morgan';
+import session from 'express-session';
+import FileStore from 'session-file-store';
 import {PassThrough} from 'stream';
 import * as readline from 'readline';
 import {janusz} from "../index";
 import {reactMiddleware} from "./server/helpers/reactHelper";
 import HTTPError from "./server/helpers/HTTPError";
 import {router} from "./server/routes";
+import requireLogin from "./server/helpers/requireLogin";
 
 export default class WebModule extends JanuszModule {
 	static ModuleName = "Web".cyan.bold;
@@ -39,6 +42,12 @@ export default class WebModule extends JanuszModule {
 		app.use(bodyParser.urlencoded({extended: false}));
 		app.use(bodyParser.json());
 		app.use(cookieParser());
+		app.use(session({
+			store: new (FileStore(session))(),
+			resave: false,
+			saveUninitialized: false,
+			secret: janusz.getConfig("web").sessionSecret,
+		}));
 		app.use('/static', express.static('web/static'));
 		if(process.env.NODE_ENV === 'development') {
 			const stream = new PassThrough();
@@ -80,7 +89,7 @@ export default class WebModule extends JanuszModule {
 	
 	async start() {
 		if(!this.server.listening) {
-			let port = janusz.getConfig("port") || 3000;
+			let port = janusz.getConfig("web").port || 3000;
 			if(process.env.DOCKERIZED) port = 80;
 			
 			this.server.listen(port);
@@ -101,7 +110,7 @@ export default class WebModule extends JanuszModule {
 		
 		for(let mod of janusz.modules) {
 			if(mod.getRouter) {
-				this.modulesRouter.use("/" + mod.constructor.ModuleName.strip.toLowerCase(), mod.getRouter());
+				this.modulesRouter.use("/" + mod.constructor.ModuleName.strip.toLowerCase(), requireLogin, mod.getRouter());
 			}
 		}
 		

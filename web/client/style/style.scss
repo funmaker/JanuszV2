@@ -1,10 +1,11 @@
 @import "index";
-@import "logo";
-@import "panels";
-@import "resizer";
-@import "discord";
-@import "audio";
-@import "sounds";
+@import "login";
+@import "components/panels";
+@import "components/logo";
+@import "components/resizer";
+@import "panels/discord";
+@import "panels/audio";
+@import "panels/sounds";
 
 #root {
 

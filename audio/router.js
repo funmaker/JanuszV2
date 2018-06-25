@@ -70,6 +70,11 @@ export default function audioRouter(audioModule) {
 	}
 	
 	router.ws('/', (ws, req) => {
+		if(!req.session.authorized) {
+			ws.close();
+			return;
+		}
+		
 		clients.add(ws);
 		
 		ws.on('error', (err) => {

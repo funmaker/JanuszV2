@@ -1,0 +1,38 @@
+
+.LoginPage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1em 1em 0;
+  background-color: #EDE6D5;
+
+  & > * {
+    margin: 0 0 1em !important;
+  }
+
+  & > .loginWrapper {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    background-color: #ddd;
+
+    .form {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .error {
+        color: red;
+      }
+
+      .input {
+        width: 300px;
+
+        input {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
