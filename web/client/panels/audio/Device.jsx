@@ -72,7 +72,7 @@ export default class Device extends React.Component {
 			                 key={i}/>)
 		}
 		for(let i = 0; i < device.outputs; i++) {
-			outputs.push(<div className="output"
+			outputs.push(<div className={"output" + (device.activity[i] ? " active" : "" )}
 			                  draggable
 			                  onDragStart={this.onDragStart}
 			                  onDragOver={this.onDragOver}

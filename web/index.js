@@ -11,7 +11,6 @@ import {janusz} from "../index";
 import {reactMiddleware} from "./server/helpers/reactHelper";
 import HTTPError from "./server/helpers/HTTPError";
 import {router} from "./server/routes";
-import configs from './server/helpers/configs'
 
 export default class WebModule extends JanuszModule {
 	static ModuleName = "Web".cyan.bold;
@@ -81,7 +80,7 @@ export default class WebModule extends JanuszModule {
 	
 	async start() {
 		if(!this.server.listening) {
-			let port = configs.port || 3000;
+			let port = janusz.getConfig("port") || 3000;
 			if(process.env.DOCKERIZED) port = 80;
 			
 			this.server.listen(port);

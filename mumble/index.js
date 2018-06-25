@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import "colors";
 import mumble from 'mumble';
 import path from "path";
-import {rootDir} from "../index";
+import {janusz, rootDir} from "../index";
 import MumbleAudioOutput from "./MumbleAudioOutput";
 import MumbleAudioInput from "./MumbleAudioInput";
 
@@ -21,15 +21,15 @@ export default class MumbleModule extends JanuszModule {
 	}
 	
 	async init() {
-		this.cert = await fs.readFile(path.join(rootDir, "cert.pem"));
-		this.key = await fs.readFile(path.join(rootDir, "key.pem"));
+		this.cert = await fs.readFile(path.join(rootDir, janusz.getConfig("mumble").cert));
+		this.key = await fs.readFile(path.join(rootDir, janusz.getConfig("mumble").key));
 		if(!this.client)
-			this.client = await new Promise((res, rej) => mumble.connect("mumble://miners.pl:64000", {cert: this.cert, key: this.key}, (err, con) => err ? rej(err) : res(con)));
+			this.client = await new Promise((res, rej) => mumble.connect(janusz.getConfig("mumble").url, {cert: this.cert, key: this.key}, (err, con) => err ? rej(err) : res(con)));
 	}
 	
 	async start() {
 		if(!this.client.user){
-			this.client.authenticate( 'JanuszV2' );
+			this.client.authenticate( janusz.getConfig("mumble").name );
 			await new Promise(res => this.client.on('initialized', res));
 		}
 	}

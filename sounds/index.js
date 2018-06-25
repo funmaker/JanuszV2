@@ -13,6 +13,67 @@ export default class SoundsModule extends JanuszModule {
 	SoundsDevice = SoundsInput(this);
 	router = soundsRouter(this);
 	sounds = [];
+	watcher = null;
+	
+	constructor(reloadedModule) {
+		super();
+		if(reloadedModule) {
+			this.sounds = reloadedModule.sounds;
+			this.watcher = reloadedModule.watcher;
+			reloadedModule.watcher = null;
+		}
+	}
+	
+	async init() {
+		if(this.watcher) {
+			this.watcher.removeAllListeners();
+			this.watcher.on('add', this.addFile)
+									.on('change', this.addFile)
+									.on('unlink', this.remove)
+									.on('addDir', this.addDir)
+									.on('unlinkDir', this.remove)
+									.on('error', err => SoundsModule.error(err));
+			return;
+		}
+		
+		let folders = 0;
+		let sounds = 0;
+		let promises = [];
+		
+		await new Promise((res, rej) => {
+			this.watcher = chokidar.watch(this.soundDir)
+				.on('add', path => {
+					let promise = this.addFile(path);
+					if(promises) promises.push(promise);
+					sounds++;
+				})
+				.on('change', this.addFile)
+				.on('unlink', this.remove)
+				.on('addDir', path => {
+					this.addDir(path);
+					folders++;
+				})
+				.on('unlinkDir', this.remove)
+				.on('error', err => SoundsModule.error(err) + rej(err))
+				.on('ready', () => Promise.all(promises).then(res).catch(rej));
+		});
+		
+		promises = null;
+		
+		SoundsModule.log(`Loaded ${sounds} sounds found inside ${folders + 1} folders.`);
+	}
+	
+	async stop() {
+		if(this.watcher) this.watcher.close();
+	}
+	
+	getRouter() {
+		return this.router;
+	}
+	
+	getAudioDevices() {
+		return [this.SoundsDevice];
+	}
 	
 	get allSounds() {
 		let sounds = [];
@@ -89,45 +150,5 @@ export default class SoundsModule extends JanuszModule {
 		if(filename.startsWith(".")) return;
 		sounds.splice(sounds.findIndex(sound => sound.filename === filename), 1);
 	};
-	
-	async init() {
-		let folders = 0;
-		let sounds = 0;
-		let promises = [];
-		
-		await new Promise((res, rej) => {
-			this.watcher = chokidar.watch(this.soundDir)
-				.on('add', path => {
-					let promise = this.addFile(path);
-					if(promises) promises.push(promise);
-					sounds++;
-				})
-				.on('change', this.addFile)
-				.on('unlink', this.remove)
-				.on('addDir', path => {
-					this.addDir(path);
-					folders++;
-				})
-				.on('unlinkDir', this.remove)
-				.on('error', err => SoundsModule.error(err) + rej(err))
-				.on('ready', () => Promise.all(promises).then(res).catch(rej));
-		});
-		
-		promises = null;
-		
-		SoundsModule.log(`Loaded ${sounds} sounds found inside ${folders + 1} folders.`);
-	}
-	
-	async stop() {
-		this.watcher.close();
-	}
-	
-	getRouter() {
-		return this.router;
-	}
-	
-	getAudioDevices() {
-		return [this.SoundsDevice];
-	}
 }
 

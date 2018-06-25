@@ -89,6 +89,7 @@
           margin-bottom: 16px;
           border: 2px solid #bfbfbf;
           cursor: pointer;
+          transition: background-color 0.1s;
 
           &.input {
             border-left: none;
@@ -99,6 +100,9 @@
             border-right: none;
             border-radius: 8px 0 0 8px;
             background: #42a142;
+            &.active {
+              background: #48c648;
+            }
           }
         }
       }

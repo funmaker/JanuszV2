@@ -68,13 +68,13 @@ export default class AudioModule extends JanuszModule {
 			devices: [...this.devices.values()].map(dev => dev.getState()),
 			connections: [...this.connections.keys()].map(uuid => this.getConnectionState(uuid)),
 		};
-		await fs.writeFile("./audioState.json", JSON.stringify(state));
+		janusz.setState("audioSystem", state);
 	}
 	
 	async load() {
 		try {
-			let kek = await fs.readFile("./audioState.json", "utf8");
-			const state = JSON.parse(kek.trim());
+			const state = janusz.getState("audioSystem") || {devices: [], connections: []};
+			
 			for(let device of state.devices) {
 				if(!this.deviceTypes.has(device.name)) {
 					AudioModule.error("Unknown device name: ", device.name);
@@ -82,6 +82,7 @@ export default class AudioModule extends JanuszModule {
 				}
 				this.addDevice(device.name, device);
 			}
+			
 			for(let connection of state.connections) {
 				if(!this.devices.has(connection.from) || !this.devices.has(connection.to)) {
 					AudioModule.error("Invalid connection: ", connection);

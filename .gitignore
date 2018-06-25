@@ -8,3 +8,5 @@
 /key.pem
 /cert.pem
 /audioState.json
+/configs.json
+/states.json

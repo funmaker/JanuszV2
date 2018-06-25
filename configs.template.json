@@ -1,11 +1,11 @@
 {
 	"port": 3900,
 	"discord": {
-		"token": "NDI5NjQxNjg2OTg2MTI5NDA4.DhJdCw.7KxrLVoS9V7sbFiMGv1HzVRddpQ"
+		"token": "BOT_TOKEN"
 	},
 	"mumble": {
 		"name": "JanuszV2",
-		"url": "mumble://miners.pl:64000",
+		"url": "mumble://HOST:PORT",
 		"cert": "./cert.pem",
 		"key": "./key.pem"
 	}

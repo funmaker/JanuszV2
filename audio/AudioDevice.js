@@ -18,6 +18,7 @@ export default class AudioDevice {
 	constructor(inputs, outputs, state) {
 		this.inputCount = inputs;
 		this.outputCount = outputs;
+		this.outputs = [...new Array(this.outputCount)].map(() => null);
 		
 		if(state) {
 			this.uuid = state.uuid;
@@ -43,8 +44,13 @@ export default class AudioDevice {
 			posy: this.posy,
 			inputs: this.inputCount,
 			outputs: this.outputCount,
+			activity: this.getActivity(),
 			extra: this.getExtraState(),
 		};
+	}
+	
+	getActivity() {
+		return this.outputs.map(output => !!output);
 	}
 	
 	getExtraState() {

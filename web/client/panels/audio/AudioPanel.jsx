@@ -166,8 +166,8 @@ export class Panel extends React.Component {
 		ev.preventDefault();
 		const device = this.state.devices[uuid];
 		const offset = this.offsetDiv.getBoundingClientRect();
-		let posx = ev.screenX - offset.x;
-		let posy = ev.screenY - offset.y - 100;
+		let posx = ev.clientX - offset.x;
+		let posy = ev.clientY - offset.y;
 		posx = 16 * Math.round(posx / 16);
 		posy = 16 * Math.round(posy / 16);
 		if(device.posx !== posx || device.posy !== posy) {

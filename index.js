@@ -43,7 +43,7 @@ if(module.hot) {
 			}
 		}
 		
-		console.log(`${prefix} Reloading ${changed.length} modules...`);
+		console.log(`${prefix} Reloading modules: ` + changed.map(n => newModules[n].ModuleName).join(", "));
 		
 		let reloadModules = changed.map(id => ({
 			oldMod: janusz.modules[id],

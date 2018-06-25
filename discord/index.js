@@ -7,8 +7,6 @@ import discordRouter from "./router";
 import DiscordAudioOutput from "./DiscordAudioOutput";
 import DiscordAudioInput from "./DiscordAudioInput";
 
-const token = 'NDI5NjQxNjg2OTg2MTI5NDA4.DaEoUQ.U6oRdJu3z_UVtJ805rP0GQ5f-PQ';
-
 export default class DiscordModule extends JanuszModule {
 	static ModuleName = "Discord".blue.bold;
 	
@@ -58,7 +56,7 @@ export default class DiscordModule extends JanuszModule {
 	
 	async start() {
 		if(!this.client.uptime) {
-			await this.client.login(token);
+			await this.client.login(janusz.getConfig("discord").token);
 		}
 	}
 	

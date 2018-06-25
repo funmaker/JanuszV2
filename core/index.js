@@ -1,11 +1,17 @@
-import {modules} from "../index";
+import {rootDir} from "../index";
 import colors from "colors/lib/index";
 import JanuszModule from "./JanuszModule";
+import fs from 'fs-extra';
+import path from "path";
 
 colors.enabled = true;
 
 export default class JanuszCore extends JanuszModule {
 	static ModuleName = "Core".yellow.bold;
+	configs = {};
+	states = {};
+	configsFile = path.join(rootDir, "./configs.json");
+	statesFile = path.join(rootDir, "./states.json");
 	
 	constructor(modules) {
 		super();
@@ -13,6 +19,17 @@ export default class JanuszCore extends JanuszModule {
 	}
 	
 	async init() {
+		JanuszCore.log(`Initializing file system storage...`);
+		this.configs = JSON.parse(await fs.readFile(this.configsFile));
+		try {
+			this.states = JSON.parse(await fs.readFile(this.statesFile));
+		} catch(e) {
+			JanuszCore.error(e);
+			JanuszCore.log("Regenerating states.json");
+			this.states = {};
+			await fs.writeFile("./states.json", JSON.stringify({}));
+		}
+		
 		JanuszCore.log(`Initializing ${this.modules.length} modules...`);
 		let count = 0;
 		await Promise.all(this.modules.map(async module => {
@@ -39,13 +56,6 @@ export default class JanuszCore extends JanuszModule {
 		}));
 	}
 	
-	async afterReload() {
-		await Promise.all(this.modules.map(async module => {
-			await module.stop();
-			JanuszCore.log(`${module.constructor.ModuleName} Stopped. ${++count}/${this.modules.length}`);
-		}));
-	}
-	
 	getModule(type) {
 		return this.modules.find(module => module instanceof type);
 	}
@@ -65,4 +75,18 @@ export default class JanuszCore extends JanuszModule {
 		}
 		return res;
 	}
+	
+	getConfig(name) {
+		return this.configs[name];
+	}
+	
+	getState(name) {
+		return this.states[name];
+	}
+	
+	setState(name, value) {
+		this.states[name] = value;
+		fs.writeFile(this.statesFile, JSON.stringify(this.states)).catch(err => JanuszCore.error(err));
+	}
 }
+
