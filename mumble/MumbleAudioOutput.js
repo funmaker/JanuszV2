@@ -9,6 +9,10 @@ export default mumbleModule => class MumbleAudioOutput extends AudioSingletonDev
 		super(1, 0, state);
 	}
 	
+	onRemove() {
+		if(this.stream) this.stream.end();
+	}
+	
 	onTick() {
 		if(!this.stream) {
 			if(!mumbleModule.client.ready) {

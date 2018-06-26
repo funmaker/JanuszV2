@@ -1,35 +1,19 @@
 import AudioSingletonDevice from "../audio/AudioSingletonDevice";
+import {mixDown} from "../audio/utils";
 
 export default mumbleModule => class MumbleAudioInput extends AudioSingletonDevice {
 	static deviceName = "Mumble Input";
-	stream = null;
+	streams = new Map();
 	
 	constructor(state) {
 		super(0, 1, state);
 	}
 	
+	addStream(id, stream) {
+		if(!this.streams.has(id)) this.streams.set(id, stream);
+	}
+	
 	onTick() {
-		if(!this.stream) {
-			if(!mumbleModule.client.ready) {
-				this.outputs[0] = null;
-				return;
-			}
-			this.stream = mumbleModule.client.connection.outputStream(true);
-			this.stream.on("close", () => this.stream = null);
-		}
-		
-		const output = this.outputBuffers[0];
-		const buffer = this.stream.read(output.length);
-		if(!buffer) {
-			this.outputs[0] = null;
-			return;
-		}
-		
-		buffer.copy(output);
-		if(buffer.length < output.length) {
-			output.fill(0, output.length);
-		}
-		
-		this.outputs[0] = output;
+		this.outputs[0] = mixDown(this.outputBuffers[0], [...this.streams.values()]);
 	}
 }

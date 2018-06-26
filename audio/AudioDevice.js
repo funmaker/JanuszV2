@@ -39,6 +39,7 @@ export default class AudioDevice {
 	
 	remove() {
 		this.constructor.devices.delete(this.uuid);
+		this.onRemove();
 	}
 	
 	getState() {
@@ -78,6 +79,10 @@ export default class AudioDevice {
 		if(!this.fresh) return;
 		this.fresh = false;
 		this.onTick();
+	}
+	
+	onRemove() {
+		// Implement This
 	}
 	
 	onTick() {

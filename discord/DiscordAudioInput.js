@@ -22,6 +22,10 @@ export default discordModule => class DiscordAudioInput extends AudioSingletonDe
 		}
 	};
 	
+	onRemove() {
+		if(this.receiver) this.receiver.destroy();
+	}
+	
 	onTick() {
 		if(!this.receiver) {
 			if(!discordModule.client || discordModule.client.voiceConnections.size === 0) {
@@ -29,15 +33,14 @@ export default discordModule => class DiscordAudioInput extends AudioSingletonDe
 				return
 			}
 			
-			this.connection = discordModule.client.voiceConnections.first();
-			if(!this.connection.sockets.udp || !this.connection.sockets.udp.socket) {
+			const connection = discordModule.client.voiceConnections.first();
+			if(!connection.sockets.udp || !connection.sockets.udp.socket) {
 				this.outputs[0] = null;
 				return
 			}
-			this.receiver = this.connection.createReceiver();
-			this.connection.on("speaking", this.addStream);
-			this.connection.on('disconnect', () => {
-				this.connection = null;
+			this.receiver = connection.createReceiver();
+			connection.on("speaking", this.addStream);
+			connection.on('disconnect', () => {
 				this.receiver = null;
 			})
 		}

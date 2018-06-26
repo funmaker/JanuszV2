@@ -4,7 +4,7 @@ import {BUFFER_SIZE} from "../audio";
 
 export default discordModule => class DiscordAudioOutput extends AudioSingletonDevice {
 	static deviceName = "Discord Output";
-	stream = null;
+	dispatcher = null;
 	outBuffer = Buffer.alloc(BUFFER_SIZE * 4);
 	
 	constructor(state) {
@@ -12,25 +12,34 @@ export default discordModule => class DiscordAudioOutput extends AudioSingletonD
 		this.outBuffer.fill(0);
 	}
 	
-	onTick() {
-		const buffer = this.getInput(0);
-		
-		if(!buffer) {
-			if(this.stream) {
-				this.stream.end();
-				this.stream = null;
-			}
-			return;
+	onRemove() {
+		if(this.dispatcher) {
+			this.dispatcher.end();
+			this.dispatcher = null;
 		}
-		
-		if(!this.stream) {
+	}
+	
+	onTick() {
+		if(!this.dispatcher || this.dispatcher.destroyed) {
 			if(discordModule.client && discordModule.client.voiceConnections.size === 0) return;
 			const connection = discordModule.client.voiceConnections.first();
 			if(connection.status !== 0) return;
 			
-			this.stream = new PassThrough();
-			connection.playConvertedStream(this.stream);
+			this.dispatcher = connection.playConvertedStream(new PassThrough());
+			this.dispatcher.on("end", () => {
+				this.dispatcher = null;
+			});
+			this.dispatcher.on("error", err => discordModule.constructor.error(err));
+			this.dispatcher.on("debug", err => discordModule.constructor.log(err));
 		}
+		
+		const buffer = this.getInput(0);
+		
+		if(!buffer) {
+			if(!this.dispatcher.paused && this.dispatcher.stream.readableLength === 0) this.dispatcher.pause();
+			return;
+		}
+		if(this.dispatcher.paused) this.dispatcher.resume();
 		
 		for(let n = 0; n < buffer.length; n += 2) {
 			buffer.copy(this.outBuffer, n * 2, n, n + 2);
@@ -41,6 +50,6 @@ export default discordModule => class DiscordAudioOutput extends AudioSingletonD
 			this.outBuffer.fill(0, buffer.length * 2);
 		}
 		
-		this.stream.write(Buffer.from(this.outBuffer));
+		this.dispatcher.stream.write(Buffer.from(this.outBuffer));
 	}
 }

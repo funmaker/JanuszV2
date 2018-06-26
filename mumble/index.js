@@ -9,12 +9,16 @@ import MumbleAudioInput from "./MumbleAudioInput";
 
 export default class MumbleModule extends JanuszModule {
 	static ModuleName = "Mumble".gray.bold;
+	OutputDevice = MumbleAudioOutput(this);
+	InputDevice = MumbleAudioInput(this);
 	
 	constructor(reloadedModule) {
 		super();
 		if(reloadedModule) {
 			if(reloadedModule.client) {
 				this.client = reloadedModule.client;
+				this.client.off('voice-start', reloadedModule.onVoiceStart);
+				this.client.connection.off('voice-start', reloadedModule.onVoiceStart);
 				reloadedModule.client = null;
 			}
 		}
@@ -23,8 +27,10 @@ export default class MumbleModule extends JanuszModule {
 	async init() {
 		this.cert = await fs.readFile(path.join(rootDir, janusz.getConfig("mumble").cert));
 		this.key = await fs.readFile(path.join(rootDir, janusz.getConfig("mumble").key));
-		if(!this.client)
+		if(!this.client) {
 			this.client = await new Promise((res, rej) => mumble.connect(janusz.getConfig("mumble").url, {cert: this.cert, key: this.key}, (err, con) => err ? rej(err) : res(con)));
+		}
+		this.client.on('voice-start', this.onVoiceStart);
 	}
 	
 	async start() {
@@ -35,10 +41,14 @@ export default class MumbleModule extends JanuszModule {
 	}
 	
 	getAudioDevices() {
-		return [MumbleAudioOutput(this), MumbleAudioInput(this)];
+		return [this.OutputDevice, this.InputDevice];
 	}
 	
 	async stop() {
 		if(this.client) this.client.disconnect();
 	}
+	
+	onVoiceStart = user => {
+		this.InputDevice.devices.forEach(device => device.addStream(user.session, this.client.connection.outputStream(user.session, true)));
+	};
 }
