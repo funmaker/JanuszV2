@@ -1,11 +1,14 @@
 import uuid from "uuid/v4";
 import {BUFFER_SIZE} from "./index";
+import {mixDown} from "./utils";
 
 export default class AudioDevice {
 	static deviceName = "Generic Device";
 	static devices = new Map();
 	
 	uuid = uuid();
+	inputBuffers = [];
+	outputBuffers = [];
 	outputs = [];
 	inputCount = 0;
 	outputCount = 0;
@@ -18,6 +21,8 @@ export default class AudioDevice {
 	constructor(inputs, outputs, state) {
 		this.inputCount = inputs;
 		this.outputCount = outputs;
+		this.inputBuffers = [...new Array(this.inputBuffers)].map(() => Buffer.alloc(BUFFER_SIZE * 2));
+		this.outputBuffers = [...new Array(this.outputCount)].map(() => Buffer.alloc(BUFFER_SIZE * 2));
 		this.outputs = [...new Array(this.outputCount)].map(() => null);
 		
 		if(state) {
@@ -44,26 +49,13 @@ export default class AudioDevice {
 			posy: this.posy,
 			inputs: this.inputCount,
 			outputs: this.outputCount,
-			activity: this.getActivity(),
+			activity: this.outputs.map(output => !!output),
 			extra: this.getExtraState(),
 		};
 	}
 	
-	getActivity() {
-		return this.outputs.map(output => !!output);
-	}
-	
 	getExtraState() {
 		return null;
-	}
-	
-	getOutput(id) {
-		if(!this.outputs[id]) this.outputs[id] = Buffer.alloc(BUFFER_SIZE * 2);
-		return this.outputs[id]
-	}
-	
-	setOutput(id, buffer) {
-		this.outputs[id] = buffer;
 	}
 	
 	getInput(id) {
@@ -71,32 +63,11 @@ export default class AudioDevice {
 		for(let con of this.connections.values()) {
 			if(con.to === this && con.input === id) {
 				con.from.tick();
-				if(con.from.outputs[con.output]) {
-					buffers.push(con.from.outputs[con.output]);
-				}
+				buffers.push(con.from.outputs[con.output]);
 			}
 		}
 		
-		if(buffers.length === 0) {
-			return null;
-		} else if(buffers.length === 1) {
-			return buffers[0];
-		} else {
-			const buffer = Buffer.from(buffers[0]);
-			
-			for(let buf of buffers.slice(1)) {
-				for(let n = 0; n < BUFFER_SIZE; n++) {
-					const a = buffer.readInt16LE(n * 2);
-					const b = buf.readInt16LE(n * 2);
-					let val = a + b - a * b * Math.sign(a) / 32767;
-					if(val < -32768) val = -32768;
-					if(val > 32767) val = 32767;
-					buffer.writeInt16LE(val, n * 2);
-				}
-			}
-			
-			return buffer;
-		}
+		return mixDown(this.inputBuffers[id], buffers);
 	}
 	
 	refresh() {

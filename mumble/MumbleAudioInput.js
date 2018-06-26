@@ -11,17 +11,17 @@ export default mumbleModule => class MumbleAudioInput extends AudioSingletonDevi
 	onTick() {
 		if(!this.stream) {
 			if(!mumbleModule.client.ready) {
-				this.setOutput(0, null);
+				this.outputs[0] = null;
 				return;
 			}
 			this.stream = mumbleModule.client.connection.outputStream(true);
 			this.stream.on("close", () => this.stream = null);
 		}
 		
-		const output = this.getOutput(0);
+		const output = this.outputBuffers[0];
 		const buffer = this.stream.read(output.length);
 		if(!buffer) {
-			this.setOutput(0, null);
+			this.outputs[0] = null;
 			return;
 		}
 		
@@ -29,5 +29,7 @@ export default mumbleModule => class MumbleAudioInput extends AudioSingletonDevi
 		if(buffer.length < output.length) {
 			output.fill(0, output.length);
 		}
+		
+		this.outputs[0] = output;
 	}
 }

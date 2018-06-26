@@ -13,8 +13,8 @@ export default class DiscordModule extends JanuszModule {
 	constructor(reloadedModule) {
 		super();
 		if(reloadedModule) {
-			this.client = reloadedModule.client;
-			reloadedModule.client = null;
+			// this.client = reloadedModule.client;
+			// reloadedModule.client = null;
 		}
 	}
 	
