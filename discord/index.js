@@ -2,13 +2,14 @@ import JanuszModule from "../core/JanuszModule";
 import Discord from 'discord.js';
 import "colors";
 import {janusz} from "../index";
-import AudioModule from "../audio";
 import discordRouter from "./router";
 import DiscordAudioOutput from "./DiscordAudioOutput";
 import DiscordAudioInput from "./DiscordAudioInput";
 
 export default class DiscordModule extends JanuszModule {
 	static ModuleName = "Discord".blue.bold;
+	OutputDevice = DiscordAudioOutput(this);
+	InputDevice = DiscordAudioInput(this);
 	
 	constructor(reloadedModule) {
 		super();
@@ -40,38 +41,10 @@ export default class DiscordModule extends JanuszModule {
 	}
 	
 	getAudioDevices() {
-		return [DiscordAudioOutput(this), DiscordAudioInput(this)];
-	}
-	
-	playSound(sound) {
-		for(let connection of this.client.voiceConnections.values()) {
-			connection.playFile(sound.path);
-		}
-		DiscordModule.log(`Playing ${sound.filename}`);
+		return [this.OutputDevice, this.InputDevice];
 	}
 	
 	handleMessage = async message => {
-		const cmd = message.content.split(" ");
-		switch(cmd[0]) {
-			case "!join":
-				let channel = message.guild.channels.find(channel => channel.name.toLowerCase().includes(cmd[1].toLowerCase()));
-				if(!channel) break;
-				await channel.join();
-				break;
-			case "!sounds":
-				let sounds = janusz.getModule(AudioModule).allSounds.map(sound => sound.filename).join("\n");
-				for(let chunk of Discord.splitMessage(sounds)) {
-					message.reply(chunk);
-				}
-				break;
-			case "!play":
-				let sound = janusz.getModule(AudioModule).allSounds.find(sound => sound.type === "sound" && sound.filename.toLowerCase().includes(cmd[1].toLowerCase()));
-				if(sound) {
-					this.playSound(sound)
-				} else {
-					message.reply("Co?")
-				}
-				break;
-		}
+	
 	}
 }

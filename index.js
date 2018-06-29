@@ -11,6 +11,7 @@ const requireModules = () => [
 	require("./sounds").default,
 	require("./discord").default,
 	require("./mumble").default,
+	require("./youtube").default,
 ];
 const prefix = logPrefix("Janusz".yellow.bold);
 
@@ -33,7 +34,7 @@ process.on('unhandledRejection', (reason, p) => {
 });
 
 if(module.hot) {
-	module.hot.accept(["./discord", "./audio", "./web", "./mumble", "./sounds"], () => (async () => {
+	module.hot.accept(["./web", "./audio", "./sounds", "./discord", "./mumble", "./youtube"], () => (async () => {
 		const newModules = requireModules();
 		let changed = [];
 		

@@ -1,10 +1,10 @@
 import JanuszModule from "../core/JanuszModule";
-import fs from 'fs-extra';
 import {janusz, rootDir} from "../index";
 import * as packets from "./packets";
 import uuid from "uuid/v4";
 import audioRouter, {sendAll, clients} from './router';
 import OscillatorInput from "./OscillatorInput";
+import Mixer from "./Mixer";
 
 export const SAMPLE_RATE = 48000;
 export const BUFFER_SIZE = 4800;
@@ -41,7 +41,7 @@ export default class AudioModule extends JanuszModule {
 	}
 	
 	getAudioDevices() {
-		return [OscillatorInput];
+		return [OscillatorInput, Mixer];
 	}
 	
 	getRouter() {

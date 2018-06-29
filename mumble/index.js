@@ -49,6 +49,6 @@ export default class MumbleModule extends JanuszModule {
 	}
 	
 	onVoiceStart = user => {
-		this.InputDevice.devices.forEach(device => device.addStream(user.session, this.client.connection.outputStream(user.session, true)));
+		this.InputDevice.devices.forEach(device => device.addStream(user.session));
 	};
 }

@@ -10,7 +10,7 @@ export default mumbleModule => class MumbleAudioInput extends AudioSingletonDevi
 	}
 	
 	addStream(id, stream) {
-		if(!this.streams.has(id)) this.streams.set(id, stream);
+		if(!this.streams.has(id)) this.streams.set(id, mumbleModule.client.connection.outputStream(id, true));
 	}
 	
 	onTick() {

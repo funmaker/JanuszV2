@@ -1,17 +1,24 @@
 import JanuszModule from "../core/JanuszModule";
-import fs from 'fs-extra';
 import {rootDir} from "../index";
 import path from 'path';
 import soundsRouter from './router';
 import SoundsInput from "./SoundsInput";
+import SpeakingInput from "./SpeakingInput";
 import ffmpeg from 'fluent-ffmpeg';
 import chokidar from 'chokidar';
+import HTTPError from "../web/server/helpers/HTTPError";
+import * as axios from "axios";
+import iso639 from 'iso-639-3';
+import franc from 'franc-min';
+
+const shortLang = {};
+for (const {iso6391, iso6393} of iso639) shortLang[iso6393] = iso6391
 
 export default class SoundsModule extends JanuszModule {
 	static ModuleName = "Sounds".green.bold;
 	soundDir = path.join(rootDir, "sounds/sounds");
 	SoundsDevice = SoundsInput(this);
-	router = soundsRouter(this);
+	SpeakingDevice = SpeakingInput(this);
 	sounds = [];
 	watcher = null;
 	
@@ -68,11 +75,11 @@ export default class SoundsModule extends JanuszModule {
 	}
 	
 	getRouter() {
-		return this.router;
+		return soundsRouter(this);
 	}
 	
 	getAudioDevices() {
-		return [this.SoundsDevice];
+		return [this.SoundsDevice, this.SpeakingDevice];
 	}
 	
 	get allSounds() {
@@ -150,5 +157,61 @@ export default class SoundsModule extends JanuszModule {
 		if(filename.startsWith(".")) return;
 		sounds.splice(sounds.findIndex(sound => sound.filename === filename), 1);
 	};
+	
+	playPath(path) {
+		path = path.split("/");
+		
+		let sounds = {elements: this.sounds, type: "folder"};
+		for(let p of path) {
+			if(sounds.type !== "folder") throw new HTTPError(404);
+			
+			if(p === "*") {
+				const all = [];
+				const crawl = sounds => {
+					if(sounds.type === "sound") all.push(sounds);
+					else sounds.elements.forEach(crawl);
+				};
+				crawl(sounds);
+				sounds = all[Math.floor(Math.random() * all.length)];
+			} else {
+				sounds = sounds.elements.find(sound => sound.filename === p);
+				if(!sounds) throw new HTTPError(404);
+			}
+		}
+		if(!sounds) throw new HTTPError(404);
+		
+		this.SoundsDevice.devices.forEach(device => device.playSound(sounds.audioData));
+	}
+	
+	async say(text, voice, lang) {
+		const {data: {voices}} = await axios.get("http://ivona.miners.pl/voices");
+		
+		if(!voice) {
+			if(!lang) {
+				lang = shortLang[franc(text, {minLength: 1})];
+				if(!voices.some(v => v.lang.startsWith(lang))) lang = 'pl';
+			}
+			if(lang === 'pl') voice = "Jacek";
+			else {
+				voice = voices.find(v => v.lang.startsWith(lang)).name;
+				if(voice === null) voice = "Jacek";
+			}
+		} else {
+			if(!voices.some(v => v.name === voice)) throw new HTTPError(400, "Voice not found.");
+		}
+		
+		const {data: audio} = await axios.get("http://ivona.miners.pl/say", {params: {voice, text}, responseType: 'stream'});
+		
+		const stream = ffmpeg(audio).audioChannels(1)
+			.audioFrequency(48000)
+			.noVideo()
+			.format('s16le')
+			.audioCodec('pcm_s16le')
+			.on('error', err => SoundsModule.error(err))
+			.pipe()
+			.on("error", err => SoundsModule.error(err));
+		
+		this.SpeakingDevice.devices.forEach(device => device.playStream(stream));
+	}
 }
 

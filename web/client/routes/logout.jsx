@@ -24,7 +24,7 @@ export default class LogoutPage extends React.Component {
 	
 	render() {
 		return (
-			<div className="LoginPage">
+			<div className="LogoutPage">
 				{this.state.redirect ? <Redirect to={this.state.redirect} /> : null}
 				<Logo/>
 				<Segment className="loginWrapper">
