@@ -5,27 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06604412-10b9-47fe-aa3d-be44a68b5d76" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/audio/Mixer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/SpeakingInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/client/routes/error.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/client/style/error.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/youtube/YoutubeInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/youtube/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/youtube/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/audio/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discord/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/discord/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mumble/MumbleAudioInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/mumble/MumbleAudioInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mumble/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/mumble/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/routes/logout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/routes/logout.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/client/style/login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/login.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/client/style/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/style.scss" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -70,11 +51,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SpeakingInput.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SpeakingInput.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sounds/SpeakingInput.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
               <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/client/routes/login.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.scss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/client/style/login.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -182,7 +183,6 @@
         <option value="$PROJECT_DIR$/audio/index.js" />
         <option value="$PROJECT_DIR$/discord/router.js" />
         <option value="$PROJECT_DIR$/web/client/routes/logout.jsx" />
-        <option value="$PROJECT_DIR$/web/client/style/login.scss" />
         <option value="$PROJECT_DIR$/web/client/App.jsx" />
         <option value="$PROJECT_DIR$/web/client/style/style.scss" />
         <option value="$PROJECT_DIR$/web/client/routes/error.jsx" />
@@ -191,6 +191,7 @@
         <option value="$PROJECT_DIR$/youtube/index.js" />
         <option value="$PROJECT_DIR$/sounds/index.js" />
         <option value="$PROJECT_DIR$/sounds/SpeakingInput.js" />
+        <option value="$PROJECT_DIR$/web/client/style/login.scss" />
       </list>
     </option>
   </component>
@@ -238,17 +239,27 @@
             <path>
               <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
               <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
-              <item name="mumble" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
               <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
-              <item name="sounds" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
               <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
-              <item name="youtube" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="style" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -337,7 +348,7 @@
       <workItem from="1529754839477" duration="103129000" />
       <workItem from="1530022926297" duration="21485000" />
       <workItem from="1530180011009" duration="1821000" />
-      <workItem from="1530209393625" duration="14187000" />
+      <workItem from="1530209393625" duration="14895000" />
     </task>
     <task id="LOCAL-00001" summary="Added README">
       <created>1514245578738</created>
@@ -416,22 +427,29 @@
       <option name="project" value="LOCAL" />
       <updated>1530037832142</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Youtube support&#10;Ivona support">
+      <created>1530231382727</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1530231382727</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187276000" />
+    <option name="totallyTimeSpent" value="187984000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1922" height="1055" extended-state="7" />
+    <frame x="-1" y="0" width="1922" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info id="DB Browser" order="4" />
       <window_info anchor="bottom" id="DB Execution Console" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50692225" side_tool="true" weight="0.27056277" />
-      <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.4941427" weight="0.32792208" />
-      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49307775" visible="true" weight="0.37121212" />
+      <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.4941427" visible="true" weight="0.32792208" />
+      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49307775" weight="0.37121212" />
       <window_info anchor="right" id="Mongo Explorer" order="3" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4978678" weight="0.25324675" />
       <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.1970181" />
@@ -502,7 +520,8 @@
     <MESSAGE value="Fix hanging websockets in AudioPanel" />
     <MESSAGE value="Refactor" />
     <MESSAGE value="Fixed mumble input" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed mumble input" />
+    <MESSAGE value="Youtube support&#10;Ivona support" />
+    <option name="LAST_COMMIT_MESSAGE" value="Youtube support&#10;Ivona support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -510,13 +529,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-256">
-          <caret line="32" column="53" selection-start-line="32" selection-start-column="53" selection-end-line="32" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/index.js" />
     <entry file="file://$PROJECT_DIR$/configs.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -802,13 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/style/login.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-143">
-          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="10" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/client/App.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="344">
@@ -888,6 +893,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/routes/login.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/login.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
         </state>
       </provider>
     </entry>
