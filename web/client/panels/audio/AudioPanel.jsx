@@ -211,40 +211,44 @@ export class Panel extends React.Component {
 	render() {
 		const {posx, posy, devices, connections, types, loading} = this.state;
 		
-		return <div className="AudioPanel"
-		            onMouseMove={this.onMouseMove}
-		            onDragOver={this.onDragOver}
-		            onDragLeave={this.onDragLeave}
-		            onDrop={this.onDrop}
-		            ref={div => this.div = div}
-		            style={{backgroundPosition: `calc(${posx}px + 50%) calc(${posy}px + 50%)`}}>
-			<div className="offset"
-			     ref={div => this.offsetDiv = div}
-			     style={{transform: `translate(${posx}px, ${posy}px)`}}>
-				<Dimmer active={loading} inverted><Loader size="huge"/></Dimmer>
-				{Object.values(devices).map(device =>
-					<Device device={device}
-					        key={device.uuid}
-					        onRemove={this.removeDevice}
-					        onConnect={this.onConnect}
-					        onDragStart={this.onDragStart}/>)}
-				<Cabbles devices={devices} connections={connections}/>
-			</div>
-			<div className="audioButtons">
-				<Dropdown trigger={<Button icon="add" />}
-				          icon={null}
-				          options={types.map(type => ({
-					          value: type.deviceName,
-					          text: type.deviceName,
-					          disabled: type.singleton && Object.values(devices).some(device => device.name === type.deviceName)
-				          }))}
-				          upward
-									direction="left"
-									onChange={this.addDevice}
-									selectOnBlur={false}
-									value={false}/>
-			</div>
-		</div>;
+		return (
+			<React.Fragment>
+				<div className="board"
+				            onMouseMove={this.onMouseMove}
+				            onDragOver={this.onDragOver}
+				            onDragLeave={this.onDragLeave}
+				            onDrop={this.onDrop}
+				            ref={div => this.div = div}
+				            style={{backgroundPosition: `calc(${posx}px + 50%) calc(${posy}px + 50%)`}}>
+					<div className="offset"
+					     ref={div => this.offsetDiv = div}
+					     style={{transform: `translate(${posx}px, ${posy}px)`}}>
+						<Dimmer active={loading} inverted><Loader size="huge"/></Dimmer>
+						{Object.values(devices).map(device =>
+							<Device device={device}
+							        key={device.uuid}
+							        onRemove={this.removeDevice}
+							        onConnect={this.onConnect}
+							        onDragStart={this.onDragStart}/>)}
+						<Cabbles devices={devices} connections={connections}/>
+					</div>
+				</div>
+				<Button.Group className="panelButtons">
+					<Dropdown trigger={<Button icon="add" />}
+					          icon={null}
+					          options={types.map(type => ({
+						          value: type.deviceName,
+						          text: type.deviceName,
+						          disabled: type.singleton && Object.values(devices).some(device => device.name === type.deviceName)
+					          }))}
+					          upward
+					          direction="right"
+					          onChange={this.addDevice}
+					          selectOnBlur={false}
+					          value={false}/>
+				</Button.Group>
+			</React.Fragment>
+		);
 	}
 }
 

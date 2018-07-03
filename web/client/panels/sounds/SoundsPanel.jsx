@@ -8,12 +8,16 @@ function Sounds({elements}) {
 	let sounds = elements.filter(sound => sound.type === "sound").sort((a, b) => a.name.localeCompare(b.name));
 	
 	return <React.Fragment>
-		<Accordion styled hidden={folders.length === 0} fluid>
-			{folders.map((sound, id) => <Sound sound={sound} key={id}/>)}
-		</Accordion>
-		<div className="soundButtons">
-			{sounds.map((sound, id) => <Sound sound={sound} key={id}/>)}
-		</div>
+		{folders.length > 0 ?
+			<Accordion styled fluid>
+				{folders.map((sound, id) => <Sound sound={sound} key={id}/>)}
+			</Accordion>
+			: null}
+		{sounds.length > 0 ?
+			<div className="soundButtons">
+				{sounds.map((sound, id) => <Sound sound={sound} key={id}/>)}
+			</div>
+		: null}
 	</React.Fragment>;
 }
 
@@ -49,7 +53,7 @@ class Sound extends React.Component {
 				                 onClick={() => this.setState({extended: !this.state.extended})}>
 					<Icon name='dropdown'/>
 					{sound.name}
-					<Button className="randomButton" content="RANDOM" onClick={this.playRandomSound} compact size="tiny" basic/>
+					<Button className="randomButton" icon="random" onClick={this.playRandomSound} compact size="tiny" basic/>
 				</Accordion.Title>
 				<Accordion.Content active={this.state.extended}>
 					<Sounds elements={sound.elements}/>
@@ -110,15 +114,15 @@ export class Panel extends React.Component {
 	
 	render() {
 		return <React.Fragment>
-			<div className="wrapper">
-				<Franku/>
+			<div className="panelScroll">
 				<Sounds elements={this.state.sounds}/>
 			</div>
-			<Button.Group>
-				<Button content="RANDOM" onClick={this.playRandomSound} basic color="black"/>
-				<Button basic={!this.state.triggered} content="TIME TO STOP" color="red" onClick={this.stopSounds}/>
-			</Button.Group>
 			<Dimmer active={this.state.loading} inverted><Loader/></Dimmer>
+			<Franku/>
+			<Button.Group className="panelButtons">
+				<Button icon="bell slash" color={this.state.triggered ? "red" : "grey"} onClick={this.stopSounds}/>
+				<Button icon="random" onClick={this.playRandomSound}/>
+			</Button.Group>
 		</React.Fragment>;
 	}
 }

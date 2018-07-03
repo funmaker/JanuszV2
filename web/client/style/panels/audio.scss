@@ -1,129 +1,124 @@
 
-.AudioPanel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: lightgray url("/static/dots.png") center center;
-  cursor: move;
-  overflow: hidden;
-
-  .offset {
+.Audio.ManagerPanel {
+  .board{
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: lightgray url("/static/dots.png") center center;
+    cursor: move;
+    overflow: hidden;
 
-    &::before {
-      content: "";
-      background: url("/static/audio.png");
-      width: 100px;
-      height: 100px;
-      display: inline-block;
-      background-size: contain;
-      position: absolute;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .Device {
+    .offset {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 128px;
-      background: #dad4c9;
-      border-radius: 8px;
-      border: 2px solid #bfbfbf;
-      box-sizing: border-box;
-      padding-top: 16px;
 
-      &::after {
-        content: attr(data-name);
+      &::before {
+        content: "";
+        background: url("/static/audio.png");
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        background-size: contain;
         position: absolute;
-        display: block;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        height: 16px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        background: #333;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .Device {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 128px;
+        background: #dad4c9;
         border-radius: 8px;
-        border: 1px solid gray;
-        text-align: center;
-        color: #aaa;
-        font-size: 12px;
-        line-height: 16px;
-        font-family: "courier new", courier, monospace;
-        font-weight: bold;
-      }
+        border: 2px solid #bfbfbf;
+        box-sizing: border-box;
+        padding-top: 16px;
 
-      .removeButton {
-        position: absolute;
-        top: -4px;
-        right: -1px;
-        z-index: 1;
-        margin: 0;
-        opacity: 0;
-        cursor: pointer;
-        transition: opacity 0.1s;
-      }
-
-      &:hover .removeButton {
-        opacity: 1;
-      }
-
-      .inputs, .outputs {
-        &.inputs {
-          float: left;
-        }
-        &.outputs {
-          float: right;
-        }
-        margin: 14px -1px -2px;
-
-        .input, .output {
-          width: 17px;
+        &::after {
+          content: attr(data-name);
+          position: absolute;
+          display: block;
+          top: -2px;
+          left: -2px;
+          right: -2px;
           height: 16px;
-          margin-bottom: 16px;
-          border: 2px solid #bfbfbf;
-          cursor: pointer;
-          transition: background-color 0.1s;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          background: #333;
+          border-radius: 8px;
+          border: 1px solid gray;
+          text-align: center;
+          color: #aaa;
+          font-size: 12px;
+          line-height: 16px;
+          font-family: "courier new", courier, monospace;
+          font-weight: bold;
+        }
 
-          &.input {
-            border-left: none;
-            border-radius: 0 8px 8px 0;
-            background: #a24141;
+        .removeButton {
+          position: absolute;
+          top: -4px;
+          right: -1px;
+          z-index: 1;
+          margin: 0;
+          opacity: 0;
+          cursor: pointer;
+          transition: opacity 0.1s;
+        }
+
+        &:hover .removeButton {
+          opacity: 1;
+        }
+
+        .inputs, .outputs {
+          &.inputs {
+            float: left;
           }
-          &.output {
-            border-right: none;
-            border-radius: 8px 0 0 8px;
-            background: #42a142;
-            &.active {
-              background: #48c648;
+          &.outputs {
+            float: right;
+          }
+          margin: 14px -1px -2px;
+
+          .input, .output {
+            width: 17px;
+            height: 16px;
+            margin-bottom: 16px;
+            border: 2px solid #bfbfbf;
+            cursor: pointer;
+            transition: background-color 0.1s;
+
+            &.input {
+              border-left: none;
+              border-radius: 0 8px 8px 0;
+              background: #a24141;
+            }
+            &.output {
+              border-right: none;
+              border-radius: 8px 0 0 8px;
+              background: #42a142;
+              &.active {
+                background: #48c648;
+              }
             }
           }
         }
       }
-    }
 
-    .Cabbles {
-      pointer-events: none;
-      position: absolute;
+      .Cabbles {
+        pointer-events: none;
+        position: absolute;
+      }
     }
   }
 
-  .audioButtons {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-
-    .button {
-      margin: 0;
-      border-top-right-radius: 0;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+  .panelButtons {
+    .menu {
+      right: initial !important;
     }
   }
 }

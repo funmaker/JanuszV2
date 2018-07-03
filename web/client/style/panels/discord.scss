@@ -8,6 +8,10 @@
 
     .text, .user {
       cursor: default;
+
+      .icons {
+        float: right;
+      }
     }
 
     .list {
@@ -30,9 +34,5 @@
         border-radius: 50%;
       }
     }
-  }
-
-  & > .buttons {
-    margin-bottom: 1em;
   }
 }
