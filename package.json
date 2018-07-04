@@ -10,7 +10,7 @@
 		"build:prod": "mkdir -p dist && npm-run-all build:prod-*",
 		"build:prod-server": "webpack --config webpack/server.babel.js",
 		"build:prod-client": "webpack --config webpack/client.babel.js",
-		"build:prod-static": "cp -r web/static dist/",
+		"build:prod-static": "cp -r web/static dist/ && cp -r sounds/sounds dist/",
 		"build:prod-package": "babel-node webpack/package.babel.js"
 	},
 	"dependencies": {

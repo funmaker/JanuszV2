@@ -9,11 +9,14 @@ import session from 'express-session';
 import FileStore from 'session-file-store';
 import {PassThrough} from 'stream';
 import * as readline from 'readline';
-import {janusz} from "../index";
+import {janusz, rootDir} from "../index";
 import {reactMiddleware} from "./server/helpers/reactHelper";
 import HTTPError from "./server/helpers/HTTPError";
 import {router} from "./server/routes";
 import requireLogin from "./server/helpers/requireLogin";
+import path from "path";
+
+const STATIC_DIR = path.join(__dirname, "static")
 
 export default class WebModule extends JanuszModule {
 	static ModuleName = "Web".cyan.bold;
@@ -48,7 +51,7 @@ export default class WebModule extends JanuszModule {
 			saveUninitialized: false,
 			secret: janusz.getConfig("web").sessionSecret,
 		}));
-		app.use('/static', express.static('web/static'));
+		app.use('/static', express.static(STATIC_DIR));
 		if(process.env.NODE_ENV === 'development') {
 			const stream = new PassThrough();
 			readline.createInterface({input: stream}).on('line', line => WebModule.log(line));

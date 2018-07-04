@@ -24,7 +24,7 @@ export default class JanuszCore extends JanuszModule {
 		try {
 			this.states = JSON.parse(await fs.readFile(this.statesFile));
 		} catch(e) {
-			JanuszCore.error(e);
+			if(e.code !== 'ENOENT') JanuszCore.error(e);
 			JanuszCore.log("Regenerating states.json");
 			this.states = {};
 			await fs.writeFile("./states.json", JSON.stringify({}));

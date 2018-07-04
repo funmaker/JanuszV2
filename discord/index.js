@@ -16,6 +16,7 @@ export default class DiscordModule extends JanuszModule {
 		if(reloadedModule) {
 			this.client = reloadedModule.client;
 			this.client.off('message', reloadedModule.handleMessage);
+			this.client.off('error', reloadedModule.handleError);
 			reloadedModule.client = null;
 		}
 	}
@@ -24,6 +25,7 @@ export default class DiscordModule extends JanuszModule {
 		if(!this.client) this.client = new Discord.Client();
 		
 		this.client.on('message', this.handleMessage);
+		this.client.on('error', this.handleError);
 	}
 	
 	async start() {
@@ -46,5 +48,7 @@ export default class DiscordModule extends JanuszModule {
 	
 	handleMessage = async message => {
 	
-	}
+	};
+	
+	handleError = error => DiscordModule.error(error);
 }

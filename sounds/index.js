@@ -1,5 +1,4 @@
 import JanuszModule from "../core/JanuszModule";
-import {rootDir} from "../index";
 import path from 'path';
 import soundsRouter from './router';
 import SoundsInput from "./SoundsInput";
@@ -14,9 +13,10 @@ import franc from 'franc-min';
 const shortLang = {};
 for (const {iso6391, iso6393} of iso639) shortLang[iso6393] = iso6391
 
+const SOUNDS_DIR = path.join(__dirname, "sounds");
+
 export default class SoundsModule extends JanuszModule {
 	static ModuleName = "Sounds".green.bold;
-	soundDir = path.join(rootDir, "sounds/sounds");
 	SoundsDevice = SoundsInput(this);
 	SpeakingDevice = SpeakingInput(this);
 	sounds = [];
@@ -48,7 +48,7 @@ export default class SoundsModule extends JanuszModule {
 		let promises = [];
 		
 		await new Promise((res, rej) => {
-			this.watcher = chokidar.watch(this.soundDir)
+			this.watcher = chokidar.watch(SOUNDS_DIR)
 				.on('add', path => {
 					let promise = this.addFile(path);
 					if(promises) promises.push(promise);
@@ -95,10 +95,10 @@ export default class SoundsModule extends JanuszModule {
 		return sounds;
 	}
 	
-	async loadFile(path) {
+	async loadFile(soundPath) {
 		return await new Promise((res, rej) => {
 			const bufs = [];
-			ffmpeg(path).audioChannels(1)
+			ffmpeg(soundPath).audioChannels(1)
 				.audioFrequency(48000)
 				.noVideo()
 				.format('s16le')
@@ -111,8 +111,8 @@ export default class SoundsModule extends JanuszModule {
 	}
 	
 	addFile = async fullPath => {
-		const path = fullPath.slice(this.soundDir.length + 1);
-		const paths = path.split("/").filter(p => p !== "");
+		const relative = path.relative(SOUNDS_DIR, fullPath);
+		const paths = relative.split("/").filter(p => p !== "");
 		if(paths.length === 0) return;
 		
 		let sounds = this.sounds;
@@ -123,12 +123,12 @@ export default class SoundsModule extends JanuszModule {
 		
 		const filename = paths.shift();
 		if(filename.startsWith(".")) return;
-		sounds.push({type: "sound", filename, path: path, audioData: await this.loadFile(fullPath)});
+		sounds.push({type: "sound", filename, path: relative, audioData: await this.loadFile(fullPath)});
 	};
 	
 	addDir = fullPath => {
-		const path = fullPath.slice(this.soundDir.length + 1);
-		const paths = path.split("/").filter(p => p !== "");
+		const relative = path.relative(SOUNDS_DIR, fullPath);
+		const paths = relative.split("/").filter(p => p !== "");
 		if(paths.length === 0) return;
 		
 		let sounds = this.sounds;
@@ -139,12 +139,12 @@ export default class SoundsModule extends JanuszModule {
 		
 		const filename = paths.shift();
 		if(filename.startsWith(".")) return;
-		sounds.push({type: "folder", filename, path: path, elements: []});
+		sounds.push({type: "folder", filename, path: relative, elements: []});
 	};
 	
 	remove = fullPath => {
-		const path = fullPath.slice(this.soundDir.length + 1);
-		const paths = path.split("/").filter(p => p !== "");
+		const relative = path.relative(SOUNDS_DIR, fullPath);
+		const paths = relative.split("/").filter(p => p !== "");
 		if(paths.length === 0) return;
 		
 		let sounds = this.sounds;
@@ -158,11 +158,11 @@ export default class SoundsModule extends JanuszModule {
 		sounds.splice(sounds.findIndex(sound => sound.filename === filename), 1);
 	};
 	
-	playPath(path) {
-		path = path.split("/");
+	playPath(soundPath) {
+		soundPath = soundPath.split("/");
 		
 		let sounds = {elements: this.sounds, type: "folder"};
-		for(let p of path) {
+		for(let p of soundPath) {
 			if(sounds.type !== "folder") throw new HTTPError(404);
 			
 			if(p === "*") {

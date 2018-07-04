@@ -21,8 +21,8 @@ export default {
 		devtoolModuleFilenameTemplate: "[absolute-resource-path]",
 	},
 	node: {
-		__filename: true,
-		__dirname: true,
+		__filename: false,
+		__dirname: false,
 	},
 	plugins: [],
 	module: {

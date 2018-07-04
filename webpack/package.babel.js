@@ -11,7 +11,7 @@ const tryRead = filename => {
 const pack = {
 	...tryRead("package.json"),
 	scripts: {
-		start: "node server.js",
+		start: "node index.js",
 	},
 };
 delete pack.devDependencies;
