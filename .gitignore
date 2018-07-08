@@ -2,6 +2,7 @@
 /dist
 /prod
 /build
+/logs
 /node_modules
 /sounds/sounds/*
 !/sounds/sounds/.gitkeep

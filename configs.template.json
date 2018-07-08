@@ -10,7 +10,8 @@
 	},
 	"web": {
 		"port": 3900,
-		"sessionSecret": "keyboard cat",
-		"password": "MAIN_PASSWORD"
+		"secret": "keyboard cat",
+		"password": "MAIN_PASSWORD",
+		"cookieLifespan": 604800000
 	}
 }

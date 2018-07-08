@@ -1,0 +1,23 @@
+
+.LogsPanel {
+  border-top: 1px solid rgba(34,36,38,.85) !important;
+
+  .panelScroll {
+    padding: 0.5em !important;
+    background-color: #2D2D2D;
+    color: #fff;
+    font-family: 'Droid Sans Mono', Consolas, 'Lucida Console', Monaco, monospace;
+
+    .lineNumber::before {
+      content: attr(data-num);
+      display: inline-block;
+      border-right: 1px solid gray;
+      width: 6ch;
+      text-align: right;
+      padding-right: 1ch;
+      margin-right: 1ch;
+      color: grey;
+      font-weight: bold;
+    }
+  }
+}

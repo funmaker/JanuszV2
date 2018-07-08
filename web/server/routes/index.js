@@ -1,19 +1,20 @@
 import requireLogin from "../../server/helpers/requireLogin";
 import {janusz} from "../../../index";
+import {getFreshJWT} from "../helpers/requireLogin";
 
-export const router = require('express-promise-router')();
+export const coreRouter = require('express-promise-router')();
 
-router.get('/core/login', (req, res) => {
+coreRouter.get('/core/login', (req, res) => {
 	const initialData = {};
 	
 	res.react(initialData);
 });
 
-router.post('/core/login', (req, res) => {
+coreRouter.post('/core/login', (req, res) => {
 	const initialData = {};
 	
 	if(req.body.password === janusz.getConfig("web").password) {
-		req.session.authorized = true;
+		res.cookie("auth", getFreshJWT(), {expires: new Date(Date.now() + janusz.getConfig("web").cookieLifespan)});
 		initialData.success = true;
 	} else {
 		initialData.success = false;
@@ -22,18 +23,18 @@ router.post('/core/login', (req, res) => {
 	res.json(initialData);
 });
 
-router.post('/core/logout', (req, res) => {
+coreRouter.post('/core/logout', (req, res) => {
 	const initialData = {};
 	
-	req.session.authorized = false;
+	res.clearCookie("auth");
 	
 	res.json(initialData);
 });
 
-router.get('/', requireLogin, (req, res) => {
+coreRouter.get('/', requireLogin, (req, res) => {
 	const initialData = {};
 	
 	res.react(initialData);
 });
 
-router.get("/test", (req, res) => res.send("kek"));
+coreRouter.get("/test", (req, res) => res.send("kek"));

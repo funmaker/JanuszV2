@@ -47,7 +47,7 @@ export default class LoginPage extends React.Component {
 	render() {
 		return (
 			<div className="LoginPage">
-				{this.state.redirect ? <Redirect to={this.state.redirect} /> : null}
+				{this.state.redirect ? <Redirect to={this.state.redirect} push /> : null}
 				<Logo/>
 				<Segment className="loginWrapper">
 					<Segment as={"form"} onSubmit={this.onSubmit} stacked className="form">

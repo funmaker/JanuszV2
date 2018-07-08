@@ -5,16 +5,15 @@ import express from "express";
 import http from 'http';
 import ExpressWS from 'express-ws';
 import morgan from 'morgan';
-import session from 'express-session';
-import FileStore from 'session-file-store';
 import {PassThrough} from 'stream';
 import * as readline from 'readline';
+import path from "path";
 import {janusz, rootDir} from "../index";
 import {reactMiddleware} from "./server/helpers/reactHelper";
 import HTTPError from "./server/helpers/HTTPError";
-import {router} from "./server/routes";
+import {coreRouter} from "./server/routes";
 import requireLogin from "./server/helpers/requireLogin";
-import path from "path";
+import webRouter from "./router";
 
 const STATIC_DIR = path.join(__dirname, "static")
 
@@ -45,12 +44,6 @@ export default class WebModule extends JanuszModule {
 		app.use(bodyParser.urlencoded({extended: false}));
 		app.use(bodyParser.json());
 		app.use(cookieParser());
-		app.use(session({
-			store: new (FileStore(session))(),
-			resave: false,
-			saveUninitialized: false,
-			secret: janusz.getConfig("web").sessionSecret,
-		}));
 		app.use('/static', express.static(STATIC_DIR));
 		if(process.env.NODE_ENV === 'development') {
 			const stream = new PassThrough();
@@ -67,7 +60,7 @@ export default class WebModule extends JanuszModule {
 		
 		this.regenerateModulesRouter();
 		app.use((res, rej, next) => this.modulesRouter(res, rej, next));
-		app.use('/', router);
+		app.use('/', coreRouter);
 		
 		app.use((req, res, next) => {
 			next(new HTTPError(404));
@@ -106,6 +99,10 @@ export default class WebModule extends JanuszModule {
 	
 	async onReloadOther() {
 		this.regenerateModulesRouter();
+	}
+	
+	getRouter() {
+		return webRouter(this);
 	}
 	
 	regenerateModulesRouter() {

@@ -86,7 +86,11 @@ export default class JanuszCore extends JanuszModule {
 	
 	setState(name, value) {
 		this.states[name] = value;
-		fs.writeFile(this.statesFile, JSON.stringify(this.states)).catch(err => JanuszCore.error(err));
+		return this.saveState();
+	}
+	
+	saveState() {
+		return fs.writeFile(this.statesFile, JSON.stringify(this.states)).catch(err => JanuszCore.error(err));
 	}
 }
 

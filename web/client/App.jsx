@@ -9,6 +9,7 @@ import LogoutPage from "./routes/logout";
 import * as AudioClient from './panels/audio/AudioPanel';
 import * as SoundsClient from './panels/sounds/SoundsPanel';
 import * as DiscordClient from './panels/discord/DiscordPanel';
+import * as LogsClient from './panels/logs/LogsPanel';
 import ErrorPage from "./routes/error";
 
 if(!isNode) {
@@ -28,6 +29,7 @@ export const clientModules = [
 	AudioClient,
 	SoundsClient,
 	DiscordClient,
+	LogsClient,
 ];
 
 export const findClientModule = name => clientModules.find(mod => mod.name === name);

@@ -1,10 +1,16 @@
 import 'source-map-support/register';
 import 'colors';
+import fs from 'fs';
+import path from 'path';
+import {logs, logsEmitter} from './core/logger';
 import {logPrefix} from "./core/JanuszModule";
 import JanuszCore from "./core";
 
 export const rootDir = __dirname;
+export let janusz;
+export const findModule = Type => janusz.modules.find(mod => mod instanceof Type);
 
+const prefix = logPrefix("Janusz".yellow.bold);
 const requireModules = () => [
 	require("./web").default,
 	require("./audio").default,
@@ -13,11 +19,43 @@ const requireModules = () => [
 	require("./mumble").default,
 	require("./youtube").default,
 ];
-const prefix = logPrefix("Janusz".yellow.bold);
 
-export let janusz;
 
-export const findModule = Type => janusz.modules.find(mod => mod instanceof Type);
+process.on('unhandledRejection', (reason, p) => {
+	console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+});
+
+process.on('uncaughtException', (err) => {
+	logsEmitter.removeAllListeners();
+	console.log(prefix, "Uncaught Exception:", err);
+	
+	const logsDir = path.resolve(rootDir, "logs");
+	if (!fs.existsSync(logsDir)){
+		fs.mkdirSync(logsDir);
+	}
+	const filename = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') + ".log";
+	const logPath = path.resolve(logsDir, filename);
+	
+	console.log(prefix, "Saving crash log to:", logPath);
+	
+	fs.writeFileSync(logPath, logs.join("\n"));
+	
+	process.exit(-1);
+});
+
+let exiting = false;
+process.on('SIGINT', async () => {
+	if(exiting) return;
+	exiting = true;
+	console.log(prefix, "Received SIGINT, exiting...");
+	
+	await janusz.stop();
+	await janusz.saveState();
+	
+	console.log(`${prefix} All modules have been stoppped. Bye bye.`);
+	process.exit(0);
+});
+
 
 (async () => {
 	const modules = requireModules().map(Mod => new Mod());
@@ -29,9 +67,6 @@ export const findModule = Type => janusz.modules.find(mod => mod instanceof Type
 	console.log(`${prefix} All modules have been started. ${"Janusz".yellow.bold} is ready for action.`);
 })().catch(console.error);
 
-process.on('unhandledRejection', (reason, p) => {
-	console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
-});
 
 if(module.hot) {
 	module.hot.accept(["./web", "./audio", "./sounds", "./discord", "./mumble", "./youtube"], () => (async () => {

@@ -99,7 +99,7 @@ export class Panel extends React.Component {
 	};
 	
 	reconnectWS() {
-		this.ws = new WebSocket(`ws://${location.host}/audio`);
+		this.ws = new WebSocket(`ws://${location.host}/audio?format=html`);
 		this.ws.addEventListener("open", () => {
 			this.setState({
 				loading: true,
@@ -223,7 +223,7 @@ export class Panel extends React.Component {
 					<div className="offset"
 					     ref={div => this.offsetDiv = div}
 					     style={{transform: `translate(${posx}px, ${posy}px)`}}>
-						<Dimmer active={loading} inverted><Loader size="huge"/></Dimmer>
+						<Dimmer active={loading}><Loader size="huge"/></Dimmer>
 						{Object.values(devices).map(device =>
 							<Device device={device}
 							        key={device.uuid}

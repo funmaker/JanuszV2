@@ -1,5 +1,6 @@
 import PromiseRouter from "express-promise-router";
 import * as packets from "./packets";
+import {validateReq} from "../web/server/helpers/requireLogin";
 
 export const clients = new Set();
 export const sendAll = msg => clients.forEach(client => client.send(msg, err => err && client.close()));
@@ -70,7 +71,7 @@ export default function audioRouter(audioModule) {
 	}
 	
 	router.ws('/', (ws, req) => {
-		if(!req.session.authorized) {
+		if(!validateReq(req)) {
 			ws.close();
 			return;
 		}

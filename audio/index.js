@@ -34,8 +34,6 @@ export default class AudioModule extends JanuszModule {
 	
 	async stop() {
 		await this.save();
-		AudioModule.log("Closing " + clients.size + " clients");
-		clients.forEach(client => client.close());
 		this.deviceTypes.forEach(type => type.devices.forEach(dev => this.removeDevice(dev.uuid)));
 		this.devices.forEach(dev => this.removeDevice(dev.uuid));
 	}
@@ -68,7 +66,7 @@ export default class AudioModule extends JanuszModule {
 			devices: [...this.devices.values()].map(dev => dev.getState()),
 			connections: [...this.connections.keys()].map(uuid => this.getConnectionState(uuid)),
 		};
-		janusz.setState("audioSystem", state);
+		await janusz.setState("audioSystem", state);
 	}
 	
 	async load() {
