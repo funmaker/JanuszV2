@@ -21,6 +21,7 @@ export default class SoundsModule extends JanuszModule {
 	SpeakingDevice = SpeakingInput(this);
 	sounds = [];
 	watcher = null;
+	verbose = false;
 	
 	constructor(reloadedModule) {
 		super();
@@ -36,10 +37,11 @@ export default class SoundsModule extends JanuszModule {
 			this.watcher.removeAllListeners();
 			this.watcher.on('add', this.addFile)
 									.on('change', this.addFile)
+        					.on('addDir', this.addDir)
 									.on('unlink', this.remove)
-									.on('addDir', this.addDir)
 									.on('unlinkDir', this.remove)
 									.on('error', err => SoundsModule.error(err));
+			this.verbose = true;
 			return;
 		}
 		
@@ -49,23 +51,28 @@ export default class SoundsModule extends JanuszModule {
 		
 		await new Promise((res, rej) => {
 			this.watcher = chokidar.watch(SOUNDS_DIR)
-				.on('add', path => {
-					let promise = this.addFile(path);
+				.on('add', (...args) => {
+					let promise = this.addFile(...args);
 					if(promises) promises.push(promise);
 					sounds++;
 				})
 				.on('change', this.addFile)
+				.on('addDir', this.addDir)
 				.on('unlink', this.remove)
-				.on('addDir', path => {
-					this.addDir(path);
-					folders++;
-				})
-				.on('unlinkDir', this.remove)
-				.on('error', err => SoundsModule.error(err) + rej(err))
-				.on('ready', () => Promise.all(promises).then(res).catch(rej));
+        .on('unlinkDir', this.remove)
+				.on('error', err => {
+          SoundsModule.error(err);
+          rej(err);
+        })
+				.once('ready', () => Promise.all(promises).then(res).catch(rej));
 		});
 		
 		promises = null;
+    this.watcher.removeAllListeners("add");
+    this.watcher.on("add", this.addFile);
+    this.watcher.removeAllListeners("error");
+    this.watcher.on("error", err => SoundsModule.error(err));
+    this.verbose = true;
 		
 		SoundsModule.log(`Loaded ${sounds} sounds found inside ${folders + 1} folders.`);
 	}
@@ -109,8 +116,12 @@ export default class SoundsModule extends JanuszModule {
 				.on('end', () => res(Buffer.concat(bufs)));
 		});
 	}
-	
+
 	addFile = async fullPath => {
+		if(this.verbose) {
+			SoundsModule.log("Adding file: ", fullPath);
+		}
+
 		const relative = path.relative(SOUNDS_DIR, fullPath);
 		const paths = relative.split("/").filter(p => p !== "");
 		if(paths.length === 0) return;
@@ -123,10 +134,16 @@ export default class SoundsModule extends JanuszModule {
 		
 		const filename = paths.shift();
 		if(filename.startsWith(".")) return;
+		let index = sounds.findIndex(s => s.filename === filename);
+		if(index !== -1) sounds.splice(index, 1);
 		sounds.push({type: "sound", filename, path: relative, audioData: await this.loadFile(fullPath)});
 	};
-	
+
 	addDir = fullPath => {
+    if(this.verbose) {
+      SoundsModule.log("Adding dir: ", fullPath);
+    }
+
 		const relative = path.relative(SOUNDS_DIR, fullPath);
 		const paths = relative.split("/").filter(p => p !== "");
 		if(paths.length === 0) return;
@@ -139,24 +156,35 @@ export default class SoundsModule extends JanuszModule {
 		
 		const filename = paths.shift();
 		if(filename.startsWith(".")) return;
+    let index = sounds.findIndex(s => s.filename === filename);
+    if(index !== -1) sounds.splice(index, 1);
 		sounds.push({type: "folder", filename, path: relative, elements: []});
 	};
 	
 	remove = fullPath => {
-		const relative = path.relative(SOUNDS_DIR, fullPath);
+    if(this.verbose) {
+      SoundsModule.log("Removing: ", fullPath);
+    }
+
+    const relative = path.relative(SOUNDS_DIR, fullPath);
 		const paths = relative.split("/").filter(p => p !== "");
 		if(paths.length === 0) return;
 		
 		let sounds = this.sounds;
 		while(paths.length > 1) {
 			const p = paths.shift();
-			sounds = sounds.find(dir => dir.filename === p).elements;
+			let dir = sounds.find(dir => dir.filename === p);
+			if(dir === undefined) return;
+			sounds = dir.elements;
 		}
 		
 		const filename = paths.shift();
 		if(filename.startsWith(".")) return;
-		sounds.splice(sounds.findIndex(sound => sound.filename === filename), 1);
+		let index = sounds.findIndex(sound => sound.filename === filename);
+		if(index === -1) return;
+		sounds.splice(index, 1);
 	};
+
 	
 	playPath(soundPath) {
 		soundPath = soundPath.split("/");

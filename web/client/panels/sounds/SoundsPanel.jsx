@@ -90,6 +90,17 @@ export class Panel extends React.Component {
 		
 		triggerCallbacks.add(this.getTriggered);
 	}
+
+	refresh = async () => {
+    this.setState({
+      loading: true,
+    });
+    const sounds = await requestJSON({pathname: "/sounds/list"});
+    this.setState({
+      sounds,
+      loading: false,
+    });
+	}
 	
 	componentWillUnmount() {
 		triggerCallbacks.delete(this.getTriggered);
@@ -121,6 +132,7 @@ export class Panel extends React.Component {
 			<Franku/>
 			<Button.Group className="panelButtons">
 				<Button icon="bell slash" color={this.state.triggered ? "red" : "grey"} onClick={this.stopSounds}/>
+        <Button icon="refresh" onClick={this.refresh}/>
 				<Button icon="random" onClick={this.playRandomSound}/>
 			</Button.Group>
 		</React.Fragment>;
