@@ -26,9 +26,9 @@ if(!isNode) {
 }
 
 export const clientModules = [
+  SoundsClient,
+  DiscordClient,
 	AudioClient,
-	SoundsClient,
-	DiscordClient,
 	LogsClient,
 ];
 

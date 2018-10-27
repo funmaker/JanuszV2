@@ -4,6 +4,10 @@ import {fetchInitialData, getInitialData} from "../helpers/initialData";
 import Logo from "../components/logo";
 import Panels from "../components/panels";
 import Modules from "../components/modules";
+import { clientModules } from "../App";
+import { Link } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
+import { isMobile } from 'mobile-device-detect';
 
 export default class IndexPage extends React.Component {
 	constructor() {
@@ -12,12 +16,19 @@ export default class IndexPage extends React.Component {
 		this.state = {
 			...getInitialData(),
 			panels: null,
+			mobile: false,
 		};
 		
 		this.panelsChange = this.panelsChange.bind(this);
 	}
 	
 	async componentDidMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+    
+    this.setState({
+			mobile: window.innerWidth <= 800 || isMobile,
+		});
+    
 		this.setState({
 			...(await fetchInitialData()),
 		});
@@ -26,6 +37,16 @@ export default class IndexPage extends React.Component {
 			this.setState({panels: JSON.parse(localStorage.getItem("panels"))});
 		}
 	}
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowSizeChange);
+  }
+  
+  handleWindowSizeChange = () => {
+		const newMobile = window.innerWidth <= 800 || isMobile;
+		if(newMobile !== this.state.mobile)
+    	this.setState({ mobile: newMobile });
+  };
 	
 	panelsChange(panels) {
 		this.setState({panels});
@@ -34,10 +55,22 @@ export default class IndexPage extends React.Component {
 	
 	render() {
 		return (
-			<div className="IndexPage">
+			<div className={"IndexPage" + (this.state.mobile ? " mobile" : "")}>
 				<Logo/>
-				<Panels panels={this.state.panels} onChange={this.panelsChange}/>
-				<Modules/>
+				{this.state.mobile ?
+          <Panels panels={clientModules.map(mod => mod.name)}
+									readOnly
+									extraTab={
+										<Link to={"/core/logout"} className="PanelTab button logoutButton" title="Logout">
+											<Icon name="power" size="large"/>
+										</Link>
+									} />
+				:
+					<>
+            <Panels panels={this.state.panels} onChange={this.panelsChange}/>
+            <Modules/>
+					</>
+				}
 			</div>
 		)
 	}

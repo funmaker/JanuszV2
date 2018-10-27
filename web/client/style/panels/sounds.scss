@@ -5,6 +5,30 @@
   overflow: hidden;
   padding: 0 !important;
 
+  .soundsWrap {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1em 1em 0;
+    &::after {
+      content: "";
+      display: block;
+      height: 3.5em;
+    }
+  }
+
+  .search {
+    position: relative;
+
+    &.enter::after {
+      content: "[Enter]";
+      position: absolute;
+      right: 0.75em;
+      top: 50%;
+      transform: translate(0, -50%);
+      color: gray;
+    }
+  }
+
   .Franku {
     position: absolute;
     line-height: 0;

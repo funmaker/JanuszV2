@@ -1,11 +1,19 @@
 import React from 'react';
 import requestJSON from "../../../client/helpers/requestJSON";
-import {Accordion, Button, Dimmer, Icon, Loader} from "semantic-ui-react";
+import { Accordion, Button, Dimmer, Icon, Input, Loader } from "semantic-ui-react";
 import Franku, {trigger, triggerCallbacks} from "./Franku";
 
+const soundSort = (a, b) => (a.type.localeCompare(b.type)) * 10 + (a.name.localeCompare(b.name));
+
+const soundsSort = elements => {
+	elements.filter(e => e.type === "folder").forEach(f => f.elements = soundsSort(f.elements));
+	
+	return elements.sort(soundSort);
+};
+
 function Sounds({elements}) {
-	let folders = elements.filter(sound => sound.type === "folder").sort((a, b) => a.name.localeCompare(b.name));
-	let sounds = elements.filter(sound => sound.type === "sound").sort((a, b) => a.name.localeCompare(b.name));
+	let folders = elements.filter(sound => sound.type === "folder");
+	let sounds = elements.filter(sound => sound.type === "sound");
 	
 	return <React.Fragment>
 		{folders.length > 0 ?
@@ -33,16 +41,16 @@ class Sound extends React.Component {
 		this.playRandomSound = this.playRandomSound.bind(this);
 	}
 	
-	async playSound() {
+	playSound = async () => {
 		await requestJSON({pathname: "/sounds/play", search: {sound: this.props.sound.path}});
 		trigger();
-	}
+	};
 	
-	async playRandomSound(ev) {
+	playRandomSound = async (ev) => {
 		ev.stopPropagation();
 		await requestJSON({pathname: "/sounds/play", search: {sound: this.props.sound.path + "/*"}});
 		trigger();
-	}
+	};
 	
 	render() {
 		const {sound} = this.props;
@@ -72,70 +80,120 @@ export class Panel extends React.Component {
 		
 		this.state = {
 			sounds: [],
+      filteredSounds: [],
 			loading: true,
+      filter: "",
+      firstSound: null,
 		};
-		
-		this.playRandomSound = this.playRandomSound.bind(this);
-		this.stopSounds = this.stopSounds.bind(this);
-		this.getTriggered = this.getTriggered.bind(this);
 	}
 	
 	async componentDidMount() {
-		const sounds = await requestJSON({pathname: "/sounds/list"});
+		const sounds = soundsSort(await requestJSON({pathname: "/sounds/list"}));
 		this.setState({
 			sounds,
+      filteredSounds: sounds,
 			loading: false,
 			triggered: false,
 		});
 		
 		triggerCallbacks.add(this.getTriggered);
 	}
+  
+  componentWillUnmount() {
+    triggerCallbacks.delete(this.getTriggered);
+  }
 
 	refresh = async () => {
     this.setState({
       loading: true,
     });
-    const sounds = await requestJSON({pathname: "/sounds/list"});
+    const sounds = soundsSort(await requestJSON({pathname: "/sounds/list"}));
     this.setState({
       sounds,
+      filteredSounds: sounds,
       loading: false,
+      filter: "",
     });
-	}
+	};
 	
-	componentWillUnmount() {
-		triggerCallbacks.delete(this.getTriggered);
-	}
-	
-	getTriggered(counter) {
+	getTriggered = (counter) => {
 		if(counter >= 3 && !this.state.triggered) {
 			this.setState({triggered: true});
 		} else if(counter === 0 && this.state.triggered) {
 			this.setState({triggered: false});
 		}
-	}
+	};
 	
-	async playRandomSound() {
+	playRandomSound = async () => {
 		await requestJSON({pathname: "/sounds/play", search: {sound: "*"}});
 		trigger();
-	}
+	};
 	
-	async stopSounds() {
+	stopSounds = async () => {
 		await requestJSON({pathname: "/sounds/stopSounds"});
-	}
+	};
+	
+	onFilter = (ev, {value}) => {
+	  if(value === "") {
+	  	this.setState(state => ({ filteredSounds: state.sounds, filter: value }));
+		} else {
+	  	const filter = e => {
+        if(e.name.toLowerCase().includes(value.toLowerCase())) {
+          return [e];
+        } else {
+          if(e.type === "folder") {
+            const elements = e.elements.map(filter).flat();
+            
+            if(elements.length) {
+              return [{
+                ...e,
+                elements,
+              }]
+            }
+          }
+        }
+        
+        return [];
+			};
+	  	
+	  	const filtered = this.state.sounds.map(filter).flat();
+	  	let first = null;
+	  	if(filtered[0]) {
+	  		first = filtered[0];
+	  		while(first.type === "folder") {
+	  			first = first.elements[0];
+				}
+			}
+			
+      this.setState({ filteredSounds: filtered, filter: value, firstSound: first });
+		}
+  };
+	
+	onFilterKey = async ({key}) => {
+		if(key === "Enter" && this.state.firstSound) {
+      await requestJSON({pathname: "/sounds/play", search: {sound: this.state.firstSound.path}});
+      trigger();
+		}
+	};
 	
 	render() {
-		return <React.Fragment>
-			<div className="panelScroll">
-				<Sounds elements={this.state.sounds}/>
-			</div>
-			<Dimmer active={this.state.loading} inverted><Loader/></Dimmer>
-			<Franku/>
-			<Button.Group className="panelButtons">
-				<Button icon="bell slash" color={this.state.triggered ? "red" : "grey"} onClick={this.stopSounds}/>
-        <Button icon="refresh" onClick={this.refresh}/>
-				<Button icon="random" onClick={this.playRandomSound}/>
-			</Button.Group>
-		</React.Fragment>;
+		return (
+		  <React.Fragment>
+        <Input className={"search" + (this.state.firstSound && this.state.focus ? " enter" : "")}
+							 placeholder="Search..." onChange={this.onFilter} value={this.state.filter}
+							 onKeyPress={this.onFilterKey} onFocus={() => this.setState({focus: true})} onBlur={() => this.setState({focus: false})} />
+        <div className="soundsWrap">
+          <Sounds elements={this.state.filteredSounds} />
+        </div>
+        <Dimmer active={this.state.loading} inverted><Loader/></Dimmer>
+        <Franku/>
+        <Button.Group className="panelButtons">
+          <Button icon="bell slash" color={this.state.triggered ? "red" : "grey"} onClick={this.stopSounds}/>
+          <Button icon="refresh" onClick={this.refresh}/>
+          <Button icon="random" onClick={this.playRandomSound}/>
+        </Button.Group>
+      </React.Fragment>
+    );
 	}
 }
 

@@ -113,16 +113,37 @@ export class Panel extends React.Component {
 		});
 		this.ws.addEventListener('message', this.handleMessage);
 	}
-	
-	onMouseMove = ev => {
-		if((ev.buttons & 1) === 0) return;
-		if(ev.target !== this.div) return;
-		
-		this.setState({
-			posx: this.state.posx + ev.nativeEvent.movementX,
-			posy: this.state.posy + ev.nativeEvent.movementY,
-		});
-	};
+  
+  onMouseMove = ev => {
+    if((ev.buttons & 1) === 0) return;
+    if(ev.target !== this.div) return;
+    
+    this.setState({
+      posx: this.state.posx + ev.nativeEvent.movementX,
+      posy: this.state.posy + ev.nativeEvent.movementY,
+    });
+  };
+  
+  onTouchStart = ev => {
+    if(ev.touches.length !== 1) return;
+    
+    this.setState({
+      touchX: ev.touches[0].clientX,
+      touchY: ev.touches[0].clientY,
+    });
+  };
+  
+  onTouchMove = ev => {
+    if(ev.touches.length !== 1) return;
+    ev.preventDefault();
+    
+    this.setState({
+      posx: this.state.posx + ev.touches[0].clientX - this.state.touchX,
+      posy: this.state.posy + ev.touches[0].clientY - this.state.touchY,
+      touchX: ev.touches[0].clientX,
+      touchY: ev.touches[0].clientY,
+    });
+  };
 	
 	onDragStart = ev => {
 		const target = ev.target;
@@ -215,6 +236,8 @@ export class Panel extends React.Component {
 			<React.Fragment>
 				<div className="board"
 				            onMouseMove={this.onMouseMove}
+             				onTouchStart={this.onTouchStart}
+             				onTouchMove={this.onTouchMove}
 				            onDragOver={this.onDragOver}
 				            onDragLeave={this.onDragLeave}
 				            onDrop={this.onDrop}

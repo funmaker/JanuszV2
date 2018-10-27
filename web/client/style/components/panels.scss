@@ -7,8 +7,19 @@
 
   & > .tabs {
     padding: 0;
-    overflow-x: auto;
-    white-space: nowrap;
+    display: flex;
+
+    .scrollWrap {
+      flex: 1;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    & > .logoutButton {
+      float: right;
+      color: cyan;
+      border-left: 1px solid rgba(127, 127, 127, 0.3);
+    }
   }
   & > .content {
     flex: 1;

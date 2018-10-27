@@ -34,6 +34,7 @@
 		"intercept-stdout": "^0.1.2",
 		"iso-639-3": "^1.1.0",
 		"jsonwebtoken": "^8.3.0",
+		"mobile-device-detect": "^0.2.3",
 		"morgan": "^1.9.0",
 		"mumble": "^0.3.15",
 		"node-opus": "^0.3.0",

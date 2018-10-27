@@ -4,10 +4,20 @@
     <bookmark url="file://$PROJECT_DIR$/audio/AudioDevice.js" line="37" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06604412-10b9-47fe-aa3d-be44a68b5d76" name="Default" comment="">
+    <list default="true" id="06604412-10b9-47fe-aa3d-be44a68b5d76" name="Default" comment="Fixed sounds watch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/components/panels.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/components/panels.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/client/panels/sounds/SoundsPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/panels/sounds/SoundsPanel.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/routes/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/routes/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/components/panels.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/components/panels.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/panels/sounds.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/panels/sounds.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/client/style/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/client/style/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/server/views/index.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/web/server/views/index.handlebars" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,22 +33,24 @@
     <session id="-1232001757">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="2" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="js" value="11" />
           <entry key="json" value="1" />
-          <entry key="jsx" value="1" />
+          <entry key="jsx" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="1" />
-          <entry key="JSX Harmony" value="1" />
+          <entry key="JSX Harmony" value="3" />
           <entry key="JavaScript" value="11" />
         </counts>
       </usages-collector>
@@ -47,6 +59,7 @@
           <entry key="js" value="763" />
           <entry key="json" value="12" />
           <entry key="jsx" value="52" />
+          <entry key="txt" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -54,17 +67,54 @@
           <entry key="JSON" value="12" />
           <entry key="JSX Harmony" value="52" />
           <entry key="JavaScript" value="763" />
+          <entry key="PLAIN_TEXT" value="28" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-795246697">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="handlebars" value="60" />
+          <entry key="jsx" value="2618" />
+          <entry key="scss" value="584" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Handlebars/Mustache" value="60" />
+          <entry key="JSX Harmony" value="2618" />
+          <entry key="SCSS" value="584" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="handlebars" value="1" />
+          <entry key="jsx" value="16" />
+          <entry key="scss" value="15" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Handlebars/Mustache" value="1" />
+          <entry key="JSX Harmony" value="16" />
+          <entry key="SCSS" value="15" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/client/panels/sounds/SoundsPanel.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
+            <state relative-caret-position="165">
+              <caret line="140" column="60" selection-start-line="140" selection-start-column="60" selection-end-line="140" selection-end-column="60" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -72,11 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sounds/index.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/client/style/index.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="176" column="26" selection-start-line="176" selection-start-column="17" selection-end-line="176" selection-end-column="26" />
+            <state relative-caret-position="330">
+              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -143,10 +193,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mumble/MumbleAudioOutput.js" />
-        <option value="$PROJECT_DIR$/mumble/index.js" />
-        <option value="$PROJECT_DIR$/mumble/MumbleAudioInput.js" />
-        <option value="$PROJECT_DIR$/discord/DiscordAudioInput.js" />
         <option value="$PROJECT_DIR$/youtube/router.js" />
         <option value="$PROJECT_DIR$/youtube/YoutubeInput.js" />
         <option value="$PROJECT_DIR$/web/client/routes/error.jsx" />
@@ -159,7 +205,6 @@
         <option value="$PROJECT_DIR$/web/client/panels/discord/DiscordPanel.jsx" />
         <option value="$PROJECT_DIR$/web/client/panels/discord/Channels.jsx" />
         <option value="$PROJECT_DIR$/web/client/style/panels/discord.scss" />
-        <option value="$PROJECT_DIR$/web/client/style/panels/sounds.scss" />
         <option value="$PROJECT_DIR$/web/client/style/panels/audio.scss" />
         <option value="$PROJECT_DIR$/discord/index.js" />
         <option value="$PROJECT_DIR$/webpack/package.babel.js" />
@@ -171,9 +216,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/logs/kek.txt" />
         <option value="$PROJECT_DIR$/core/errorHandler.js" />
-        <option value="$PROJECT_DIR$/web/client/App.jsx" />
-        <option value="$PROJECT_DIR$/web/client/style/style.scss" />
-        <option value="$PROJECT_DIR$/web/client/style/components/panels.scss" />
         <option value="$PROJECT_DIR$/web/client/style/panels/logs.scss" />
         <option value="$PROJECT_DIR$/logs/kekkek.log" />
         <option value="$PROJECT_DIR$/audio/index.js" />
@@ -187,13 +229,21 @@
         <option value="$PROJECT_DIR$/web/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/web/server/helpers/requireLogin.js" />
-        <option value="$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx" />
         <option value="$PROJECT_DIR$/core/index.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/web/client/panels/logs/LogsPanel.jsx" />
         <option value="$PROJECT_DIR$/configs.json" />
         <option value="$PROJECT_DIR$/sounds/index.js" />
+        <option value="$PROJECT_DIR$/web/client/style/panels/sounds.scss" />
+        <option value="$PROJECT_DIR$/web/server/views/index.handlebars" />
+        <option value="$PROJECT_DIR$/web/client/style/components/panels.scss" />
+        <option value="$PROJECT_DIR$/web/client/components/panels.jsx" />
+        <option value="$PROJECT_DIR$/web/client/routes/index.jsx" />
+        <option value="$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx" />
+        <option value="$PROJECT_DIR$/web/client/style/style.scss" />
+        <option value="$PROJECT_DIR$/web/client/App.jsx" />
         <option value="$PROJECT_DIR$/web/client/panels/sounds/SoundsPanel.jsx" />
+        <option value="$PROJECT_DIR$/web/client/style/index.scss" />
       </list>
     </option>
   </component>
@@ -221,6 +271,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,11 +282,6 @@
             <path>
               <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
               <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
-              <item name="sounds" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -258,12 +304,46 @@
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="panels" type="462c0819:PsiDirectoryNode" />
               <item name="sounds" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="style" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="style" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="janusz-v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="janusz-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -271,7 +351,7 @@
     <property name="javascript.nodejs.core.library.configured.version" value="10.2.1" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -353,7 +433,10 @@
       <workItem from="1530712673741" duration="51299000" />
       <workItem from="1531219941452" duration="8000" />
       <workItem from="1533665237957" duration="2391000" />
-      <workItem from="1537020239293" duration="5380000" />
+      <workItem from="1537020239293" duration="6067000" />
+      <workItem from="1537199992181" duration="13000" />
+      <workItem from="1540048697320" duration="535000" />
+      <workItem from="1540634948922" duration="16135000" />
     </task>
     <task id="LOCAL-00001" summary="Added README">
       <created>1514245578738</created>
@@ -467,14 +550,22 @@
       <option name="project" value="LOCAL" />
       <updated>1531046228684</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Fixed sounds watch">
+      <created>1537121450575</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1537121450575</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268690000" />
+    <option name="totallyTimeSpent" value="286060000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="npm" order="0" side_tool="true" />
       <window_info id="MaxCompute Job Explorer" order="1" weight="0.32960597" />
@@ -482,18 +573,18 @@
       <window_info id="MaxCompute Project Explorer" order="3" weight="0.32960597" />
       <window_info id="DB Browser" order="4" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.24973376" />
-      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.19914803" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.19905214" />
       <window_info id="Project Explorer" order="7" />
       <window_info id="Job Explorer" order="8" />
       <window_info anchor="bottom" id="DB Execution Console" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50692225" side_tool="true" weight="0.31926408" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="2" sideWeight="0.4941427" visible="true" weight="0.32723358" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5076356" side_tool="true" weight="0.31862217" />
+      <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.4941427" weight="0.32615715" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4946752" weight="0.2992465" />
       <window_info anchor="bottom" id="MaxCompute Console" order="4" />
       <window_info anchor="bottom" id="MaxCompute Job" order="5" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" weight="0.32900432" />
-      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49307775" weight="0.31862217" />
+      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.4923644" weight="0.31862217" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -557,48 +648,10 @@
     <MESSAGE value="Redesign, discord improvements" />
     <MESSAGE value="Fixed development building&#10;Fixed crash on Discord errors" />
     <MESSAGE value="Log Panel&#10;Crash dumps&#10;JWT support" />
-    <option name="LAST_COMMIT_MESSAGE" value="Log Panel&#10;Crash dumps&#10;JWT support" />
+    <MESSAGE value="Fixed sounds watch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed sounds watch" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/audio/Mixer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="30" lean-forward="true" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/audio/OscillatorInput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/discord/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="38" column="3" lean-forward="true" selection-start-line="38" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/discord/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="41" column="54" lean-forward="true" selection-start-line="41" selection-start-column="54" selection-end-line="42" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/kek.txt" />
-    <entry file="file://$PROJECT_DIR$/core/errorHandler.js" />
-    <entry file="file://$PROJECT_DIR$/logs/2018-07-07 13:09:06.txt" />
-    <entry file="file://$PROJECT_DIR$/logs/2018-07-07 13:19:52.log" />
     <entry file="file://$PROJECT_DIR$/states.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -610,31 +663,10 @@
     <entry file="file://$PROJECT_DIR$/logs/kek62.log" />
     <entry file="file://$PROJECT_DIR$/logs/kek63.log" />
     <entry file="file://$PROJECT_DIR$/logs/kek64.log" />
-    <entry file="file://$PROJECT_DIR$/web/client/style/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/App.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-645">
-          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/JanuszModule.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="161" lean-forward="true" selection-start-column="161" selection-end-column="161" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/style/components/panels.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-401">
-          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -687,11 +719,6 @@
         <state relative-caret-position="408">
           <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/routes/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-271" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-router/es/Redirect.js">
@@ -753,23 +780,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1362">
-          <caret line="223" column="36" selection-start-line="223" selection-start-column="36" selection-end-line="223" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/client/panels/logs/LogsPanel.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2064">
           <caret line="236" column="44" lean-forward="true" selection-start-line="236" selection-start-column="44" selection-end-line="236" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -796,11 +810,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mumble/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-270" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/configs.json">
@@ -817,20 +827,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/panels/audio/Cabbles.jsx">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/panels/audio/Device.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="20" lean-forward="true" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sounds/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
+        <state relative-caret-position="2490">
           <caret line="176" column="26" selection-start-line="176" selection-start-column="17" selection-end-line="176" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/panels/sounds.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/components/modules.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/views/index.handlebars">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="93" selection-start-line="5" selection-start-column="93" selection-end-line="5" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/components/panels.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/components/logo.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="7" lean-forward="true" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/components/panels.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/routes/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="57" column="70" selection-start-line="57" selection-start-column="70" selection-end-line="57" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/panels/audio/AudioPanel.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="137" column="24" selection-start-line="137" selection-start-column="24" selection-end-line="137" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/client/panels/sounds/SoundsPanel.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
+        <state relative-caret-position="165">
+          <caret line="140" column="60" selection-start-line="140" selection-start-column="60" selection-end-line="140" selection-end-column="60" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/client/style/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>

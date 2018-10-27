@@ -3,7 +3,7 @@ import {Icon, Segment} from "semantic-ui-react";
 import SplitPane from 'react-split-pane'
 import {findClientModule} from "../App";
 
-export function PanelTab({name, active, onDelete, onClick}) {
+export function PanelTab({name, active, onDelete, onClick, readOnly}) {
 	function onDragStart(ev) {
 		ev.dataTransfer.setData("firefox", "sucks");
 		window.dataTransfer.setData("januszTab", "true");
@@ -17,10 +17,10 @@ export function PanelTab({name, active, onDelete, onClick}) {
 	}
 	
 	return <div className={`PanelTab${active ? " active" : ""}`}
-	            draggable
+	            draggable={!readOnly}
 	            onDragStart={onDragStart}
 	            onDragEnd={onDragEnd}
-	            onClick={onClick}>
+	            onClick={onClick} >
 		{name}
 	</div>;
 }
@@ -143,14 +143,18 @@ export default class Panels extends React.Component {
 				         inverted
 				         onDragOver={this.onDragOver}
 				         onDrop={this.onTabsDrop}>
-					{panels.map((panel, id) =>
-						<PanelTab name={panel}
-						          key={id}
-						          onDelete={() => onChange([...panels.slice(0, id), ...panels.slice(id + 1)])}
-						          onClick={() => this.setState({activeTab: id})}
-						          active={id === activeTab}
-						/>,
-					)}
+					<div className="scrollWrap">
+						{panels.map((panel, id) =>
+							<PanelTab name={panel}
+												key={id}
+												onDelete={() => onChange([...panels.slice(0, id), ...panels.slice(id + 1)])}
+												onClick={() => this.setState({activeTab: id})}
+												active={id === activeTab}
+												readOnly={this.props.readOnly}
+							/>,
+						)}
+					</div>
+					{this.props.extraTab}
 				</Segment>
 				<Segment className={`content ${panels[activeTab]}Panel`}
 				         onDragOver={this.onDragOver}
