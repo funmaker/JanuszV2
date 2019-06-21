@@ -17,26 +17,22 @@ export function validateReq(req) {
 
 export default function requireLogin(req, res, next) {
 	if (req.headers && req.headers.upgrade && req.headers.upgrade.toLowerCase() === 'websocket') {
-		next();
-		return;
+		return void next();
 	}
 	
 	if(!validateReq(req)) {
 		switch(req.accepts(['json', 'html'])) {
 			case "json":
-				next(new HTTPError(401));
-				break;
+				return void next(new HTTPError(401));
 			
 			case "html":
-				res.redirect("/core/login");
-				break;
+				return void res.redirect("/core/login");
 			
 			default:
-				next(new HTTPError(406));
-				break;
+				return void next(new HTTPError(406));
 		}
+	} else {
+		next();
 	}
-	
-	next();
 }
 

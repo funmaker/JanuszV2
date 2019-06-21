@@ -7,12 +7,14 @@ export default class AudioDevice {
 	static devices = new Map();
 	
 	uuid = uuid();
-	inputBuffers = [];
-	outputBuffers = [];
-	outputs = [];
 	inputCount = 0;
+	inputBuffers = [];
 	outputCount = 0;
- 	posx = 0;
+	outputBuffers = [];
+	outputActivity = [];
+	outputLastActivity = [];
+	outputs = [];
+	posx = 0;
 	posy = 0;
 	connections = new Map();
 	fresh = true;
@@ -23,6 +25,8 @@ export default class AudioDevice {
 		this.outputCount = outputs;
 		this.inputBuffers = [...new Array(this.inputBuffers)].map(() => Buffer.alloc(BUFFER_SIZE * 2));
 		this.outputBuffers = [...new Array(this.outputCount)].map(() => Buffer.alloc(BUFFER_SIZE * 2));
+		this.outputActivity = [...new Array(this.outputCount)].map(() => false);
+		this.outputLastActivity = [...new Array(this.outputCount)].map(() => false);
 		this.outputs = [...new Array(this.outputCount)].map(() => null);
 		
 		if(state) {
@@ -49,8 +53,9 @@ export default class AudioDevice {
 			posx: this.posx,
 			posy: this.posy,
 			inputs: this.inputCount,
+			inputActivity: [...new Array(this.inputCount)].map(() => false), // Calculated on client side
 			outputs: this.outputCount,
-			activity: this.outputs.map(output => !!output),
+			outputActivity: this.outputLastActivity,
 			extra: this.getExtraState(),
 		};
 	}
@@ -72,6 +77,11 @@ export default class AudioDevice {
 	}
 	
 	refresh() {
+		for(let i in this.outputs) {
+			if(!this.outputs.hasOwnProperty(i)) continue;
+			this.outputs[i] = null;
+		}
+		
 		this.fresh = true;
 	}
 	
@@ -79,7 +89,32 @@ export default class AudioDevice {
 		if(!this.fresh) return;
 		this.fresh = false;
 		this.onTick();
+		
+		for(let i in this.outputs) {
+			if(!this.outputs.hasOwnProperty(i)) continue;
+			if(this.outputs[i]) {
+				this.outputActivity[i] = true;
+			}
+		}
 	}
+	
+	updateVisuals() {
+		const update = this.outputActivity.map(() => null);
+		
+		for(let i in this.outputs) {
+			if(this.outputActivity[i] && !this.outputLastActivity[i]) update[i] = true;
+			else if(!this.outputActivity[i] && this.outputLastActivity[i]) update[i] = false;
+		}
+		
+		this.outputLastActivity = this.outputActivity;
+		this.outputActivity = this.outputActivity.map(() => false);
+		
+		if(update.some(out => out !== null)) {
+			return update;
+		} else {
+			return null;
+		}
+	};
 	
 	onRemove() {
 		// Implement This

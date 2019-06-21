@@ -50,6 +50,10 @@ export class Panel extends React.Component {
 		
 		switch(msg.type) {
 			case packets.types.INIT:
+				for(const device of Object.values(msg.devices)) {
+					device.inputActivity = this.calculateInputActivity(device.uuid, msg.devices, msg.connections);
+				}
+				
 				this.setState({
 					loading: false,
 					devices: msg.devices,
@@ -58,7 +62,7 @@ export class Panel extends React.Component {
 				});
 				break;
 			
-			case packets.types.DEVICES_UPDATE:
+			case packets.types.DEVICES_UPDATE: {
 				let devices = {...this.state.devices};
 				
 				for(let uuid of Object.keys(msg.devices)) {
@@ -74,14 +78,47 @@ export class Panel extends React.Component {
 				
 				this.setState({devices});
 				break;
+			}
 			
-			case packets.types.CONNECTIONS_UPDATE:
+			case packets.types.DEVICES_ACTIVITY_UPDATE: {
+				let devices = {...this.state.devices};
+				
+				const dirty = new Set();
+				
+				for(let uuid of Object.keys(msg.devices)) {
+					if(!devices[uuid]) continue;
+					devices[uuid] = {
+						...devices[uuid],
+						outputActivity: devices[uuid].outputActivity.map((out, id) => msg.devices[uuid][id] === null ? out : msg.devices[uuid][id]),
+					};
+					for(const con of Object.values(this.state.connections)) {
+						if(con.from === uuid && msg.devices[uuid][con.output] !== null) dirty.add(con.to);
+					}
+				}
+				
+				for(const uuid of dirty.values()) {
+					devices[uuid] = {
+						...devices[uuid],
+						inputActivity: this.calculateInputActivity(uuid, devices),
+					};
+				}
+				
+				this.setState({devices});
+				break;
+			}
+			
+			case packets.types.CONNECTIONS_UPDATE: {
 				let connections = {...this.state.connections};
+				let devices = {...this.state.devices};
+				
+				const dirty = new Set();
 				
 				for(let uuid of Object.keys(msg.connections)) {
 					if(msg.connections[uuid] === null) {
+						dirty.add(connections[uuid].to);
 						delete connections[uuid];
 					} else {
+						dirty.add(msg.connections[uuid].to);
 						connections[uuid] = {
 							...connections[uuid],
 							...msg.connections[uuid],
@@ -89,8 +126,16 @@ export class Panel extends React.Component {
 					}
 				}
 				
-				this.setState({connections});
+				for(const uuid of dirty.values()) {
+					devices[uuid] = {
+						...devices[uuid],
+						inputActivity: this.calculateInputActivity(uuid, devices, connections),
+					};
+				}
+				
+				this.setState({connections, devices});
 				break;
+			}
 			
 			default:
 				console.error("Unknown packet: " + msg.type, msg);
@@ -112,6 +157,19 @@ export class Panel extends React.Component {
 			this.ws.close();
 		});
 		this.ws.addEventListener('message', this.handleMessage);
+	}
+	
+	calculateInputActivity(uuid, devices = this.state.devices, connections = this.state.connections) {
+		const inputActivity = devices[uuid].inputActivity.map(() => false);
+		
+		for(const con of Object.values(connections)) {
+			if(con.to === uuid && devices[con.from].outputActivity[con.output]) {
+				inputActivity[con.input] = true;
+				break;
+			}
+		}
+		
+		return inputActivity;
 	}
   
   onMouseMove = ev => {

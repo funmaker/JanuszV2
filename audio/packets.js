@@ -2,6 +2,7 @@
 export const types = {
 	INIT: 0,
 	DEVICES_UPDATE: 1,
+	DEVICES_ACTIVITY_UPDATE: 8,
 	DEVICE_ADD: 2,
 	DEVICE_REMOVE: 3,
 	DEVICE_MOVE: 4,
@@ -11,7 +12,14 @@ export const types = {
 	CONNECTIONS_UPDATE: 7,
 };
 
+const typeids = Object.values(types);
+if(new Set(typeids).size !== typeids.length) throw Error("Duplicate Packet IDs detected! Check packets.js");
+
 const reduceToObject = arr => arr.reduce((acc, obj) => ({...acc, [obj.uuid]: obj}), {});
+
+////////////
+// SERVER //
+////////////
 
 export const initPacket = (audioSystem) => JSON.stringify({
 	type: types.INIT,
@@ -27,6 +35,20 @@ export const devicesUpdatePacket = (devices) => JSON.stringify({
 	type: types.DEVICES_UPDATE,
 	devices,
 });
+
+export const connectionsUpdatePacket = (connections) => JSON.stringify({
+	type: types.CONNECTIONS_UPDATE,
+	connections,
+});
+
+export const devicesActivityUpdatePacket = (devices) => JSON.stringify({
+	type: types.DEVICES_ACTIVITY_UPDATE,
+	devices,
+});
+
+////////////
+// CLIENT //
+////////////
 
 export const deviceAddPacket = (deviceName) => JSON.stringify({
 	type: types.DEVICE_ADD,
@@ -51,9 +73,4 @@ export const deviceConnectPacket = (from, to, output, input) => JSON.stringify({
 export const deviceDisconnectPacket = (uuid) => JSON.stringify({
 	type: types.DEVICE_DISCONNECT,
 	uuid,
-});
-
-export const connectionsUpdatePacket = (connections) => JSON.stringify({
-	type: types.CONNECTIONS_UPDATE,
-	connections,
 });

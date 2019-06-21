@@ -90,12 +90,15 @@
             margin-bottom: 16px;
             border: 2px solid #bfbfbf;
             cursor: pointer;
-            transition: background-color 0.1s;
+            transition: background-color 0.2s;
 
             &.input {
               border-left: none;
               border-radius: 0 8px 8px 0;
               background: #a24141;
+              &.active {
+                background: #c44949;
+              }
             }
             &.output {
               border-right: none;

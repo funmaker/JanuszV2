@@ -8,12 +8,15 @@ import Mixer from "./Mixer";
 
 export const SAMPLE_RATE = 48000;
 export const BUFFER_SIZE = 4800;
+export const VISUAL_UPDATE_FREQ = 5;
 
 export default class AudioModule extends JanuszModule {
 	static ModuleName = "Audio".green.dim.bold;
 	deviceTypes = new Map();
 	devices = new Map();
 	connections = new Map();
+	tickInterval = null;
+	visualInterval = null;
 	
 	async init() {
 		const deviceTypes = janusz.flatMap(mod => mod.getAudioDevices);
@@ -30,9 +33,12 @@ export default class AudioModule extends JanuszModule {
 	
 	async start() {
 		this.tickInterval = setInterval(this.onTick, BUFFER_SIZE / SAMPLE_RATE * 1000 );
+		this.visualInterval = setInterval(this.onVisualUpdate, 1000 / VISUAL_UPDATE_FREQ );
 	}
 	
 	async stop() {
+		clearInterval(this.tickInterval);
+		clearInterval(this.visualInterval);
 		await this.save();
 		this.deviceTypes.forEach(type => type.devices.forEach(dev => this.removeDevice(dev.uuid)));
 		this.devices.forEach(dev => this.removeDevice(dev.uuid));
@@ -116,6 +122,8 @@ export default class AudioModule extends JanuszModule {
 	
 	removeDevice(uuid) {
 		let device = this.devices.get(uuid);
+		if(!device) throw new Error("Device does not exists");
+		
 		device.remove();
 		this.devices.delete(uuid);
 		
@@ -124,12 +132,19 @@ export default class AudioModule extends JanuszModule {
 		}
 		
 		sendAll(packets.devicesUpdatePacket({[device.uuid]: null}));
+		
+		return device;
 	}
 	
 	connectDevices(from, to, output, input, id = uuid()) {
+		for(const con of this.connections) {
+			if(con.from === from && con.to === to && con.output === output && con.input === input) throw new Error("Connection already exists");
+		}
+		
 		let connection = {
 			uuid: id, from, to, output, input,
 		};
+		
 		this.connections.set(connection.uuid, connection);
 		from.connections.set(connection.uuid, connection);
 		to.connections.set(connection.uuid, connection);
@@ -143,6 +158,8 @@ export default class AudioModule extends JanuszModule {
 	
 	removeConnection(uuid) {
 		let connection = this.connections.get(uuid);
+		if(!connection) throw new Error("Connection does not exists");
+		
 		this.connections.delete(uuid);
 		connection.from.connections.delete(uuid);
 		connection.to.connections.delete(uuid);
@@ -168,6 +185,19 @@ export default class AudioModule extends JanuszModule {
 	onTick = () => {
 		this.devices.forEach(device => device.refresh());
 		this.devices.forEach(device => device.tick());
-	}
+	};
+	
+	onVisualUpdate = () => {
+		const updates = {};
+		
+		for(const device of this.devices.values()) {
+			const update = device.updateVisuals();
+			if(update) updates[device.uuid] = update;
+		}
+		
+		if(Object.keys(updates).length > 0) {
+			sendAll(packets.devicesActivityUpdatePacket(updates));
+		}
+	};
 }
 

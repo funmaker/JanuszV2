@@ -1,12 +1,20 @@
-# Webapp Boilerplate
+# Janusz V2
 
-Basic boilerplate for isomorphic React web apps. Including:
-- Node.js
-- React
-- Webpack
-- Less
-- Babel
-- Handlebars
+Multifunctional chat bot.
+
+![Architecture Diagram](/github-data/Diagram2.png?raw=true)
+
+## Features
+
+- Discord support
+- Mumble support
+- Interactive web panel
+- Node-based GUI audio system
+- Text to speach
+- Sound board support
+- Basic YouTube support
+- Modular architecture
+- Hot-Reload everything!
 
 ## Usage
 
