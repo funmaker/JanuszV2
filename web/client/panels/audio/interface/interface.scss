@@ -1,0 +1,42 @@
+
+.Audio.ManagerPanel .Device {
+  .Node {
+    position: absolute;
+    display: inline-block;
+  }
+
+  .Root {
+    position: relative;
+    margin: 0 auto -2px;
+  }
+
+  .Generic {
+    width: 16px;
+    height: 16px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAZElEQVQ4y2NgAIITPjz/ycEMMM1/ZliQhYHa/8MNAHFI0YhhADLG5lyCLkDXDJaEYlyGEDQAnxjtDIBLQBWjRRtxBuALD7INIDoW8HmHZAPwpQHqewGvIiyBR3QYEBE+DP8pwQBsJUCtXNMecQAAAABJRU5ErkJggg==") no-repeat;
+  }
+
+  .Label {
+    display: inline-block;
+    line-height: 14px;
+    overflow: hidden;
+    text-align: center;
+    background: #000e53;
+    color: #b8dcf9;
+    font-family: "courier new", courier, monospace;
+    font-weight: bold;
+    font-size: 13px;
+    border: 2px solid #546c9c;
+    margin: -1px;
+    border-radius: 8px;
+  }
+
+  .Dial {
+    width: 48px;
+    height: 48px;
+
+    svg {
+      cursor: grab;
+    }
+  }
+}

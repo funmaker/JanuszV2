@@ -1,12 +1,12 @@
 import React from 'react';
 import isNode from "detect-node";
 import {Icon} from "semantic-ui-react";
+import Node from "./interface/Node";
 
 const nullImage = isNode ? {} : document.createElement('IMG');
 nullImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-export default class Device extends React.Component {
-	
+export default class Device extends React.PureComponent {
 	onDragStart = ev => {
 		const target = ev.target;
 		const kind = target.dataset.kind;
@@ -55,8 +55,12 @@ export default class Device extends React.Component {
 		this.props.onRemove(this.props.device.uuid);
 	};
 	
+	onInteract = (node, data) => {
+		this.props.onInteract(this.props.device.uuid, node, data);
+	};
+	
 	render() {
-		const {device, onConnect, onRemove, ...rest} = this.props;
+		const {device, onConnect, onRemove, onInteract, ...rest} = this.props;
 		const inputs = [];
 		const outputs = [];
 		
@@ -85,7 +89,7 @@ export default class Device extends React.Component {
 		
 		return <div className="Device"
 		            style={{
-			            transform: `translate(${device.posx}px, ${device.posy}px) translate(-50%, -50%)`,
+			            transform: `translate(${device.posx}px, ${device.posy}px)`,
 		            }}
 		            draggable
 		            data-name={device.name}
@@ -94,7 +98,7 @@ export default class Device extends React.Component {
 			<Icon className="removeButton" name="delete" color="red" onClick={this.onRemove} />
 			<div className="inputs">{inputs}</div>
 			<div className="outputs">{outputs}</div>
-			<div className="clearfix"/>
+			<Node data={device.interface} onInteract={this.onInteract} />
 		</div>
 	}
 	

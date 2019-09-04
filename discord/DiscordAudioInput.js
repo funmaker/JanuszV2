@@ -3,6 +3,8 @@ import {mixDown, StereoToMonoStream} from "../audio/utils";
 
 export default discordModule => class DiscordAudioInput extends AudioSingletonDevice {
 	static deviceName = "Discord Input";
+	static deviceNameGroup = "Discord";
+	
 	connection = null;
 	receiver = null;
 	streams = new Map();

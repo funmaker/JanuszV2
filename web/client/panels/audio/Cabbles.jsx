@@ -42,14 +42,19 @@ export default class Cabbles extends React.PureComponent {
 	static getDerivedStateFromProps(props) {
 		if(!props.devices || Object.keys(props.devices).length <= 0) return null;
 		
-		let anyDevice = Object.values(props.devices)[0];
-		let x1 = anyDevice.posx, y1 = anyDevice.posy, x2 = anyDevice.posx, y2 = anyDevice.posy;
+		let devices = Object.values(props.devices).map(device => ({
+			x1: device.posx,
+			y1: device.posy,
+			x2: device.posx + Math.max(8, device.interface.state.width + 2) * 16,
+			y2: device.posy + Math.max(4, device.interface.state.height + 1) * 16,
+		}));
+		let { x1, y1, x2, y2 } = devices[0];
 		
-		for(let device of Object.values(props.devices)) {
-			if(device.posx - 128 < x1) x1 = device.posx - 128;
-			if(device.posx + 128 > x2) x2 = device.posx + 128;
-			if(device.posy - 128 < y1) y1 = device.posy - 128;
-			if(device.posy + 128 > y2) y2 = device.posy + 128;
+		for(let device of devices) {
+			if(device.x1 - 16 < x1) x1 = device.x1 - 16;
+			if(device.y1 - 16 < y1) y1 = device.y1 - 16;
+			if(device.x2 + 16 > x2) x2 = device.x2 + 16;
+			if(device.y2 + 16 > y2) y2 = device.y2 + 16;
 		}
 		
 		return {
@@ -110,8 +115,8 @@ export default class Cabbles extends React.PureComponent {
 		ctx.clearRect(0, 0, width, height);
 		
 		const getOffset = (dev, port_id, isOutput) => ({
-			x: devices[dev].posx - posx + (isOutput ? 64 : -64),
-			y: devices[dev].posy - posy - Math.max(devices[dev].inputs, devices[dev].outputs) * 16 + port_id * 32 + 24,
+			x: devices[dev].posx - posx + (isOutput ? Math.max(8, devices[dev].interface.state.width + 2) * 16 : 0),
+			y: devices[dev].posy - posy + port_id * 16 + 40,
 		});
 		
 		for(let con of Object.values(connections)) {

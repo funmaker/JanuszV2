@@ -18,7 +18,7 @@ export default class MumbleModule extends JanuszModule {
 			if(reloadedModule.client) {
 				this.client = reloadedModule.client;
 				this.client.off('voice-start', reloadedModule.onVoiceStart);
-				this.client.connection.off('voice-start', reloadedModule.onVoiceStart);
+				if(this.client.connection) this.client.connection.off('voice-start', reloadedModule.onVoiceStart);
 				reloadedModule.client = null;
 			}
 		}

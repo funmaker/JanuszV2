@@ -4,6 +4,7 @@ import isNode from 'detect-node';
 import * as packets from "../../../../audio/packets";
 import Cabbles from "./Cabbles";
 import Device from "./Device";
+import { merge } from "../../../../audio/sharedUtils";
 
 const nullImage = isNode ? {} : document.createElement('IMG');
 nullImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -63,44 +64,23 @@ export class Panel extends React.Component {
 				break;
 			
 			case packets.types.DEVICES_UPDATE: {
-				let devices = {...this.state.devices};
+				const devices = merge(this.state.devices, msg.devices);
 				
-				for(let uuid of Object.keys(msg.devices)) {
-					if(msg.devices[uuid] === null) {
-						delete devices[uuid];
-					} else {
+				for(const key of Object.keys(devices)) if(devices[key] === null) delete devices[key];
+
+				if(Object.values(devices).some(device => device.outputActivity)) {
+					const dirty = new Set();
+					
+					for(const con of Object.values(this.state.connections)) {
+						if(msg.devices[con.from] && msg.devices[con.from].outputActivity && msg.devices[con.from].outputActivity[con.output] !== undefined) dirty.add(con.to);
+					}
+					
+					for(const uuid of dirty.values()) {
 						devices[uuid] = {
 							...devices[uuid],
-							...msg.devices[uuid],
+							inputActivity: this.calculateInputActivity(uuid, devices),
 						};
 					}
-				}
-				
-				this.setState({devices});
-				break;
-			}
-			
-			case packets.types.DEVICES_ACTIVITY_UPDATE: {
-				let devices = {...this.state.devices};
-				
-				const dirty = new Set();
-				
-				for(let uuid of Object.keys(msg.devices)) {
-					if(!devices[uuid]) continue;
-					devices[uuid] = {
-						...devices[uuid],
-						outputActivity: devices[uuid].outputActivity.map((out, id) => msg.devices[uuid][id] === null ? out : msg.devices[uuid][id]),
-					};
-					for(const con of Object.values(this.state.connections)) {
-						if(con.from === uuid && msg.devices[uuid][con.output] !== null) dirty.add(con.to);
-					}
-				}
-				
-				for(const uuid of dirty.values()) {
-					devices[uuid] = {
-						...devices[uuid],
-						inputActivity: this.calculateInputActivity(uuid, devices),
-					};
 				}
 				
 				this.setState({devices});
@@ -205,6 +185,7 @@ export class Panel extends React.Component {
 	
 	onDragStart = ev => {
 		const target = ev.target;
+		const rect = target.getBoundingClientRect();
 		const uuid = target.dataset.uuid;
 		const device = this.state.devices[uuid];
 		
@@ -215,6 +196,8 @@ export class Panel extends React.Component {
 		window.dataTransfer.setData("uuid", uuid);
 		window.dataTransfer.setData("posx", device.posx);
 		window.dataTransfer.setData("posy", device.posy);
+		window.dataTransfer.setData("offsetx", (ev.clientX - rect.left).toString());
+		window.dataTransfer.setData("offsety", (ev.clientY - rect.top).toString());
 		ev.dataTransfer.setDragImage(nullImage, 0, 0);
 		ev.dataTransfer.effectAllowed = "move";
 	};
@@ -241,8 +224,8 @@ export class Panel extends React.Component {
 		ev.preventDefault();
 		const device = this.state.devices[uuid];
 		const offset = this.offsetDiv.getBoundingClientRect();
-		let posx = ev.clientX - offset.x;
-		let posy = ev.clientY - offset.y;
+		let posx = ev.clientX - offset.x - window.dataTransfer.getData("offsetx");
+		let posy = ev.clientY - offset.y - window.dataTransfer.getData("offsety");
 		posx = 16 * Math.round(posx / 16);
 		posy = 16 * Math.round(posy / 16);
 		if(device.posx !== posx || device.posy !== posy) {
@@ -287,8 +270,35 @@ export class Panel extends React.Component {
 		this.ws.send(packets.deviceRemovePacket(uuid));
 	};
 	
+	onInteract = (device, node, data) => {
+		this.ws.send(packets.interfaceInteractPacket(device, node, data));
+	};
+	
 	render() {
 		const {posx, posy, devices, connections, types, loading} = this.state;
+		
+		const groups = {};
+		const typeToOption = type => <Dropdown.Item value={type.deviceName} text={type.deviceName} key={type.deviceName} onClick={this.addDevice}
+																					      disabled={type.singleton && Object.values(devices).some(device => device.name === type.deviceName)} />;
+		
+		for(const type of types) {
+			if(type.deviceNameGroup) groups[type.deviceNameGroup] = [...(groups[type.deviceNameGroup] || []), type];
+		}
+		
+		const dropdownOptions = [
+			...Object.entries(groups)
+							 .sort((a, b) => a[0].localeCompare(b[0]))
+							 .map(([name, inner]) => (
+				<Dropdown key={name} as={Dropdown.Item} text={name}>
+					<Dropdown.Menu>
+						{inner.map(typeToOption)}
+					</Dropdown.Menu>
+				</Dropdown>
+			)),
+			...types.filter(type => !type.deviceNameGroup)
+							.sort((a, b) => a.deviceName.localeCompare(b.deviceName))
+							.map(typeToOption),
+		];
 		
 		return (
 			<React.Fragment>
@@ -301,32 +311,29 @@ export class Panel extends React.Component {
 				            onDrop={this.onDrop}
 				            ref={div => this.div = div}
 				            style={{backgroundPosition: `calc(${posx}px + 50%) calc(${posy}px + 50%)`}}>
+					<Dimmer active={loading}><Loader size="huge"/></Dimmer>
 					<div className="offset"
 					     ref={div => this.offsetDiv = div}
 					     style={{transform: `translate(${posx}px, ${posy}px)`}}>
-						<Dimmer active={loading}><Loader size="huge"/></Dimmer>
 						{Object.values(devices).map(device =>
 							<Device device={device}
 							        key={device.uuid}
 							        onRemove={this.removeDevice}
 							        onConnect={this.onConnect}
-							        onDragStart={this.onDragStart}/>)}
+							        onDragStart={this.onDragStart}
+											onInteract={this.onInteract}/>)}
 						<Cabbles devices={devices} connections={connections}/>
 					</div>
 				</div>
 				<Button.Group className="panelButtons">
 					<Dropdown trigger={<Button icon="add" />}
 					          icon={null}
-					          options={types.map(type => ({
-						          value: type.deviceName,
-						          text: type.deviceName,
-						          disabled: type.singleton && Object.values(devices).some(device => device.name === type.deviceName)
-					          }))}
 					          upward
-					          direction="right"
-					          onChange={this.addDevice}
-					          selectOnBlur={false}
-					          value={false}/>
+					          value={false}>
+						<Dropdown.Menu className="right">
+							{dropdownOptions}
+						</Dropdown.Menu>
+					</Dropdown>
 				</Button.Group>
 			</React.Fragment>
 		);

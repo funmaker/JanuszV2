@@ -45,7 +45,7 @@
       bottom: 0;
       left: 0;
 
-      .button {
+      & > * {
         margin: 0;
         border-radius: 0 !important;
         border-top: 1px solid rgba(34,36,38,.15);
@@ -55,8 +55,17 @@
         }
       }
 
-      .dropdown {
+      & > .dropdown {
         background: #e0e1e2 none;
+
+        & > .button {
+          border-radius: 0;
+          background: none;
+        }
+
+        &:hover {
+          background-color: rgba(0,0,0,.05);
+        }
       }
     }
 
@@ -66,6 +75,7 @@
       animation-name: showDimmer;
       animation-timing-function: ease-in;
       pointer-events: none;
+      cursor: wait;
     }
 
     @keyframes showDimmer {

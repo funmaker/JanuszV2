@@ -16,6 +16,7 @@ export default class DiscordModule extends JanuszModule {
 		if(reloadedModule) {
 			this.client = reloadedModule.client;
 			this.client.off('message', reloadedModule.handleMessage);
+			this.client.off('guildMemberAdd', reloadedModule.handleGuildMemberAdd);
 			this.client.off('error', reloadedModule.handleError);
 			reloadedModule.client = null;
 		}
@@ -25,6 +26,7 @@ export default class DiscordModule extends JanuszModule {
 		if(!this.client) this.client = new Discord.Client();
 		
 		this.client.on('message', this.handleMessage);
+		this.client.on('guildMemberAdd', this.handleGuildMemberAdd);
 		this.client.on('error', this.handleError);
 	}
 	
@@ -47,7 +49,42 @@ export default class DiscordModule extends JanuszModule {
 	}
 	
 	handleMessage = async message => {
+		if(message.channel.id === "615660388905648303") {
+			const types = [
+				"ISTJ",
+				"ISFJ",
+				"INFJ",
+				"INTJ",
+				"ISTP",
+				"ISFP",
+				"INFP",
+				"INTP",
+				"ESTP",
+				"ESFP",
+				"ENFP",
+				"ENTP",
+				"ESTJ",
+				"ESFJ",
+				"ENFJ",
+				"ENTJ",
+			];
+			const msg = message.content.trim().toUpperCase();
+			const type = types.find(type => msg.includes(type));
+			
+			if(types.includes(type)) {
+				await message.member.removeRoles(message.guild.roles.filter(role => types.includes(role.name)));
+				await message.member.addRole(message.guild.roles.find(role => role.name === type));
+				await message.channel.send(`${message.member} dobra masz i wyperdalaj.`);
+			}
+		}
+	};
 	
+	handleGuildMemberAdd = async member => {
+		if(member.guild.id === "234365566608080896") {
+			await new Promise(res => setTimeout(res, 10000));
+			
+			member.guild.channels.get("615660388905648303").send(`${member}, witaj na serwerze MBTI Polska!\nNapisz swój typ MBTI na tym kanale aby otrzymać range.`);
+		}
 	};
 	
 	handleError = error => DiscordModule.error(error);

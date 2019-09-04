@@ -3,6 +3,8 @@ import {mixDown} from "../audio/utils";
 
 export default mumbleModule => class MumbleAudioInput extends AudioSingletonDevice {
 	static deviceName = "Mumble Input";
+	static deviceNameGroup = "Mumble";
+	
 	streams = new Map();
 	
 	constructor(state) {

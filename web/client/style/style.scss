@@ -4,10 +4,10 @@
 @import "components/panels";
 @import "components/logo";
 @import "components/resizer";
-@import "panels/discord";
-@import "panels/audio";
-@import "panels/sounds";
-@import "panels/logs";
+@import "../panels/discord/discord";
+@import "../panels/audio/audio";
+@import "../panels/sounds/sounds";
+@import "../panels/logs/logs";
 
 #root {
 

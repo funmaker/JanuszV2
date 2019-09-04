@@ -54,13 +54,26 @@ export default function audioRouter(audioModule) {
 			}
 			
 			case packets.types.DEVICE_DISCONNECT: {
-				let {uuid} = msg;
+				const {uuid} = msg;
 				
 				const connection = audioModule.connections.get(uuid);
 				if(!connection) throw Error(`Unknown connection: ${uuid}`);
 				
 				audioModule.removeConnection(uuid);
 				await audioModule.save();
+				break;
+			}
+			
+			case packets.types.INTERFACE_INTERACT: {
+				const {device: deviceUUID, node: nodeUUID, event} = msg;
+				
+				const device = audioModule.devices.get(deviceUUID);
+				if(!device) throw Error(`Unknown device: ${deviceUUID}`);
+				
+				const node = device.interface.nodes.get(nodeUUID);
+				if(!node) throw Error(`Unknown device: ${nodeUUID}`);
+				
+				await node.onInteract(event);
 				break;
 			}
 			

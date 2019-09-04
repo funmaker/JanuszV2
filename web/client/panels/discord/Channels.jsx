@@ -12,7 +12,7 @@ class Channel extends React.Component {
 		super(props);
 		
 		this.state = {
-			expanded: false,
+			expanded: props.channel.type === "category" && props.members.some(m => props.channel.children.some(c => c.id === m.voiceChannel)),
 		};
 		
 		this.onClick = this.onClick.bind(this);

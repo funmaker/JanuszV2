@@ -1,5 +1,5 @@
 {
-	"name": "Boilerplate",
+	"name": "janusz-v2",
 	"description": "Boilerplate: Node, Webpack, Isomorphic React, Less, Babel, Handlebars",
 	"version": "1.0.0",
 	"main": "./server.js",
@@ -19,6 +19,7 @@
 		"axios": "^0.19.0",
 		"bezier-easing": "^2.1.0",
 		"body-parser": "latest",
+		"celt": "^0.1.12",
 		"chokidar": "latest",
 		"colors": "latest",
 		"compression": "^1.7.4",
@@ -51,8 +52,9 @@
 		"source-map-support": "^0.5.12",
 		"uuid": "latest",
 		"web-audio-engine": "^0.13.4",
-		"youtube-dl": "^2.0.0"
-	},
+		"youtube-dl": "^2.0.0",
+      "lodash": "latest"
+    },
 	"devDependencies": {
 		"@babel/core": "^7.4.5",
 		"@babel/node": "^7.4.5",

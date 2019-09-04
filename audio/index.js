@@ -1,10 +1,12 @@
 import JanuszModule from "../core/JanuszModule";
-import {janusz, rootDir} from "../index";
+import { janusz } from "../index";
 import * as packets from "./packets";
 import uuid from "uuid/v4";
-import audioRouter, {sendAll, clients} from './router';
-import OscillatorInput from "./OscillatorInput";
-import Mixer from "./Mixer";
+import audioRouter, { sendAll } from './router';
+import OscillatorInput from "./devices/OscillatorInput";
+import Mixer from "./devices/Mixer";
+import Delay from "./devices/Delay";
+import Gain from "./devices/Gain";
 
 export const SAMPLE_RATE = 48000;
 export const BUFFER_SIZE = 4800;
@@ -45,7 +47,9 @@ export default class AudioModule extends JanuszModule {
 	}
 	
 	getAudioDevices() {
-		return [OscillatorInput, Mixer];
+		return [
+			OscillatorInput, Mixer, Delay, Gain
+		];
 	}
 	
 	getRouter() {
@@ -115,6 +119,7 @@ export default class AudioModule extends JanuszModule {
 		this.devices.set(device.uuid, device);
 		device.audioModule = this;
 		
+		device.getUpdate(); // clear updates
 		sendAll(packets.devicesUpdatePacket({[device.uuid]: device.getState()}));
 		
 		return device;
@@ -185,18 +190,29 @@ export default class AudioModule extends JanuszModule {
 	onTick = () => {
 		this.devices.forEach(device => device.refresh());
 		this.devices.forEach(device => device.tick());
+		
+		const updates = {};
+		
+		for(const device of this.devices.values()) {
+			const update = device.getUpdate();
+			if(update) updates[device.uuid] = update;
+		}
+		
+		if(Object.keys(updates).length > 0) {
+			sendAll(packets.devicesUpdatePacket(updates));
+		}
 	};
 	
 	onVisualUpdate = () => {
 		const updates = {};
 		
 		for(const device of this.devices.values()) {
-			const update = device.updateVisuals();
+			const update = device.getVisualUpdate();
 			if(update) updates[device.uuid] = update;
 		}
 		
 		if(Object.keys(updates).length > 0) {
-			sendAll(packets.devicesActivityUpdatePacket(updates));
+			sendAll(packets.devicesUpdatePacket(updates));
 		}
 	};
 }

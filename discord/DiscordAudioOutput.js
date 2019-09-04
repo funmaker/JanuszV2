@@ -4,6 +4,8 @@ import {BUFFER_SIZE} from "../audio";
 
 export default discordModule => class DiscordAudioOutput extends AudioSingletonDevice {
 	static deviceName = "Discord Output";
+	static deviceNameGroup = "Discord";
+	
 	dispatcher = null;
 	outBuffer = Buffer.alloc(BUFFER_SIZE * 4);
 	

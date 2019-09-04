@@ -1,5 +1,5 @@
-import {BUFFER_SIZE} from "./index";
-import {Transform, Readable} from "stream";
+import { BUFFER_SIZE } from "./index";
+import { Transform, Readable } from "stream";
 
 export function mixDown(output, inputs) {
 	let [base, ...rest] = inputs.map(input => input instanceof Readable ? input.read(BUFFER_SIZE * 2) : input)

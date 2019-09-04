@@ -1,3 +1,4 @@
+@import "interface/interface";
 
 .Audio.ManagerPanel {
   .board{
@@ -31,12 +32,12 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 128px;
+        min-width: 128px;
         background: #dad4c9;
         border-radius: 8px;
         border: 2px solid #bfbfbf;
         box-sizing: border-box;
-        padding-top: 16px;
+        padding: 14px 14px 0;
 
         &::after {
           content: attr(data-name);
@@ -78,11 +79,13 @@
         .inputs, .outputs {
           &.inputs {
             float: left;
+            margin-left: -16px;
           }
           &.outputs {
             float: right;
+            margin-right: -16px;
           }
-          margin: 14px -1px -2px;
+          margin: 16px 0 -2px;
 
           .input, .output {
             width: 17px;
@@ -122,6 +125,27 @@
   .panelButtons {
     .menu {
       right: initial !important;
+    }
+
+    .item.ui.dropdown {
+      position: relative;
+
+      i {
+        background-color: transparent;
+      }
+
+      &:hover, &.active {
+        background-color: rgba(0,0,0,.05);
+      }
+
+      &.active {
+        z-index: 50;
+      }
+
+      .menu {
+        left: 100% !important;
+        right: initial !important;
+      }
     }
   }
 }

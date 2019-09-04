@@ -3,6 +3,8 @@ import {SAMPLE_RATE} from "../audio";
 
 export default mumbleModule => class MumbleAudioOutput extends AudioSingletonDevice {
 	static deviceName = "Mumble Output";
+	static deviceNameGroup = "Mumble";
+	
 	stream = null;
 	
 	constructor(state) {
