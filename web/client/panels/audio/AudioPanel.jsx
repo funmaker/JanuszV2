@@ -48,6 +48,7 @@ export class Panel extends React.Component {
 	
 	handleMessage = msg => {
 		msg = JSON.parse(msg.data);
+		console.log(msg);
 		
 		switch(msg.type) {
 			case packets.types.INIT:
@@ -263,7 +264,7 @@ export class Panel extends React.Component {
 	};
 	
 	addDevice = (ev, {value: deviceName}) => {
-		this.ws.send(packets.deviceAddPacket(deviceName));
+		this.ws.send(packets.deviceAddPacket(deviceName), Math.round(this.state.posx), Math.round(this.state.posy));
 	};
 	
 	removeDevice = uuid => {

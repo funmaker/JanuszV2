@@ -3,10 +3,11 @@ import { janusz } from "../index";
 import * as packets from "./packets";
 import uuid from "uuid/v4";
 import audioRouter, { sendAll } from './router';
-import OscillatorInput from "./devices/OscillatorInput";
+import Oscillator from "./devices/Oscillator";
 import Mixer from "./devices/Mixer";
 import Delay from "./devices/Delay";
 import Gain from "./devices/Gain";
+import Switch from "./devices/Switch";
 
 export const SAMPLE_RATE = 48000;
 export const BUFFER_SIZE = 4800;
@@ -48,7 +49,7 @@ export default class AudioModule extends JanuszModule {
 	
 	getAudioDevices() {
 		return [
-			OscillatorInput, Mixer, Delay, Gain
+			Oscillator, Mixer, Delay, Gain, Switch
 		];
 	}
 	
@@ -106,7 +107,7 @@ export default class AudioModule extends JanuszModule {
 					AudioModule.error("Unknown device: ", connection.to);
 					continue;
 				}
-				this.connectDevices(from, to, connection.input, connection.output, connection.uuid);
+				this.connectDevices(from, to, connection.output, connection.input, connection.uuid);
 			}
 		} catch(e) {
 			AudioModule.error("Failed to load state.");

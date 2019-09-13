@@ -1,11 +1,15 @@
 import Node from "./Node";
 import { merge } from "../sharedUtils";
+import { state } from "../utils";
 
 export default class Root extends Node {
   static type = "Root";
   update = null;
   nodes = new Map([[this.uuid, this]]);
   preloadedState = {};
+  
+  @state width;
+  @state height;
   
   constructor(width = 6, height = 3) {
     super("Root", null, null, {

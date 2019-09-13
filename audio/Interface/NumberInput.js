@@ -1,19 +1,16 @@
+import { state } from "../utils";
 import Input from "./Input";
 
 export default class NumberInput extends Input {
   static type = "NumberInput";
-  static defaultState = { ...super.defaultState, value: 0, step: 0, title: "value" };
   
-  get min() { return this.state.min; }
-  set min(min) { this.state.min = min; }
+  @state min;
+  @state max;
+  @state step = 0;
+  @state title = "value";
   
-  get max() { return this.state.max; }
-  set max(max) { this.state.max = max; }
-  
-  get step() { return this.state.step; }
-  set step(step) { this.state.step = step; }
-  
-  get value() { return this.state.value; }
+  @state(0)
+  get value() { return super.value; }
   set value(value) {
     if(typeof value !== "number") throw new TypeError("Value should be a number.");
     
@@ -23,25 +20,21 @@ export default class NumberInput extends Input {
     
     super.value = value;
   }
-  
-  onInteract(event) {
-    this.value = event.value;
-  }
 }
 
 export class Dial extends NumberInput {
   static type = "Dial";
-  static defaultState = { ...super.defaultState, min: 0, max: 1, logScale: 0 };
   
-  get logScale() { return this.state.logScale; }
-  set logScale(logScale) { this.state.logScale = logScale; }
+  @state min = 0;
+  @state max = 1;
+  @state logScale = 0;
 }
 
 export class Slider extends NumberInput {
   static type = "Gauge";
-  static defaultState = { ...super.defaultState, min: 0, max: 1, logScale: 0 };
   
-  get logScale() { return this.state.logScale; }
-  set logScale(logScale) { this.state.logScale = logScale; }
+  @state min = 0;
+  @state max = 1;
+  @state logScale = 0;
 }
 

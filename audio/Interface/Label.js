@@ -1,9 +1,9 @@
 import Node from "./Node";
+import { state } from "../utils";
 
 export default class Label extends Node {
   static type = "Label";
-  static defaultState = { ...super.defaultState, size: 3, text: "Label" };
   
-  get text() { return this.state.text; }
-  set text(text) { this.state.text = text; }
+  @state text = "Label";
+  @state size = 3;
 }

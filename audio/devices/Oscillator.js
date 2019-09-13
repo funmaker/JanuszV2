@@ -9,7 +9,7 @@ const parseHz = hz => {
 	else return Math.floor(hz / 1000) + "kHz";
 };
 
-export default class OscillatorInput extends AudioDevice {
+export default class Oscillator extends AudioDevice {
 	static deviceName = "Oscillator";
 	static deviceNameGroup = "Basic";
 	

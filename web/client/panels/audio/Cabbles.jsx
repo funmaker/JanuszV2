@@ -116,7 +116,7 @@ export default class Cabbles extends React.PureComponent {
 		
 		const getOffset = (dev, port_id, isOutput) => ({
 			x: devices[dev].posx - posx + (isOutput ? Math.max(8, devices[dev].interface.state.width + 2) * 16 : 0),
-			y: devices[dev].posy - posy + port_id * 16 + 40,
+			y: devices[dev].posy - posy + port_id * 32 + 40,
 		});
 		
 		for(let con of Object.values(connections)) {

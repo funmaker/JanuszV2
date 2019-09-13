@@ -3,6 +3,9 @@ import Root from "./Root";
 import Generic from "./Generic";
 import Label from "./Label";
 import Dial from "./Dial";
+import Button from "./Button";
+import Dropdown from "./Dropdown";
+import Indicator from "./Indicator";
 
 export default function Node({ data, onInteract }) {
   let node;
@@ -10,10 +13,13 @@ export default function Node({ data, onInteract }) {
   switch(data.type) {
     case "Root": return <Root data={data} onInteract={onInteract} />;
     case "Label": node = <Label data={data} onInteract={onInteract} />; break;
-    case "Dial": node = <Dial data={data} onInteract={onInteract} />; break;
+    case "Indicator": node = <Indicator data={data} onInteract={onInteract} />; break;
     // case "Input": node = <Root data={data} />; break;
     // case "NumberInput": node = <Root data={data} />; break;
     // case "Slider": node = <Root data={data} />; break;
+    case "Dial": node = <Dial data={data} onInteract={onInteract} />; break;
+    case "Button": node = <Button data={data} onInteract={onInteract} />; break;
+    case "Dropdown": node = <Dropdown data={data} onInteract={onInteract} />; break;
     default: node = <Generic data={data} onInteract={onInteract} />;
   }
   

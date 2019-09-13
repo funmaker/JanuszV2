@@ -39,4 +39,87 @@
       cursor: grab;
     }
   }
+
+  .Button {
+    position: relative;
+    cursor: pointer;
+
+    .icon {
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 50%;
+      margin: 0;
+      height: 0;
+      line-height: 0;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      color: black;
+      opacity: 0.75;
+      font-size: 18px;
+      padding-bottom: 0.15em;
+      text-shadow: 1px 1px white, -1px 1px darkgray, 1px -1px darkgray, -1px -1px gray;
+      pointer-events: none;
+    }
+
+    path {
+      transition: fill 0.2s;
+    }
+  }
+
+  .Dropdown {
+    display: inline-block;
+    line-height: 14px;
+    background: #000e53;
+    color: #b8dcf9;
+    font-family: "courier new", courier, monospace;
+    font-size: 13px;
+    border: 2px solid #546c9c;
+    margin: -1px;
+    border-radius: 8px;
+    padding: 0;
+    height: 18px;
+    min-height: 0;
+    min-width: 0;
+    box-shadow: none;
+
+    & > .text {
+      color: #b8dcf9 !important;
+      font-weight: bold !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(100% - 16px);
+      margin: 0 2px;
+    }
+
+    & > .icon {
+      position: static;
+      float: right;
+      margin: 0 5px 0 0;
+      padding: 0;
+    }
+
+    & > .menu {
+      width: auto;
+      min-width: calc( 100% - 4px );
+      border: 2px solid #546c9c;
+      margin: 0 -2px;
+
+      & > .item {
+        padding: 4px !important;
+      }
+    }
+  }
+
+  .Indicator {
+    display: inline-block;
+    line-height: 14px;
+    overflow: hidden;
+    text-align: center;
+    background: #000e53;
+    border: 2px solid #9c9c9c;
+    margin: -1px;
+    border-radius: 8px;
+  }
 }

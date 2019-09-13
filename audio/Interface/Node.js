@@ -1,11 +1,11 @@
 import EventEmitter from "events";
 import uuid from "uuid/v4";
 import { merge } from "../sharedUtils";
+import { state } from "../utils";
 
 
 export default class Node extends EventEmitter {
   static type = "Node";
-  static defaultState = { x: 0, y: 0 };
   uuid = uuid();
   name;
   mounted = false;
@@ -14,6 +14,9 @@ export default class Node extends EventEmitter {
   _state;
   get state() { return this._state; }
   children = new Set();
+  
+  @state x = 0;
+  @state y = 0;
   
   constructor(name, x, y, initialState) {
     super();
@@ -25,8 +28,11 @@ export default class Node extends EventEmitter {
       ...initialState,
     }, {
       set: (self, key, value) => {
-        self[key] = merge(self[key], value);
-        this.addUpdate({ state: { [key]: value } });
+        const merged = merge(self[key], value);
+        if(self[key] !== merged) {
+          self[key] = merged;
+          this.addUpdate({ state: { [key]: value } });
+        }
         return true;
       },
     });

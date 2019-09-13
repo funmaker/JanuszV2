@@ -47,9 +47,9 @@ export const connectionsUpdatePacket = (connections) => JSON.stringify({
 // CLIENT //
 ////////////
 
-export const deviceAddPacket = (deviceName) => JSON.stringify({
+export const deviceAddPacket = (deviceName, x, y) => JSON.stringify({
 	type: types.DEVICE_ADD,
-	deviceName,
+	deviceName, x, y,
 });
 
 export const deviceRemovePacket = (uuid) => JSON.stringify({

@@ -26,7 +26,7 @@ export default class AudioDevice {
 	constructor(inputs, outputs, state) {
 		this.inputCount = inputs;
 		this.outputCount = outputs;
-		this.inputBuffers = [...new Array(this.inputBuffers)].map(() => Buffer.alloc(BUFFER_SIZE * 2));
+		this.inputBuffers = [...new Array(this.inputCount)].map(() => Buffer.alloc(BUFFER_SIZE * 2));
 		this.outputBuffers = [...new Array(this.outputCount)].map(() => Buffer.alloc(BUFFER_SIZE * 2));
 		this.outputActivity = [...new Array(this.outputCount)].map(() => false);
 		this.outputLastActivity = [...new Array(this.outputCount)].map(() => false);

@@ -46,3 +46,17 @@ export class StereoToMonoStream extends Transform {
 		callback(null, chunk.slice(0, chunk.length / 2));
 	}
 }
+
+export function state(target, name, descriptor) {
+	if(name === undefined || descriptor === undefined) return (t, n, d) => state(t, n, { ...d, initializer: () => target });
+	
+	if(descriptor.initializer) {
+		if(!target.constructor.hasOwnProperty("defaultState")) target.constructor.defaultState = { ...target.constructor.defaultState }; // :^)
+		target.constructor.defaultState[name] = descriptor.initializer();
+	}
+	if(descriptor.get === undefined) descriptor.get = function() { return this.state[name]; };
+	if(descriptor.set === undefined) descriptor.set = function(value) { this.state[name] = value; };
+	delete descriptor.initializer;
+	delete descriptor.writable;
+	return descriptor;
+}
