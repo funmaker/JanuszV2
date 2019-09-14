@@ -8,6 +8,7 @@ import Mixer from "./devices/Mixer";
 import Delay from "./devices/Delay";
 import Gain from "./devices/Gain";
 import Switch from "./devices/Switch";
+import FourthDensity from "./devices/FourthDensity";
 
 export const SAMPLE_RATE = 48000;
 export const BUFFER_SIZE = 4800;
@@ -49,7 +50,7 @@ export default class AudioModule extends JanuszModule {
 	
 	getAudioDevices() {
 		return [
-			Oscillator, Mixer, Delay, Gain, Switch
+			Oscillator, Mixer, Delay, Gain, Switch, FourthDensity
 		];
 	}
 	

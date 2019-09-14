@@ -23,8 +23,6 @@ export default class Oscillator extends AudioDevice {
 		this.freq.on("change", val => this.label.text = parseHz(val));
 	}
 	
-	limit = 0;
-	
 	onTick() {
 		const buffer = this.outputBuffers[0];
 		
