@@ -1,6 +1,6 @@
-import AudioDevice from "../AudioDevice";
-import Label from "../Interface/Label";
-import { Dial } from "../Interface/NumberInput";
+import AudioDevice from "../../AudioDevice";
+import Label from "../../Interface/Label";
+import { Dial } from "../../Interface/NumberInput";
 
 function parseDB(val) {
 	if(Math.abs(val) < 10) return Math.floor(val * 10) / 10 + "dB";

@@ -1,4 +1,4 @@
-import AudioDevice from "../AudioDevice";
+import AudioDevice from "../../AudioDevice";
 
 export default class Mixer extends AudioDevice {
 	static deviceName = "Mixer";

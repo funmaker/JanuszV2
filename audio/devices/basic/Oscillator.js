@@ -1,7 +1,7 @@
-import AudioDevice from "../AudioDevice";
-import Label from "../Interface/Label";
-import { Dial } from "../Interface/NumberInput";
-import { BUFFER_SIZE, SAMPLE_RATE } from "../index";
+import AudioDevice from "../../AudioDevice";
+import Label from "../../Interface/Label";
+import { Dial } from "../../Interface/NumberInput";
+import { BUFFER_SIZE, SAMPLE_RATE } from "../../index";
 
 const parseHz = hz => {
 	if(hz < 1000) return Math.floor(hz) + "Hz";

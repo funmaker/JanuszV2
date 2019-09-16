@@ -1,9 +1,7 @@
-import AudioDevice from "../AudioDevice";
-import Label from "../Interface/Label";
-import { Dial } from "../Interface/NumberInput";
-import { BUFFER_SIZE, SAMPLE_RATE } from "../index";
-
-const BASE_DELAY = 0.002;
+import AudioDevice from "../../AudioDevice";
+import Label from "../../Interface/Label";
+import { Dial } from "../../Interface/NumberInput";
+import { BUFFER_SIZE, SAMPLE_RATE } from "../../index";
 
 const parseHz = hz => {
 	if(hz < 10) return Math.floor(hz * 10) / 10 + "Hz";
@@ -35,7 +33,7 @@ const getHermite = (lastBuf, curBuf, frac, pos) => {
 
 export default class FourthDensity extends AudioDevice {
 	static deviceName = "Fourth Density";
-	static deviceNameGroup = "Basic";
+	static deviceNameGroup = "Effects";
 	
 	freq = this.interface.add(new Dial("freq", 0, 0, { min: 0, max: 100, value: 6, logScale: -1, title: "Frequency (Hz)" }));
 	freqLabel = this.interface.add(new Label("freqLabel", 3, 0.33, { text: parseHz(this.freq.value) }));

@@ -3,12 +3,13 @@ import { janusz } from "../index";
 import * as packets from "./packets";
 import uuid from "uuid/v4";
 import audioRouter, { sendAll } from './router';
-import Oscillator from "./devices/Oscillator";
-import Mixer from "./devices/Mixer";
-import Delay from "./devices/Delay";
-import Gain from "./devices/Gain";
-import Switch from "./devices/Switch";
-import FourthDensity from "./devices/FourthDensity";
+import Oscillator from "./devices/basic/Oscillator";
+import Mixer from "./devices/basic/Mixer";
+import Delay from "./devices/basic/Delay";
+import Gain from "./devices/basic/Gain";
+import Switch from "./devices/basic/Switch";
+import FourthDensity from "./devices/effects/FourthDensity";
+import PaulStretch from "./devices/effects/PaulStretch";
 
 export const SAMPLE_RATE = 48000;
 export const BUFFER_SIZE = 4800;
@@ -50,7 +51,7 @@ export default class AudioModule extends JanuszModule {
 	
 	getAudioDevices() {
 		return [
-			Oscillator, Mixer, Delay, Gain, Switch, FourthDensity
+			Oscillator, Mixer, Delay, Gain, Switch, FourthDensity, PaulStretch
 		];
 	}
 	

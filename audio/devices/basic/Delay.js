@@ -1,7 +1,7 @@
-import { BUFFER_SIZE, SAMPLE_RATE } from "../index";
-import AudioDevice from "../AudioDevice";
-import Label from "../Interface/Label";
-import { Dial } from "../Interface/NumberInput";
+import { BUFFER_SIZE, SAMPLE_RATE } from "../../index";
+import AudioDevice from "../../AudioDevice";
+import Label from "../../Interface/Label";
+import { Dial } from "../../Interface/NumberInput";
 
 function timeText(time) {
 	if(time < 1) return Math.floor(time * 1000) + "ms";

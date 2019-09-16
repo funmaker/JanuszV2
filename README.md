@@ -35,3 +35,9 @@ npm run build:prod
 ```bash
 npm run start:prod
 ```
+
+## Credits
+
+- Fun Maker
+- Nasca Octavian Paul (Paul Stretch algorithm)
+- Sébastien Piquemal (paulstretch.js)

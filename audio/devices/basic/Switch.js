@@ -1,5 +1,5 @@
-import AudioDevice from "../AudioDevice";
-import Button from "../Interface/Button";
+import AudioDevice from "../../AudioDevice";
+import Button from "../../Interface/Button";
 
 export default class Switch extends AudioDevice {
   static deviceName = "Switch";
