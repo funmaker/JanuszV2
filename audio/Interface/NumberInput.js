@@ -11,6 +11,7 @@ export default class NumberInput extends Input {
   
   @state(0)
   get value() { return super.value; }
+  
   set value(value) {
     if(typeof value !== "number") throw new TypeError("Value should be a number.");
     

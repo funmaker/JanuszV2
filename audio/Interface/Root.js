@@ -1,6 +1,6 @@
-import Node from "./Node";
 import { merge } from "../sharedUtils";
 import { state } from "../utils";
+import Node from "./Node";
 
 export default class Root extends Node {
   static type = "Root";
@@ -14,7 +14,7 @@ export default class Root extends Node {
   constructor(width = 6, height = 3) {
     super("Root", null, null, {
       width,
-      height
+      height,
     });
     
     this.root = this.parent = this;

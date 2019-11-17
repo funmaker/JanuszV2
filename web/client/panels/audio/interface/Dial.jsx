@@ -2,6 +2,7 @@ import React from "react";
 import _ from "lodash";
 
 export default class Dial extends React.Component {
+  // eslint-disable-next-line react/sort-comp
   svgRef = React.createRef();
   
   state = {
@@ -26,9 +27,9 @@ export default class Dial extends React.Component {
     } else if(ev.button === 1) {
       ev.preventDefault();
       
-      let value = parseInt(prompt(this.props.data.state.title, this.props.data.state.value));
+      const value = parseInt(prompt(this.props.data.state.title, this.props.data.state.value));
       if(isNaN(value)) return;
-  
+      
       this.sendValue(value);
     }
   };
@@ -93,9 +94,9 @@ export default class Dial extends React.Component {
     const pos = (ang, radius) => `${128 - Math.sin((0.25 + ang * 1.5) * Math.PI) * radius},${128 + Math.cos((0.25 + ang * 1.5) * Math.PI) * radius}`;
     const arc = (start, end, r1, r2) => `
       M ${pos(start, r2)}
-      A ${r2},${r2} 0 ${end - start > 2/3 ? 1 : 0} 1 ${pos(end, r2)}
+      A ${r2},${r2} 0 ${end - start > 2 / 3 ? 1 : 0} 1 ${pos(end, r2)}
       L ${pos(end, r1)}
-      A ${r1},${r1} 0 ${end - start > 2/3 ? 1 : 0} 0 ${pos(start, r1)}
+      A ${r1},${r1} 0 ${end - start > 2 / 3 ? 1 : 0} 0 ${pos(start, r1)}
       Z`;
     
     return (
@@ -105,8 +106,8 @@ export default class Dial extends React.Component {
              onMouseDown={this.onMouseDown} ref={this.svgRef}>
           <path d={arc(-0.01, 1.01, 78, 98)} fill="#000e53" stroke="#546c9c" strokeWidth="8" />
           <path d={arc(0, proc, 82, 94)} fill="#b8dcf9" />
-          <image y="32" x="32" xlinkHref="/static/gauge.png" preserveAspectRatio="none" height="192" width="192"/>
-          <path d="m 126,126 -10,67 10,35 2,0 10,-35 -10,-67 -4,0 z" fill="#333" transform={`rotate(${45 + proc * 270} 128 128)`}/>
+          <image y="32" x="32" xlinkHref="/static/gauge.png" preserveAspectRatio="none" height="192" width="192" />
+          <path d="m 126,126 -10,67 10,35 2,0 10,-35 -10,-67 -4,0 z" fill="#333" transform={`rotate(${45 + proc * 270} 128 128)`} />
         </svg>
       </div>
     );

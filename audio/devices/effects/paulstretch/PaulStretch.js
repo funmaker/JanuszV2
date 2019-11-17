@@ -29,26 +29,26 @@ export default class PaulStretch {
   process = () => {
     // Read a block to blockIn
     if(this.samplesIn.read(this.blockIn) === null) return 0;
-  
+    
     // get the windowed buffer
     utils.applyWindow(this.blockIn, this.winArray);
-  
+    
     // Randomize phases for each channel
     for(let ch = 0; ch < this.numberOfChannels; ch++) {
       arrayHelpers.map(this.phaseArray, () => Math.random() * 2 * Math.PI);
       this.rephase(this.blockIn[ch], this.phaseArray);
     }
-  
+    
     // overlap-add the output
     utils.applyWindow(this.blockIn, this.winArray);
-  
+    
     for(let ch = 0; ch < this.numberOfChannels; ch++) {
       arrayHelpers.add(
         this.blockIn[ch].subarray(0, this.halfWinSize),
-        this.blockOut[ch].subarray(this.halfWinSize, this.winSize)
-      )
+        this.blockOut[ch].subarray(this.halfWinSize, this.winSize),
+      );
     }
-  
+    
     // Generate the output
     this.blockOut = this.blockIn.map(chArray => arrayHelpers.duplicate(chArray));
     this.samplesOut.write(this.blockOut.map(chArray => chArray.subarray(0, this.halfWinSize)));

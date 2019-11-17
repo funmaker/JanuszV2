@@ -1,29 +1,36 @@
-export const logPrefix = (name = JanuszModule.ModuleName) => ":: ".white.bold + new Date().toLocaleString().white.dim + " :: ".white.bold + name + " ::".white.bold;
+import chalk from "chalk";
+
+export const logPrefix = (name = JanuszModule.ModuleName) =>
+  chalk.white.bold(":: ") +
+  chalk.white.dim(new Date().toLocaleString()) +
+  chalk.white.bold(" :: ") +
+  name +
+  chalk.white.bold(" ::");
 
 export default class JanuszModule {
-	static ModuleName = "Unknown".bold;
-	
-	static log(...args) {
-		console.log(logPrefix(this.ModuleName), ...args);
-	}
-	
-	static error(...args) {
-		console.error(logPrefix(this.ModuleName), ...args);
-	}
-	
-	async init() {
-	
-	}
-	
-	async start() {
-	
-	}
-	
-	async stop() {
-	
-	}
-	
-	async onReloadOther() {
-	
-	}
+  static ModuleName = chalk.bold("Unknown");
+  
+  static log(...args) {
+    console.log(logPrefix(this.ModuleName), ...args);
+  }
+  
+  static error(...args) {
+    console.error(`${logPrefix(this.ModuleName)} ${chalk.red("ERROR")} ::`, ...args);
+  }
+  
+  async init() {
+    
+  }
+  
+  async start() {
+    
+  }
+  
+  async stop() {
+    
+  }
+  
+  async onReloadOther() {
+    
+  }
 }

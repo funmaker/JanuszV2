@@ -2,9 +2,9 @@ import AudioDevice from "../../AudioDevice";
 import Label from "../../Interface/Label";
 import { Dial } from "../../Interface/NumberInput";
 import { BUFFER_SIZE } from "../../index";
+import Button from "../../Interface/Button";
 import PS from "./paulstretch/PaulStretch";
 import { newBlock } from "./paulstretch/block-helpers";
-import Button from "../../Interface/Button";
 
 const parseRatio = ratio => {
   if(ratio < 10) return Math.floor(ratio * 10) / 10 + "x";

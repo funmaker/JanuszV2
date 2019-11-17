@@ -1,5 +1,5 @@
-import Input from "./Input";
 import { state } from "../utils";
+import Input from "./Input";
 
 export default class Button extends Input {
   static type = "Button";
@@ -10,6 +10,7 @@ export default class Button extends Input {
   
   @state(false)
   get value() { return super.value; }
+  
   set value(value) {
     if(typeof value !== "boolean") throw new TypeError("Value should be a boolean.");
     

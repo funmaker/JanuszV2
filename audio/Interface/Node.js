@@ -83,7 +83,7 @@ export default class Node extends EventEmitter {
       name: this.name,
       state: this.state,
       children: [...this.children.values()].reduce((acc, val) => ({ ...acc, [val.uuid]: val.getState() }), {}),
-    }
+    };
   }
   
   onInteract(_event) {

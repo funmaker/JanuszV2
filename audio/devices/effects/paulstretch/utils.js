@@ -8,10 +8,10 @@ export function createWindow(winSize) {
   
   for(let i = 0; i < winSize; i++) {
     winArray[i] = Math.pow(1 - Math.pow(counter, 2), 1.25);
-    counter += step
+    counter += step;
   }
   
-  return winArray
+  return winArray;
 }
 
 export function applyWindow(block, winArray) {
@@ -21,7 +21,7 @@ export function applyWindow(block, winArray) {
   
   for(i = 0; i < frameCount; i++) {
     for(ch = 0; ch < channelCount; ch++) {
-      block[ch][i] = block[ch][i] * winArray[i]
+      block[ch][i] *= winArray[i];
     }
   }
 }
@@ -38,31 +38,31 @@ export function makeRephaser(winSize) {
   
   return function(array, phases) {
     // Prepare im and re for FFT
-    arrayHelpers.map(im, function() { return 0 });
+    arrayHelpers.map(im, () => { return 0; });
     arrayHelpers.copy(array, re);
     
     // get the amplitudes of the frequency components and discard the phases
     fft(1, re, im);
-    arrayHelpers.copy(re.slice.apply(re, uniqSpectrumSlice), amplitudes); // get only the unique part of the spectrum
+    arrayHelpers.copy(re.slice(...uniqSpectrumSlice), amplitudes); // get only the unique part of the spectrum
     arrayHelpers.map(amplitudes, Math.abs); // input signal is real, so abs value of `re` is the amplitude
     
     // Apply the new phases
     for(i = 0, length = amplitudes.length; i < length; i++) {
       re[i] = amplitudes[i] * Math.cos(phases[i]);
-      im[i] = amplitudes[i] * Math.sin(phases[i])
+      im[i] = amplitudes[i] * Math.sin(phases[i]);
     }
     
     // Rebuild `re` and `im` by adding the symetric part
     for(i = symSpectrumSlice[0], length = symSpectrumSlice[1]; i < length; i++) {
       re[length + i] = re[length - i];
-      im[length + i] = im[length - i] * -1
+      im[length + i] = im[length - i] * -1;
     }
     
     // do the inverse FFT
     fft(-1, re, im);
     arrayHelpers.copy(re, array);
-    return array
-  }
+    return array;
+  };
 }
 
 // Buffer of blocks allowing to read blocks of a fixed block size and to get overlapped
@@ -73,9 +73,9 @@ export function Samples(displacePos) {
   const blocksIn = [];
   let readPos = 0, framesAvailable = 0;
   
-  this.setDisplacePos = function(val) { displacePos = val };
-  this.getReadPos = function() { return readPos };
-  this.getFramesAvailable = function() { return framesAvailable };
+  this.setDisplacePos = function(val) { displacePos = val; };
+  this.getReadPos = function() { return readPos; };
+  this.getFramesAvailable = function() { return framesAvailable; };
   this.clear = function() {
     blocksIn.length = 0;
     readPos = 0;
@@ -85,11 +85,11 @@ export function Samples(displacePos) {
   // If there's more data than `blockSize` return a block, otherwise return null.
   this.read = function(blockOut) {
     const numberOfChannels = blockOut.length,
-          blockSize = blockOut[0].length
-    ;let i, ch, block
-      , writePos  // position of writing in output block
-      , readStart // position to start reading from the next block
-      , toRead;    // amount of frames to read from the next block
+          blockSize = blockOut[0].length;
+    let i, ch, block,
+        writePos,  // position of writing in output block
+        readStart, // position to start reading from the next block
+        toRead;    // amount of frames to read from the next block
     
     if(framesAvailable >= blockSize) {
       readStart = Math.floor(readPos);
@@ -101,10 +101,9 @@ export function Samples(displacePos) {
         block = blocksIn[i++];
         toRead = Math.min(block[0].length - readStart, blockSize - writePos);
         
-        for(ch = 0; ch < numberOfChannels; ch++)
-          blockOut[ch].set(block[ch].subarray(readStart, readStart + toRead), writePos);
+        for(ch = 0; ch < numberOfChannels; ch++) blockOut[ch].set(block[ch].subarray(readStart, readStart + toRead), writePos);
         writePos += toRead;
-        readStart = 0
+        readStart = 0;
       }
       
       // Update positions
@@ -116,16 +115,16 @@ export function Samples(displacePos) {
       while(block[0].length < readPos) {
         blocksIn.shift();
         readPos -= block[0].length;
-        block = blocksIn[0]
+        block = blocksIn[0];
       }
       
-      return blockOut
-    } else return null
+      return blockOut;
+    } else return null;
   };
   
   // Writes `block` to the queue
   this.write = function(block) {
     blocksIn.push(block);
-    framesAvailable += block[0].length
-  }
+    framesAvailable += block[0].length;
+  };
 }

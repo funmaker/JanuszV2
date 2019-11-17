@@ -1,5 +1,5 @@
-import Input from "./Input";
 import { state } from "../utils";
+import Input from "./Input";
 
 export default class Dropdown extends Input {
   static type = "Dropdown";
@@ -12,6 +12,7 @@ export default class Dropdown extends Input {
   
   @state([])
   get options() { return this.state.options; }
+  
   set options(options) {
     if(options.every(option => option.value !== this.value)) this.value = null;
     this.state.options = options;
@@ -19,6 +20,7 @@ export default class Dropdown extends Input {
   
   @state(null)
   get value() { return super.value; }
+  
   set value(value) {
     if(value !== null && this.options.every(option => option.value !== value)) throw new TypeError(`Option ${value} not found.`);
     
