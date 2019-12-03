@@ -7,6 +7,7 @@ import PS from "./paulstretch/PaulStretch";
 import { newBlock } from "./paulstretch/block-helpers";
 
 const parseRatio = ratio => {
+  if(ratio < 1) return Math.floor(ratio * 100) / 100 + "x";
   if(ratio < 10) return Math.floor(ratio * 10) / 10 + "x";
   else return Math.floor(ratio) + "x";
 };
@@ -15,12 +16,13 @@ export default class PaulStretch extends AudioDevice {
   static deviceName = "PaulStretch";
   static deviceNameGroup = "Effects";
   
-  ratio = this.interface.add(new Dial("ratio", 0, 0, { min: 0.25, max: 1000, value: 10, logScale: -1, title: "Ratio" }));
+  ratio = this.interface.add(new Dial("ratio", 0, 0, { min: 0.01, max: 1000, value: 10, logScale: -1, title: "Ratio" }));
   ratioLabel = this.interface.add(new Label("ratioLabel", 3, 0.33, { text: parseRatio(this.ratio.value) }));
   bufferLabel = this.interface.add(new Label("bufferLabel", 3, 1.66, { text: "0", size: 2 }));
   resetButton = this.interface.add(new Button("resetButton", 5, 1.66, { icon: "close", size: 1 }));
   engine = new PS(1, this.ratio.value);
   outputBlock = newBlock(1, BUFFER_SIZE);
+  wait = false;
   
   constructor(state) {
     super(1, 1, state);
@@ -32,6 +34,8 @@ export default class PaulStretch extends AudioDevice {
   }
   
   onTick() {
+    const speedup = this.engine.ratio < 1;
+    
     if(this.resetButton.value) {
       this.engine.samplesIn.clear();
       this.engine.samplesOut.clear();
@@ -50,6 +54,13 @@ export default class PaulStretch extends AudioDevice {
     while(this.engine.readQueueLength() < this.outputBlock[0].length && this.engine.process()) true;
     this.bufferLabel.text = Math.ceil(this.engine.writeQueueLength() / BUFFER_SIZE);
     
+    if(speedup && this.wait && !input) {
+      this.wait = false;
+    } else if(speedup && this.wait) {
+      this.outputs[0] = null;
+      return;
+    }
+    
     const output = this.engine.read(this.outputBlock);
     if(output) {
       const buffer = this.outputBuffers[0];
@@ -60,10 +71,12 @@ export default class PaulStretch extends AudioDevice {
         buffer.writeInt16LE(value, i * 2);
       }
       this.outputs[0] = buffer;
-    } else {
+    } else if(!input) {
       this.engine.samplesIn.clear();
       this.engine.samplesOut.clear();
       this.outputs[0] = null;
+    } else if(speedup) {
+      this.wait = true;
     }
   }
 }

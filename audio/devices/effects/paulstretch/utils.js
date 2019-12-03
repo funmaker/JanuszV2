@@ -107,8 +107,8 @@ export function Samples(displacePos) {
       }
       
       // Update positions
-      readPos += (displacePos || blockSize);
-      framesAvailable -= (displacePos || blockSize);
+      readPos += displacePos ? Math.min(displacePos, blockSize) : blockSize;
+      framesAvailable -= displacePos ? Math.min(displacePos, blockSize) : blockSize;
       
       // Discard used input blocks
       block = blocksIn[0];
