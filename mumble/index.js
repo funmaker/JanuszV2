@@ -34,6 +34,7 @@ export default class MumbleModule extends JanuszModule {
       this.client = await new Promise((res, rej) => mumble.connect(config.url, { cert: this.cert, key: this.key }, (err, con) => err ? rej(err) : res(con)));
     }
     this.client.on('voice-start', this.onVoiceStart);
+    this.client.on('error', err => MumbleModule.error(err));
   }
   
   async start() {

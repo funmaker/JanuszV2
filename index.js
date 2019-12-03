@@ -15,7 +15,7 @@ const requireModules = () => [
   require("./web").default,
   require("./audio").default,
   require("./sounds").default,
-  require("./discord").default,
+  // require("./discord").default,
   require("./mumble").default,
   require("./youtube").default,
 ];
