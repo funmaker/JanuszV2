@@ -41,3 +41,4 @@ npm run start:prod
 - Fun Maker
 - Nasca Octavian Paul (Paul Stretch algorithm)
 - Sébastien Piquemal (paulstretch.js)
+- Olli Parviainen, Ryan Berdeen (soundtouch.js)

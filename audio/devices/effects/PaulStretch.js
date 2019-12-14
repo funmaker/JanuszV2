@@ -77,6 +77,7 @@ export default class PaulStretch extends AudioDevice {
       this.outputs[0] = null;
     } else if(speedup) {
       this.wait = true;
+      this.outputs[0] = null;
     }
   }
 }

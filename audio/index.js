@@ -11,6 +11,7 @@ import Gain from "./devices/basic/Gain";
 import Switch from "./devices/basic/Switch";
 import FourthDensity from "./devices/effects/FourthDensity";
 import PaulStretch from "./devices/effects/PaulStretch";
+import PitchTempo from "./devices/effects/PitchTempo";
 
 export const SAMPLE_RATE = 48000;
 export const BUFFER_SIZE = 4800;
@@ -52,7 +53,7 @@ export default class AudioModule extends JanuszModule {
   
   getAudioDevices() {
     return [
-      Oscillator, Mixer, Delay, Gain, Switch, FourthDensity, PaulStretch,
+      Oscillator, Mixer, Delay, Gain, Switch, FourthDensity, PaulStretch, PitchTempo,
     ];
   }
   
