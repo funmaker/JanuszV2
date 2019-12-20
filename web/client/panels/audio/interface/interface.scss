@@ -40,6 +40,15 @@
     }
   }
 
+  .Dial {
+    width: auto;
+    height: auto;
+
+    svg {
+      cursor: grab;
+    }
+  }
+
   .Button {
     position: relative;
     cursor: pointer;

@@ -12,6 +12,7 @@ import Switch from "./devices/basic/Switch";
 import FourthDensity from "./devices/effects/FourthDensity";
 import PaulStretch from "./devices/effects/PaulStretch";
 import PitchTempo from "./devices/effects/PitchTempo";
+import Bridge from "./devices/basic/Bridge";
 
 export const SAMPLE_RATE = 48000;
 export const BUFFER_SIZE = 4800;
@@ -53,7 +54,7 @@ export default class AudioModule extends JanuszModule {
   
   getAudioDevices() {
     return [
-      Oscillator, Mixer, Delay, Gain, Switch, FourthDensity, PaulStretch, PitchTempo,
+      Oscillator, Mixer, Delay, Gain, Switch, FourthDensity, PaulStretch, PitchTempo, Bridge,
     ];
   }
   
@@ -126,6 +127,7 @@ export default class AudioModule extends JanuszModule {
     
     device.getUpdate(); // clear updates
     sendAll(packets.devicesUpdatePacket({ [device.uuid]: device.getState() }));
+    device.onCreate();
     
     return device;
   }

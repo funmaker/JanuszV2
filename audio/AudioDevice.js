@@ -1,7 +1,10 @@
 import uuid from "uuid/v4";
+import { janusz } from "../index";
 import { mixDown } from "./utils";
 import Root from "./Interface/Root";
-import { BUFFER_SIZE } from "./index";
+import * as packets from "./packets";
+import { sendAll } from "./router";
+import AudioModule, { BUFFER_SIZE } from "./index";
 
 export default class AudioDevice {
   static deviceName = "Generic Device";
@@ -125,6 +128,42 @@ export default class AudioDevice {
     } else {
       return null;
     }
+  }
+  
+  changeIO(inputs, outputs) {
+    this.inputCount = inputs;
+    this.outputCount = outputs;
+    
+    const resize = (arr, size, alloc) => {
+      while(arr.length < size) arr.push(alloc());
+      while(arr.length > size) arr.pop();
+    };
+    
+    resize(this.inputBuffers, this.inputCount, () => Buffer.alloc(BUFFER_SIZE * 2));
+    resize(this.outputBuffers, this.outputCount, () => Buffer.alloc(BUFFER_SIZE * 2));
+    resize(this.outputActivity, this.outputCount, () => false);
+    resize(this.outputLastActivity, this.outputCount, () => false);
+    resize(this.outputs, this.outputCount, () => null);
+    
+    for(const con of this.connections.values()) {
+      if(con.to === this && con.input >= this.inputCount) console.log(con);
+      if(con.to === this && con.input >= this.inputCount) janusz.getModule(AudioModule).removeConnection(con.uuid);
+      if(con.from === this && con.output >= this.outputCount) console.log(con);
+      if(con.from === this && con.output >= this.outputCount) janusz.getModule(AudioModule).removeConnection(con.uuid);
+    }
+    
+    sendAll(packets.devicesUpdatePacket({
+      [this.uuid]: {
+        inputs: this.inputCount,
+        inputActivity: [...new Array(this.inputCount)].map(() => false), // Calculated on client side
+        outputs: this.outputCount,
+        outputActivity: this.outputLastActivity,
+      },
+    }));
+  }
+  
+  onCreate() {
+    // Implement This
   }
   
   onRemove() {

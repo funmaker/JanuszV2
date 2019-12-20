@@ -32,10 +32,13 @@ export class Dial extends NumberInput {
 }
 
 export class Slider extends NumberInput {
-  static type = "Gauge";
+  static type = "Slider";
   
   @state min = 0;
   @state max = 1;
   @state logScale = 0;
+  @state vertical = false;
+  @state length = 1;
+  @state size = 1;
 }
 

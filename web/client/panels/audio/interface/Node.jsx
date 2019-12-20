@@ -6,6 +6,7 @@ import Dial from "./Dial";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
 import Indicator from "./Indicator";
+import Slider from "./Slider";
 
 export default function Node({ data, onInteract }) {
   let node;
@@ -16,7 +17,7 @@ export default function Node({ data, onInteract }) {
     case "Indicator": node = <Indicator data={data} onInteract={onInteract} />; break;
     // case "Input": node = <Root data={data} />; break;
     // case "NumberInput": node = <Root data={data} />; break;
-    // case "Slider": node = <Root data={data} />; break;
+    case "Slider": node = <Slider data={data} onInteract={onInteract} />; break;
     case "Dial": node = <Dial data={data} onInteract={onInteract} />; break;
     case "Button": node = <Button data={data} onInteract={onInteract} />; break;
     case "Dropdown": node = <Dropdown data={data} onInteract={onInteract} />; break;
