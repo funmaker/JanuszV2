@@ -128,7 +128,7 @@ export class Panel extends React.Component {
   };
   
   reconnectWS() {
-    this.ws = new WebSocket(`ws://${location.host}/audio?format=html`);
+    this.ws = new WebSocket(`${location.protocol === 'https:' ? "wss:" : "ws:"}//${location.host}/audio?format=html`);
     this.ws.addEventListener("open", () => {
       this.setState({
         loading: true,

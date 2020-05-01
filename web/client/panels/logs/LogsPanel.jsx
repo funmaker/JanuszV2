@@ -62,7 +62,7 @@ export class Panel extends React.Component {
   }
   
   reconnectWS() {
-    this.ws = new WebSocket(`ws://${location.host}/web/logs?format=html`);
+    this.ws = new WebSocket(`${location.protocol === 'https:' ? "wss:" : "ws:"}//${location.host}/web/logs?format=html`);
     this.ws.addEventListener("close", this.handleClose);
     this.ws.addEventListener("error", err => {
       console.error("Connection error: ", err);
