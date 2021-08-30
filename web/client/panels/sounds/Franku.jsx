@@ -20,8 +20,6 @@ export function trigger() {
   }
 }
 
-//
-
 export default class Franku extends React.Component {
   constructor(props) {
     super(props);

@@ -1,6 +1,26 @@
+import path from "path";
 import webpack from 'webpack';
 
 const root = process.cwd();
+
+const BABEL_OPTIONS = {
+  presets: [
+    ["@babel/preset-env", {
+      targets: {
+        browsers: "last 2 versions",
+      },
+    }],
+    ["@babel/preset-react", {
+      development: true,
+    }],
+  ],
+  plugins: [
+    'react-hot-loader/babel',
+    ["@babel/plugin-proposal-decorators", { legacy: true }],
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+  ],
+};
 
 // noinspection JSUnusedGlobalSymbols
 export default {
@@ -25,10 +45,11 @@ export default {
     filename: 'client.js',
     devtoolModuleFilenameTemplate: "[absolute-resource-path]",
   },
+  optimization: {
+    emitOnErrors: false,
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
   ],
   module: {
     rules: [
@@ -36,36 +57,29 @@ export default {
         test: /\.js$|\.jsx$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            ["@babel/preset-env", {
-              targets: {
-                browsers: "last 2 versions",
-              },
-            }],
-            ["@babel/preset-react", {
-              development: true,
-            }],
-          ],
-          plugins: [
-            'react-hot-loader/babel',
-            "@babel/plugin-proposal-object-rest-spread",
-            ["@babel/plugin-proposal-decorators", { legacy: true }],
-            ["@babel/plugin-proposal-class-properties", { loose: true }],
-          ],
-        },
+        options: BABEL_OPTIONS,
       }, {
         test: /\.scss$/,
         use: [
           "style-loader",
-          "css-loader",
+          {
+            loader: "css-loader",
+            options: {
+              url: false,
+            },
+          },
           "sass-loader",
         ],
       }, {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader',
+          {
+            loader: "css-loader",
+            options: {
+              url: false,
+            },
+          },
         ],
       },
     ],

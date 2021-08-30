@@ -1,5 +1,5 @@
 import EventEmitter from "events";
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import { merge } from "../sharedUtils";
 import { state } from "../utils";
 

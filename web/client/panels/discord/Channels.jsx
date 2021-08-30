@@ -5,6 +5,7 @@ const channelIcons = {
   text: "hashtag",
   voice: "volume up",
   category: "caret right",
+  other: "question",
 };
 
 class Channel extends React.Component {

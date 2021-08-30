@@ -4,7 +4,7 @@ const guildMap = guild => ({
   id: guild.id,
   name: guild.name,
   members: guild.memberCount,
-  membersOnline: guild.members.reduce((acc, member) => member.presence.status !== "offline" ? acc + 1 : acc, 0),
+  membersOnline: guild.members.cache.reduce((acc, member) => member.presence?.status !== "offline" ? acc + 1 : acc, 0),
 });
 
 const channelMap = channel => {
@@ -27,16 +27,22 @@ const channelMap = channel => {
       type: "category",
       children: channel.children ? channel.children.sort((a, b) => a.calculatedPosition - b.calculatedPosition).map(channelMap) : [],
     };
+  } else {
+    return {
+      id: channel.id,
+      name: channel.name,
+      type: "other",
+    };
   }
 };
 
 const memberMap = member => ({
   id: member.id,
   name: member.displayName,
-  avatar: member.user.displayAvatarURL,
+  avatar: member.user.avatarURL({ size: 32, dynamic: true }),
   deaf: member.deaf,
   mute: member.mute,
-  voiceChannel: member.voiceChannel ? member.voiceChannel.id : undefined,
+  voiceChannel: member.voice && member.voice.channelID || undefined,
 });
 
 export default function discordRouter(discordModule) {
@@ -45,8 +51,8 @@ export default function discordRouter(discordModule) {
   router.get("/guilds/:id/:channel/join", async (req, res) => {
     const data = {};
     
-    const guild = discordModule.client.guilds.get(req.params.id);
-    const channel = guild.channels.get(req.params.channel);
+    const guild = discordModule.client.guilds.cache.get(req.params.id);
+    const channel = guild.channels.cache.get(req.params.channel);
     await channel.join();
     
     res.json(data);
@@ -55,9 +61,9 @@ export default function discordRouter(discordModule) {
   router.get("/guilds/:id/disconnect", async (req, res) => {
     const data = {};
     
-    const guild = discordModule.client.guilds.get(req.params.id);
-    if(guild.voiceConnection) {
-      guild.voiceConnection.disconnect();
+    const guild = discordModule.client.guilds.cache.get(req.params.id);
+    if(guild.voice && guild.voice.connection) {
+      guild.voice.connection.disconnect();
     }
     
     res.json(data);
@@ -66,7 +72,7 @@ export default function discordRouter(discordModule) {
   router.get("/guilds/:id/mute", async (req, res) => {
     const data = {};
     
-    const guild = discordModule.client.guilds.get(req.params.id);
+    const guild = discordModule.client.guilds.cache.get(req.params.id);
     if(guild.voiceConnection) {
       data.selfMute = !guild.me.selfMute;
       await guild.voiceConnection.sendVoiceStateUpdate({ self_mute: !guild.me.selfMute, self_deaf: guild.me.selfDeaf });
@@ -80,7 +86,7 @@ export default function discordRouter(discordModule) {
   router.get("/guilds/:id/deaf", async (req, res) => {
     const data = {};
     
-    const guild = discordModule.client.guilds.get(req.params.id);
+    const guild = discordModule.client.guilds.cache.get(req.params.id);
     if(guild.voiceConnection) {
       data.selfDeaf = !guild.me.selfDeaf;
       await guild.voiceConnection.sendVoiceStateUpdate({ self_deaf: !guild.me.selfDeaf, self_mute: guild.me.selfMute });
@@ -94,10 +100,10 @@ export default function discordRouter(discordModule) {
   router.get("/guilds/:id", async (req, res) => {
     const data = {};
     
-    const guild = discordModule.client.guilds.get(req.params.id);
+    const guild = discordModule.client.guilds.cache.get(req.params.id);
     
-    data.channels = guild.channels.filter(channel => !channel.parent).sort((a, b) => a.calculatedPosition - b.calculatedPosition).map(channelMap);
-    data.members = guild.members.map(memberMap);
+    data.channels = guild.channels.cache.filter(channel => !channel.parent).sort((a, b) => a.calculatedPosition - b.calculatedPosition).map(channelMap);
+    data.members = guild.members.cache.map(memberMap);
     data.localUser = guild.me.id;
     data.selfMute = guild.me.selfMute;
     data.selfDeaf = guild.me.selfDeaf;
@@ -106,7 +112,7 @@ export default function discordRouter(discordModule) {
   });
   
   router.get("/guilds", async (req, res) => {
-    const data = discordModule.client.guilds.map(guildMap);
+    const data = discordModule.client.guilds.cache.map(guildMap);
     
     res.json(data);
   });

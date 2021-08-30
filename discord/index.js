@@ -1,4 +1,4 @@
-import Discord from 'discord.js';
+import Discord, { Intents } from 'discord.js';
 import chalk from "chalk";
 import JanuszModule from "../core/JanuszModule";
 import { janusz } from "../index";
@@ -23,7 +23,7 @@ export default class DiscordModule extends JanuszModule {
   }
   
   async init() {
-    if(!this.client) this.client = new Discord.Client();
+    if(!this.client) this.client = new Discord.Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
     
     this.client.on('message', this.handleMessage);
     this.client.on('guildMemberAdd', this.handleGuildMemberAdd);
@@ -83,7 +83,14 @@ export default class DiscordModule extends JanuszModule {
     if(member.guild.id === "234365566608080896") {
       await new Promise(res => setTimeout(res, 10000));
       
-      member.guild.channels.get("615660388905648303").send(`${member}, witaj na serwerze MBTI Polska!\nNapisz swój typ MBTI na tym kanale aby otrzymać range.`);
+      member.guild.channels.cache.get("615660388905648303").send(`
+        ${member}, witaj na serwerze XD!
+        Udaj się do kanału ${member.guild.channels.cache.get("722013401001492550")} aby dodać sobie role i uzyskać dostęp do powiązanych kanałów.
+      `);
+    } else if(member.guild.id === "673947535529738252") {
+      await new Promise(res => setTimeout(res, 10000));
+      
+      member.guild.channels.cache.get("673956852345864202").send(`${member}, witaj na serwerze LGBT Polska!`);
     }
   };
   

@@ -1,4 +1,4 @@
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import chalk from "chalk";
 import JanuszModule from "../core/JanuszModule";
 import { janusz } from "../index";

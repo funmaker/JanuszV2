@@ -8,6 +8,7 @@ import LoginPage from "./routes/LoginPage";
 import LogoutPage from "./routes/LogoutPage";
 import * as AudioClient from './panels/audio/AudioPanel';
 import * as SoundsClient from './panels/sounds/SoundsPanel';
+import * as TTSClient from './panels/tts/TTSPanel';
 import * as DiscordClient from './panels/discord/DiscordPanel';
 import * as LogsClient from './panels/logs/LogsPanel';
 import ErrorPage from "./routes/ErrorPage";
@@ -30,6 +31,7 @@ export const clientModules = [
   DiscordClient,
   AudioClient,
   LogsClient,
+  TTSClient,
 ];
 
 export const findClientModule = name => clientModules.find(mod => mod.name === name);

@@ -1,4 +1,4 @@
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import { janusz } from "../index";
 import { mixDown } from "./utils";
 import Root from "./Interface/Root";

@@ -1,42 +1,44 @@
+// eslint-disable-next-line import/no-commonjs
 module.exports = {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
   },
-  "extends": [
+  extends: [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
   ],
-  "globals": {
-    "__": false
+  globals: {
+    __: false,
   },
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true,
-      "legacyDecorators": true
+  parser: "babel-eslint",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+      legacyDecorators: true,
     },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+    ecmaVersion: 2018,
+    sourceType: "module",
   },
-  "plugins": [
+  plugins: [
     "react",
-    "import"
+    "import",
+    "indent-empty-lines",
   ],
-  "rules": {
+  rules: {
     "array-bracket-spacing": [
       "warn",
-      "never"
+      "never",
     ],
     "arrow-spacing": "warn",
     "block-spacing": [
       "warn",
-      "always"
+      "always",
     ],
     "comma-dangle": [
       "warn",
-      "always-multiline"
+      "always-multiline",
     ],
     "comma-spacing": "warn",
     "comma-style": "warn",
@@ -47,15 +49,15 @@ module.exports = {
     "generator-star-spacing": [
       "warn",
       {
-        "after": true,
-        "before": false,
-        "method": "neither"
-      }
+        after: true,
+        before: false,
+        method: "neither",
+      },
     ],
     "import/export": "warn",
     "import/extensions": [
       "error",
-      "never"
+      "never",
     ],
     "import/named": "error",
     "import/namespace": "error",
@@ -75,63 +77,63 @@ module.exports = {
       "warn",
       2,
       {
-        "ArrayExpression": "first",
-        "CallExpression": {
-          "arguments": "first"
+        ArrayExpression: "first",
+        CallExpression: {
+          arguments: "first",
         },
-        "FunctionDeclaration": {
-          "parameters": "first"
+        FunctionDeclaration: {
+          parameters: "first",
         },
-        "FunctionExpression": {
-          "parameters": "first"
+        FunctionExpression: {
+          parameters: "first",
         },
-        "ignoredNodes": [
+        ignoredNodes: [
           "JSXElement",
           "JSXElement *",
-          "JSXAttribute"
+          "JSXAttribute",
         ],
-        "ImportDeclaration": "first",
-        "MemberExpression": "off",
-        "ObjectExpression": "first",
-        "SwitchCase": 1,
-        "VariableDeclarator": {
-          "const": 3,
-          "let": 2,
-          "var": 2
-        }
-      }
+        ImportDeclaration: "first",
+        MemberExpression: "off",
+        ObjectExpression: "first",
+        SwitchCase: 1,
+        VariableDeclarator: {
+          const: 3,
+          let: 2,
+          var: 2,
+        },
+      },
     ],
-    "indent-empty-lines": ["warn", 2],
+    "indent-empty-lines/indent-empty-lines": ["warn", 2],
     "key-spacing": "warn",
     "keyword-spacing": [
       "warn",
       {
-        "overrides": {
-          "catch": {
-            "after": false
+        overrides: {
+          catch: {
+            after: false,
           },
-          "for": {
-            "after": false
+          for: {
+            after: false,
           },
-          "if": {
-            "after": false
+          if: {
+            after: false,
           },
-          "switch": {
-            "after": false
+          switch: {
+            after: false,
           },
-          "while": {
-            "after": false
-          }
-        }
-      }
+          while: {
+            after: false,
+          },
+        },
+      },
     ],
     "linebreak-style": "error",
     "lines-between-class-members": [
       "warn",
       "always",
       {
-        "exceptAfterSingleLine": true
-      }
+        exceptAfterSingleLine: true,
+      },
     ],
     "no-console": "off",
     "no-empty": "off",
@@ -142,18 +144,18 @@ module.exports = {
     "no-multiple-empty-lines": [
       "warn",
       {
-        "max": 2,
-        "maxBOF": 1,
-        "maxEOF": 1
-      }
+        max: 2,
+        maxBOF: 1,
+        maxEOF: 1,
+      },
     ],
     "no-prototype-builtins": "off",
     "no-trailing-spaces": [
       "warn",
       {
-        "skipBlankLines": true,
-        "ignoreComments": true
-      }
+        skipBlankLines: true,
+        ignoreComments: true,
+      },
     ],
     "no-unexpected-multiline": "warn",
     "no-unneeded-ternary": "warn",
@@ -167,37 +169,37 @@ module.exports = {
     "object-curly-newline": [
       "warn",
       {
-        "consistent": true
-      }
+        consistent: true,
+      },
     ],
     "object-curly-spacing": [
       "warn",
-      "always"
+      "always",
     ],
     "object-shorthand": "warn",
     "operator-assignment": "warn",
     "padded-blocks": [
       "warn",
-      "never"
+      "never",
     ],
     "prefer-arrow-callback": "warn",
     "prefer-const": [
       "warn",
       {
-        "destructuring": "all"
-      }
+        destructuring: "all",
+      },
     ],
     "prefer-rest-params": "warn",
     "prefer-spread": "warn",
     "quote-props": [
       "warn",
-      "consistent-as-needed"
+      "consistent-as-needed",
     ],
     "quotes": "off",
     "react/jsx-boolean-value": "warn",
     "react/jsx-closing-bracket-location": [
       "warn",
-      "after-props"
+      "after-props",
     ],
     "react/jsx-closing-tag-location": "warn",
     "react/jsx-curly-brace-presence": "warn",
@@ -206,11 +208,11 @@ module.exports = {
     "react/jsx-filename-extension": "warn",
     "react/jsx-indent": [
       "warn",
-      2
+      2,
     ],
     "react/jsx-indent-props": [
       "warn",
-      "first"
+      "first",
     ],
     "react/jsx-key": "warn",
     "react/jsx-pascal-case": "warn",
@@ -222,8 +224,8 @@ module.exports = {
     "react/prop-types": [
       "error",
       {
-        "skipUndeclared": true
-      }
+        skipUndeclared: true,
+      },
     ],
     "react/sort-comp": "warn",
     "react/void-dom-elements-no-children": "warn",
@@ -235,21 +237,21 @@ module.exports = {
     "space-before-function-paren": [
       "warn",
       {
-        "anonymous": "never",
-        "asyncArrow": "always",
-        "named": "never"
-      }
+        anonymous: "never",
+        asyncArrow: "always",
+        named: "never",
+      },
     ],
     "space-in-parens": "warn",
     "space-infix-ops": "warn",
     "space-unary-ops": "warn",
     "switch-colon-spacing": "warn",
     "template-curly-spacing": "warn",
-    "yield-star-spacing": "warn"
+    "yield-star-spacing": "warn",
   },
-  "settings": {
-    "react": {
-      "version": "16.2"
-    }
-  }
+  settings: {
+    react: {
+      version: "16.2",
+    },
+  },
 };

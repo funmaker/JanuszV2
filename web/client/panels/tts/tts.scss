@@ -1,0 +1,27 @@
+
+.TTSPanel {
+  position: relative;
+
+  textarea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 2.5em - 2px);
+    resize: none;
+    border: none;
+  }
+
+  .panelButtons {
+    width: 100%;
+
+    > .button {
+      flex: 0;
+    }
+
+    > .dropdown {
+      flex: 1 1;
+      font-size: 1rem;
+    }
+  }
+}

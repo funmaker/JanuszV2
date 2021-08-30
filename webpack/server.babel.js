@@ -3,6 +3,22 @@ import nodeExternals from 'webpack-node-externals';
 
 const root = process.cwd();
 
+const BABEL_OPTIONS = {
+  presets: [
+    ["@babel/preset-env", {
+      targets: {
+        node: "current",
+      },
+    }],
+    "@babel/preset-react",
+  ],
+  plugins: [
+    ["@babel/plugin-proposal-decorators", { legacy: true }],
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+  ],
+};
+
 // noinspection JSUnusedGlobalSymbols
 export default {
   mode: 'production',
@@ -31,21 +47,7 @@ export default {
         test: /\.js$|\.jsx$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            ["@babel/preset-env", {
-              targets: {
-                node: "current",
-              },
-            }],
-            "@babel/preset-react",
-          ],
-          plugins: [
-            "@babel/plugin-proposal-object-rest-spread",
-            ["@babel/plugin-proposal-decorators", { legacy: true }],
-            ["@babel/plugin-proposal-class-properties", { loose: true }],
-          ],
-        },
+        options: BABEL_OPTIONS,
       }, {
         test: /\.handlebars$/,
         loader: 'handlebars-loader',

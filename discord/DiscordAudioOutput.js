@@ -8,6 +8,7 @@ export default discordModule => class DiscordAudioOutput extends AudioDevice {
   static deviceName = "Discord Output";
   static deviceNameGroup = "Discord";
   
+  stream = null;
   dispatcher = null;
   dispatcherGuild = null;
   outBuffer = Buffer.alloc(BUFFER_SIZE * 4);
@@ -21,53 +22,57 @@ export default discordModule => class DiscordAudioOutput extends AudioDevice {
   }
   
   onRemove() {
+    this.reset();
+  }
+  
+  reset = () => {
     if(this.dispatcher) {
-      this.dispatcher.end();
+      this.dispatcher.off("close", this.reset);
+      this.dispatcher.off("error", this.onDispatcherError);
+      this.dispatcher.off("debug", this.onDispatcherDebug);
       this.dispatcher = null;
     }
+    
+    if(this.stream) {
+      this.stream.end();
+      this.stream = null;
+    }
+    
+    this.dispatcherGuild = null;
+    this.indicator.color = "gray";
   }
+  
+  onDispatcherError = err => discordModule.constructor.error(err);
+  onDispatcherDebug = log => discordModule.constructor.log(log);
   
   getOptions() {
     if(!discordModule.client) return [];
-    return discordModule.client.guilds.map(guild => ({ text: guild.name, value: guild.id }));
+    return discordModule.client.guilds.cache.map(guild => ({ text: guild.name, value: guild.id }));
   }
   
   onTick() {
-    if(this.dispatcher && this.dispatcherGuild !== this.guildSelect.value) {
-      this.dispatcher.end();
-      return;
-    }
+    if(this.dispatcher && this.dispatcherGuild !== this.guildSelect.value) this.reset();
     
     if(!this.dispatcher) {
-      const guild = discordModule.client && discordModule.client.guilds.get(this.guildSelect.value);
-      if(!guild || !guild.voiceConnection || guild.voiceConnection.dispatcher) return;
+      const guild = discordModule.client && discordModule.client.guilds.cache.get(this.guildSelect.value);
+      if(!guild || !guild.voice || !guild.voice.connection || guild.voice.connection.dispatcher) return;
       
-      this.dispatcher = guild.voiceConnection.playConvertedStream(new PassThrough());
+      this.stream = new PassThrough();
+      this.dispatcher = guild.voice.connection.play(this.stream, { type: "converted" });
+      this.dispatcher.on("close", this.reset);
+      this.dispatcher.on("error", this.onDispatcherError);
+      this.dispatcher.on("debug", this.onDispatcherDebug);
       this.dispatcherGuild = this.guildSelect.value;
-      this.indicator.color = "outputOn";
-      this.dispatcher.on("end", () => {
-        this.dispatcher = null;
-        this.dispatcherGuild = null;
-        this.indicator.color = "gray";
-      });
-      this.dispatcher.on("error", err => discordModule.constructor.error(err));
-      this.dispatcher.on("debug", err => discordModule.constructor.log(err));
     }
     
     const buffer = this.getInput(0);
     
     if(!buffer) {
-      if(!this.dispatcher.paused && this.dispatcher.stream.readableLength === 0) {
-        this.dispatcher.pause();
-        this.indicator.color = "outputOff";
-      }
+      this.indicator.color = "outputOff";
       return;
     }
     
-    if(this.dispatcher.paused) {
-      this.dispatcher.resume();
-      this.indicator.color = "outputOn";
-    }
+    this.indicator.color = "outputOn";
     
     for(let n = 0; n < buffer.length; n += 2) {
       buffer.copy(this.outBuffer, n * 2, n, n + 2);
@@ -78,6 +83,6 @@ export default discordModule => class DiscordAudioOutput extends AudioDevice {
       this.outBuffer.fill(0, buffer.length * 2);
     }
     
-    this.dispatcher.stream.write(Buffer.from(this.outBuffer));
+    this.stream.write(this.outBuffer);
   }
 };

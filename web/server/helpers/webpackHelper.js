@@ -14,7 +14,6 @@ export const mount = webModule => {
   const compiler = webpack(webpackClientDevConfig);
   
   router.use(webpackDevMiddleware(compiler, {
-    logLevel: 'warn',
     publicPath: webpackClientDevConfig.output.publicPath,
   }));
   

@@ -212,24 +212,8 @@ export default class SoundsModule extends JanuszModule {
     this.SoundsDevice.devices.forEach(device => device.playSound(sounds.audioData));
   }
   
-  async say(text, voice, lang) {
-    const { data: { voices } } = await axios.get("http://ivona.miners.pl/voices");
-    
-    if(!voice) {
-      if(!lang) {
-        lang = shortLang[franc(text, { minLength: 1 })];
-        if(!voices.some(v => v.lang.startsWith(lang))) lang = 'pl';
-      }
-      if(lang === 'pl') voice = "Jacek";
-      else {
-        voice = voices.find(v => v.lang.startsWith(lang)).name;
-        if(voice === null) voice = "Jacek";
-      }
-    } else {
-      if(!voices.some(v => v.name === voice)) throw new HTTPError(400, "Voice not found.");
-    }
-    
-    const { data: audio } = await axios.get("http://ivona.miners.pl/say", { params: { voice, text }, responseType: 'stream' });
+  async say(text, voice, language) {
+    const { data: audio } = await axios.get("http://ivona.funmaker.moe/tts", { params: { voice, text, language }, responseType: 'stream' });
     
     const stream = ffmpeg(audio).audioChannels(1)
       .audioFrequency(48000)

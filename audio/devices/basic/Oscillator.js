@@ -29,7 +29,7 @@ export default class Oscillator extends AudioDevice {
     for(let n = 0; n < BUFFER_SIZE; n++) {
       buffer.writeInt16LE(Math.cos(this.offset + (n + 1) * Math.PI * 2 / SAMPLE_RATE * this.freq.value) * 32767, n * 2);
     }
-    this.offset = this.offset + (BUFFER_SIZE / SAMPLE_RATE) * Math.PI * 2 * this.freq.value;
+    this.offset += (BUFFER_SIZE / SAMPLE_RATE) * Math.PI * 2 * this.freq.value;
     
     this.outputs[0] = buffer;
   }

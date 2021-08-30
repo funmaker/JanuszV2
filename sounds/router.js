@@ -44,7 +44,7 @@ export default function soundsRouter(soundsModule) {
   });
   
   router.get('/voices', async (req, res) => {
-    const { data } = await axios.get("http://ivona.miners.pl/voices");
+    const { data } = await axios.get("http://ivona.funmaker.moe/list");
     
     res.json(data);
   });

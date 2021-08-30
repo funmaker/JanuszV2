@@ -103,15 +103,15 @@ export default class Slider extends React.Component {
              onMouseDown={this.onMouseDown} ref={this.svgRef}>
           <rect fill="#9c9c9c" x="26" y="26" width={w - 52} height={h - 52} />
           <path fill="#000e53" fillRule="nonzero" stroke="#546c9c" strokeWidth="8"
-                d={`M ${w-6},${h-56} Q ${w-6},${h-6} ${w-56},${h-6}
-                    H 56 Q 6,${h-6} 6,${h-56}
+                d={`M ${w - 6},${h - 56} Q ${w - 6},${h - 6} ${w - 56},${h - 6}
+                    H 56 Q 6,${h - 6} 6,${h - 56}
                     V 56 Q 6,6 56,6
-                    H ${w-56} Q ${w-6},6 ${w-6},56
+                    H ${w - 56} Q ${w - 6},6 ${w - 6},56
                     Z
-                    M ${w-56},${h-26} Q ${w-26},${h-26} ${w-26},${h-56}
-                    V 56 Q ${w-26},26 ${w-56},26
+                    M ${w - 56},${h - 26} Q ${w - 26},${h - 26} ${w - 26},${h - 56}
+                    V 56 Q ${w - 26},26 ${w - 56},26
                     H 56 Q 26,26 26,56
-                    V ${h-56} Q 26,${h-26} 56,${h-26}
+                    V ${h - 56} Q 26,${h - 26} 56,${h - 26}
                     Z`} />
           <image y={vertical ? proc * 256 * (length - 1) : 0}
                  x={vertical ? 0 : proc * 256 * (length - 1)}

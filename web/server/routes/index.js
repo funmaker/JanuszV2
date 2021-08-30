@@ -1,8 +1,8 @@
+import PromiseRouter from "express-promise-router";
 import requireLogin, { getFreshJWT } from "../helpers/requireLogin";
 import { janusz } from "../../../index";
 
-
-export const coreRouter = require('express-promise-router')();
+export const coreRouter = PromiseRouter();
 
 coreRouter.get('/core/login', (req, res) => {
   const initialData = {};

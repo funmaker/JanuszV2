@@ -65,7 +65,7 @@ export default class FourthDensity extends AudioDevice {
       
       buffer.writeInt16LE(value, n * 2);
     }
-    this.offset = this.offset + (BUFFER_SIZE / SAMPLE_RATE) * Math.PI * 2 * this.freq.value;
+    this.offset += (BUFFER_SIZE / SAMPLE_RATE) * Math.PI * 2 * this.freq.value;
     
     this.outputs[0] = buffer;
   }
