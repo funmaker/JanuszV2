@@ -5,11 +5,10 @@ import index from '../views/index.handlebars';
 import App from "../../client/App";
 import HTTPError from "./HTTPError";
 
-const removeTags = /[&<>]/g;
+const removeTags = /[<>]/g;
 const tagsToReplace = {
-  '&': "&amp;",
-  '<': "&lt;",
-  '>': "&gt;",
+  '<': `\\u003C`,
+  '>': `\\u003E`,
 };
 
 export function reactMiddleware(req, res, next) {
