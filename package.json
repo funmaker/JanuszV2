@@ -39,7 +39,7 @@
 		"http-status-codes": "^2.1.4",
 		"intercept-stdout": "^0.1.2",
 		"iso-639-3": "^2.2.0",
-		"jsonwebtoken": "^8.5.1",
+		"jsonwebtoken": "^9.0.0",
 		"lodash": "^4.17.21",
 		"mobile-device-detect": "^0.4.3",
 		"morgan": "^1.10.0",
