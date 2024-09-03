@@ -86,7 +86,7 @@
 		"start-server-nestjs-webpack-plugin": "^2.2.5",
 		"start-server-webpack-plugin": "^2.2.5",
 		"style-loader": "^3.2.1",
-		"webpack": "^5.76.0",
+		"webpack": "^5.94.0",
 		"webpack-cli": "^4.8.0",
 		"webpack-dev-middleware": "^5.3.4",
 		"webpack-hot-middleware": "^2.25.3",
