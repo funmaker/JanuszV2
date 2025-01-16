@@ -87,11 +87,14 @@ export default class WebModule extends JanuszModule {
   
   async start() {
     if(!this.server.listening) {
-      let port = janusz.getConfig("web").port || 3000;
-      if(process.env.DOCKERIZED) port = 80;
+      let port = janusz.getConfig("web").port || 3939;
+      if(process.env.PORT) port = parseInt(process.env.PORT) || port;
       
-      this.server.listen(port);
-      WebModule.log(`Listening on port ${chalk.cyan.bold(port.toString())}`);
+      let host = janusz.getConfig("web").port.host || "0.0.0.0";
+      if(process.env.HOST) host = process.env.HOST;
+      
+      this.server.listen({ port, host });
+      WebModule.log(`Listening on ${chalk.yellow.bold(`http://${host === "0.0.0.0" ? "127.0.0.1" : host}:${port}`)}`);
     }
   }
   
