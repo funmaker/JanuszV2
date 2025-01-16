@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Segment } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 import SplitPane from 'react-split-pane';
 import { findClientModule } from "../App";
 
@@ -104,6 +104,7 @@ export default class Panels extends React.Component {
   onDragOver(ev) {
     if(window.dataTransfer.getData("januszTab") === "true") {
       ev.preventDefault();
+      ev.dataTransfer.dropEffect = "move";
     }
   }
   
@@ -127,9 +128,11 @@ export default class Panels extends React.Component {
     const onChange = panels => this.props.onChange(panels); // Doesn't work correctly without it. Unexplained phenomena.
     
     if(panels === null) {
-      return <Segment className="Panels empty"
-                      onDragOver={this.onDragOver}
-                      onDrop={this.onEmptyDrop} />;
+      return (
+        <Segment className="Panels empty"
+                 onDragOver={this.onDragOver}
+                 onDrop={this.onEmptyDrop} />
+      );
     } else if(Array.isArray(panels)) {
       if(panels.length === 0) return <Segment className="Panels empty" />;
       

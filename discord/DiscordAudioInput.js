@@ -1,3 +1,5 @@
+import { getVoiceConnection, VoiceConnectionStatus } from "@discordjs/voice";
+import { OpusEncoder } from "@discordjs/opus";
 import { mixDown, StereoToMonoStream } from "../audio/utils";
 import AudioDevice from "../audio/AudioDevice";
 import Dropdown from "../audio/Interface/Dropdown";
@@ -8,8 +10,8 @@ export default discordModule => class DiscordAudioInput extends AudioDevice {
   static deviceNameGroup = "Discord";
   
   connection = null;
-  connectionGuild = null;
-  streams = new Set();
+  streams = new Map();
+  decoder = new OpusEncoder(48000, 2);
   guildSelect = this.interface.add(new Dropdown("guildSelect", 0, 0.33, { options: this.getOptions(), size: 8, selection: true, defaultText: "Select Guild" }));
   indicator = this.interface.add(new Indicator("indicator", 3.5, 1.66, { color: "disabled" }));
   
@@ -24,24 +26,22 @@ export default discordModule => class DiscordAudioInput extends AudioDevice {
   
   reset = () => {
     if(this.connection) {
-      this.connection.off("speaking", this.addStream);
-      this.connection.off('disconnect', this.reset);
       this.connection = null;
-      this.connectionGuild = null;
     }
+    
     this.streams.forEach(stream => stream.destroy());
     this.indicator.color = "disabled";
   }
   
-  addStream = (user, speaking) => {
-    if(speaking) {
-      const stream = this.connection.receiver.createStream(user, { mode: "pcm" });
-      const mono = new StereoToMonoStream();
-      stream.pipe(mono);
-      this.streams.add(mono);
-      stream.on("end", () => this.streams.delete(mono));
-      stream.on("close", () => this.streams.delete(mono));
-    }
+  addStream = user => {
+    if(this.streams.has(user)) return;
+    
+    const stream = this.connection.receiver.subscribe(user);
+    const mono = new StereoToMonoStream();
+    this.streams.set(user, mono);
+    stream.on("data", packet => mono.write(this.decoder.decode(packet)));
+    stream.on("end", () => this.streams.delete(user));
+    stream.on("close", () => this.streams.delete(user));
   };
   
   getOptions() {
@@ -50,21 +50,17 @@ export default discordModule => class DiscordAudioInput extends AudioDevice {
   }
   
   onTick() {
-    if(this.connection && this.connectionGuild !== this.guildSelect.value) this.reset();
+    if(this.connection?.state?.status === VoiceConnectionStatus.Destroyed || this.connection?.joinConfig.guildId !== this.guildSelect.value) this.reset();
     
     if(!this.connection) {
       const guild = discordModule.client && discordModule.client.guilds.cache.get(this.guildSelect.value);
-      if(!guild || !guild.voice || !guild.voice.connection) {
-        this.outputs[0] = null;
-        this.indicator.color = "disabled";
-        return;
-      }
+      if(!guild) return;
       
-      this.connection = guild.voice.connection;
-      this.connection.on("speaking", this.addStream);
-      this.connection.on('disconnect', this.reset);
-      this.connectionGuild = this.guildSelect.value;
-      this.indicator.color = "inputOff";
+      const connection = getVoiceConnection(guild.id);
+      if(!connection) return;
+      
+      this.connection = connection;
+      this.connection.receiver.speaking.on("start", this.addStream);
     }
     
     if(this.streams.size === 0) {

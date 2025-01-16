@@ -1,6 +1,6 @@
 import path from "path";
+import fs from 'fs';
 import chalk from "chalk";
-import fs from 'fs-extra';
 import { rootDir } from "../index";
 import JanuszModule from "./JanuszModule";
 
@@ -10,6 +10,7 @@ export default class JanuszCore extends JanuszModule {
   states = {};
   configsFile = path.join(rootDir, "./configs.json");
   statesFile = path.join(rootDir, "./states.json");
+  statesFileNew = path.join(rootDir, "./states.json.new");
   
   constructor(modules) {
     super();
@@ -18,14 +19,13 @@ export default class JanuszCore extends JanuszModule {
   
   async init() {
     JanuszCore.log(`Initializing file system storage...`);
-    this.configs = JSON.parse(await fs.readFile(this.configsFile));
+    this.configs = JSON.parse(await fs.promises.readFile(this.configsFile, "utf8"));
     try {
-      this.states = JSON.parse(await fs.readFile(this.statesFile));
+      this.states = JSON.parse(await fs.promises.readFile(this.statesFile, "utf8"));
     } catch(e) {
       if(e.code !== 'ENOENT') JanuszCore.error(e);
       JanuszCore.log("Regenerating states.json");
       this.states = {};
-      await fs.writeFile("./states.json", JSON.stringify({}));
     }
     
     JanuszCore.log(`Initializing ${this.modules.length} modules...`);
@@ -102,11 +102,16 @@ export default class JanuszCore extends JanuszModule {
   
   setState(name, value) {
     this.states[name] = value;
-    return this.saveState();
+    this.saveState();
   }
   
   saveState() {
-    return fs.writeFile(this.statesFile, JSON.stringify(this.states)).catch(err => JanuszCore.error(err));
+    try {
+      fs.writeFileSync(this.statesFileNew, JSON.stringify(this.states, null, 4));
+      fs.copyFileSync(this.statesFileNew, this.statesFile);
+    } catch(e) {
+      JanuszCore.error(e);
+    }
   }
 }
 

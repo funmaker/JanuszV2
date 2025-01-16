@@ -6,6 +6,7 @@ import { clientModules } from "../App";
 function onDragOver(ev) {
   if(window.dataTransfer.getData("januszTab") === "true") {
     ev.preventDefault();
+    ev.dataTransfer.dropEffect = "move";
   }
 }
 

@@ -72,8 +72,10 @@ class Sound extends React.Component {
         </React.Fragment>
       );
     } else {
-      return <Button content={sound.name.substr(0, sound.name.lastIndexOf("."))}
-                     onClick={this.playSound} compact />;
+      return (
+        <Button content={sound.name.substr(0, sound.name.lastIndexOf("."))}
+                onClick={this.playSound} compact />
+      );
     }
   }
 }

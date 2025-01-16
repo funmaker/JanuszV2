@@ -148,12 +148,14 @@ export default class Cabbles extends React.PureComponent {
   }
   
   render() {
-    return <canvas width={this.state.width}
-                   height={this.state.height}
-                   style={{
-                     transform: `translate(${this.state.posx}px, ${this.state.posy}px)`,
-                   }}
-                   className="Cabbles"
-                   ref={canvas => this.canvas = canvas} />;
+    return (
+      <canvas width={this.state.width}
+              height={this.state.height}
+              style={{
+                transform: `translate(${this.state.posx}px, ${this.state.posy}px)`,
+              }}
+              className="Cabbles"
+              ref={canvas => this.canvas = canvas} />
+    );
   }
 }

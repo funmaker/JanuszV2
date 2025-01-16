@@ -4,6 +4,7 @@ import { Image } from "semantic-ui-react";
 function onDragOver(ev) {
   if(window.dataTransfer.getData("januszTab") === "true") {
     ev.preventDefault();
+    ev.dataTransfer.dropEffect = "move";
   }
 }
 

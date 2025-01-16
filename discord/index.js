@@ -1,4 +1,4 @@
-import Discord, { Intents } from 'discord.js';
+import Discord, { Intents, MessageFlags } from 'discord.js';
 import chalk from "chalk";
 import JanuszModule from "../core/JanuszModule";
 import { janusz } from "../index";
@@ -18,16 +18,25 @@ export default class DiscordModule extends JanuszModule {
       this.client.off('message', reloadedModule.handleMessage);
       this.client.off('guildMemberAdd', reloadedModule.handleGuildMemberAdd);
       this.client.off('error', reloadedModule.handleError);
+      this.client.off('ready', reloadedModule.handleReady);
+      this.client.off('interactionCreate', reloadedModule.handleInteraction);
       reloadedModule.client = null;
     }
   }
   
   async init() {
-    if(!this.client) this.client = new Discord.Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+    if(!this.client) this.client = new Discord.Client({
+      intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_PRESENCES],
+      partials: ['MESSAGE', 'CHANNEL'],
+    });
     
     this.client.on('message', this.handleMessage);
     this.client.on('guildMemberAdd', this.handleGuildMemberAdd);
     this.client.on('error', this.handleError);
+    this.client.on('ready', this.handleReady);
+    this.client.on('interactionCreate', this.handleInteraction);
+    
+    if(this.client.isReady()) await this.handleReady();
   }
   
   async start() {
