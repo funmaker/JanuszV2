@@ -13,6 +13,7 @@ RUN npm install && \
 
 FROM node:20-alpine AS runtime
 WORKDIR /app
+RUN apk add --update --no-cache ffmpeg
 ENV PORT=80
 EXPOSE 80
 HEALTHCHECK --interval=10s --timeout=5s --retries=2 CMD wget --no-verbose --tries=1 --spider "http://127.0.0.1:$PORT/" || exit 1
