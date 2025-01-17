@@ -18,8 +18,6 @@ export default class DiscordModule extends JanuszModule {
       this.client.off('message', reloadedModule.handleMessage);
       this.client.off('guildMemberAdd', reloadedModule.handleGuildMemberAdd);
       this.client.off('error', reloadedModule.handleError);
-      this.client.off('ready', reloadedModule.handleReady);
-      this.client.off('interactionCreate', reloadedModule.handleInteraction);
       reloadedModule.client = null;
     }
   }
@@ -33,10 +31,6 @@ export default class DiscordModule extends JanuszModule {
     this.client.on('message', this.handleMessage);
     this.client.on('guildMemberAdd', this.handleGuildMemberAdd);
     this.client.on('error', this.handleError);
-    this.client.on('ready', this.handleReady);
-    this.client.on('interactionCreate', this.handleInteraction);
-    
-    if(this.client.isReady()) await this.handleReady();
   }
   
   async start() {
