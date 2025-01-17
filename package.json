@@ -1,7 +1,7 @@
 {
 	"name": "janusz-v2",
-	"description": "Boilerplate: Node, Webpack, Isomorphic React, Less, Babel, Handlebars",
-	"version": "1.0.0",
+	"description": "Multifunctional Chat Bot - Janusz V2",
+	"version": "2.0.0",
 	"main": "./server.js",
 	"author": "Fun Maker",
 	"scripts": {
