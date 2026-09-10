@@ -50,7 +50,7 @@
 		"mumble": "github:funmaker/node12-mumble",
 		"ndfft": "0.0.0",
 		"prop-types": "^15.7.2",
-		"query-string": "^7.0.1",
+		"query-string": "^9.5.0",
 		"react": "16.14.0",
 		"react-dom": "16.14.0",
 		"react-hot-loader": "^4.13.0",
