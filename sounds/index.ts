@@ -11,7 +11,8 @@ import { TTS_URL } from "./constants";
 import SoundsInput from "./SoundsInput";
 import SpeakingInput from "./SpeakingInput";
 
-const SOUNDS_DIR = path.resolve(process.env.SOUNDS_PATH || "sounds/sounds");
+// Production builds keep sounds in `sounds/` next to server.js, dev reads them from the source tree
+const SOUNDS_DIR = path.resolve(process.env.SOUNDS_PATH || (process.env.NODE_ENV === "production" ? "sounds" : "sounds/sounds"));
 
 export interface SoundFile {
   type: "sound";

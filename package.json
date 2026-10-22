@@ -15,7 +15,7 @@
 		"build:prod": "mkdir -p dist && npm-run-all build:prod-*",
 		"build:prod-server": "webpack --config webpack/server.prod.ts",
 		"build:prod-client": "webpack --config webpack/client.prod.ts",
-		"build:prod-static": "cp -rL static dist/ && mkdir -p dist/sounds && cp -rL sounds/sounds dist/sounds/",
+		"build:prod-static": "cp -rL static dist/ && cp -rL sounds/sounds dist/",
 		"build:prod-package": "babel-node --extensions .ts webpack/package.ts",
 		"typecheck": "tsc --noEmit",
 		"lint": "eslint --max-warnings 0",

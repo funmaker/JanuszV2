@@ -9,7 +9,7 @@ Janusz V2 is a multi-purpose chat bot (Discord, Mumble, TTS, soundboard, basic Y
 ## Commands
 
 - `npm run start`: dev mode. Webpack builds `server.ts` into `build/` in watch mode and starts it with HMR. The client is served by webpack-dev/hot-middleware inside the web module.
-- `npm run build:prod` then `npm run start:prod`: production build into `dist/` (server, client, `static/`, `sounds/sounds`, generated `package.json`/`configs.json`), run from `dist/`.
+- `npm run build:prod` then `npm run start:prod`: production build into `dist/` (server, client, `static/`, `sounds/` (copied from `sounds/sounds`), generated `package.json`/`configs.json`), run from `dist/`.
 - `npm run typecheck` (`tsc --noEmit`) and `npm run lint` / `npm run lint-fix` (ESLint 9 flat config in `eslint.config.ts`, `--max-warnings 0`).
 - There is no test suite.
 
@@ -23,7 +23,7 @@ Paths are relative to the working directory: the repo root in dev, `dist/` in pr
 
 - `configs.json` (gitignored; template in `configs.template.json`, path override with `CONFIGS_PATH`) holds per-module settings, typed by `Configs` in `core/index.ts`. Read it with `janusz.getConfig(name)`.
 - `states.json` (path override with `STATES_PATH`) holds persistent runtime state, e.g. the audio graph under `audioSystem`. Use `janusz.getState<T>(name)` / `janusz.setState(name, value)`.
-- Other env vars: `PORT`/`HOST` override the web config, `SOUNDS_PATH` (default `sounds/sounds`), `YTDLP_PATH`.
+- Other env vars: `PORT`/`HOST` override the web config, `SOUNDS_PATH` (default `sounds/sounds` in dev, `sounds` in production), `YTDLP_PATH`.
 - Uncaught exceptions write the in-memory log buffer (`core/logger.ts` captures stdout and stderr) to `logs/<timestamp>.log`.
 
 ## Architecture
