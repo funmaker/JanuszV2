@@ -19,7 +19,7 @@
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-import { BUFFER_SIZE, SAMPLE_RATE } from "../../../index";
+import { BUFFER_SIZE, SAMPLE_RATE } from "../../../constants";
 
 function extend(a, b) {
   for ( var i in b ) {

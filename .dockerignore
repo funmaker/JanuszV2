@@ -8,8 +8,8 @@
 !/sounds/sounds/.gitkeep
 /key.pem
 /cert.pem
-/audioState.json
 /configs.json
 /states.json
 /states.json.new
+.git
 /sessions

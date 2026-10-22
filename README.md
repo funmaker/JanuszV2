@@ -1,3 +1,6 @@
+> ⚠️ AI Slop warning ⚠️
+> AI was used for some ports of this
+
 # Janusz V2
 
 Multifunctional chat bot.
@@ -16,6 +19,12 @@ Multifunctional chat bot.
 - Modular architecture
 - Hot-Reload everything!
 
+## Requirements
+
+- Node.js 22.12+ (required by `@discordjs/voice`)
+- `ffmpeg` and `yt-dlp` on `PATH` (set `YTDLP_PATH` to override)
+- `configs.json` based on `configs.template.json`
+
 ## Usage
 
 ### Run development
@@ -28,6 +37,13 @@ npm run start
 
 ```bash
 npm run build:prod
+```
+
+### Lint & typecheck
+
+```bash
+npm run lint
+npm run typecheck
 ```
 
 ### Start production

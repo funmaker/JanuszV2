@@ -1,8 +1,8 @@
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /build
 RUN apk add --update --no-cache \
     # Gyp build dependencies
-    python3 make g++ py-setuptools; \
+    python3 make g++ py-setuptools git; \
     rm -rf /var/cache/apk/*
 COPY . .
 RUN npm install && \
@@ -11,10 +11,12 @@ RUN npm install && \
     mv dist /app && \
     mv node_modules /app/node_modules
 
-FROM node:20-alpine AS runtime
+FROM node:22-alpine AS runtime
 WORKDIR /app
-RUN apk add --update --no-cache ffmpeg
+RUN apk add --update --no-cache ffmpeg yt-dlp; \
+    rm -rf /var/cache/apk/*
 ENV PORT=80
+ENV NODE_ENV=production
 EXPOSE 80
 HEALTHCHECK --interval=10s --timeout=5s --retries=2 CMD wget --no-verbose --tries=1 --spider "http://127.0.0.1:$PORT/core/login" || exit 1
 COPY --from=builder /app .
