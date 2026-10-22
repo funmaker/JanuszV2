@@ -1,6 +1,8 @@
-import React, { useCallback, useReducer, useRef, useState } from 'react';
-import { Button, ListSubheader, Menu, MenuItem, styled } from "@mui/material";
+import React, { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import { Button, Divider, ListItemIcon, ListItemText, Menu, MenuItem, PopoverActions, styled } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import * as packets from "../../../../audio/packets";
 import { DeviceTypeData, InteractEvent, ServerPacket } from "../../../../audio/packets";
 import useWebSocket from "../../hooks/useWebSocket";
@@ -17,12 +19,23 @@ type DragState
   | { kind: "device"; uuid: string; offsetX: number; offsetY: number; posx: number; posy: number }
   | { kind: "link"; preview: LinkPreview };
 
+interface MenuState {
+  open: boolean;
+  anchorEl?: HTMLElement;
+  anchorPosition?: { left: number; top: number };
+  spawn: { x: number; y: number };
+  group: string | null;
+  prevGroup: string | null;
+}
+
 export function Panel() {
   const [state, dispatch] = useReducer(audioReducer, initialAudioState);
   const [view, setView] = useState({ x: 0, y: 0 });
   const [drag, setDrag] = useState<DragState | null>(null);
-  const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
+  const [menu, setMenu] = useState<MenuState | null>(null);
+  const boardRef = useRef<HTMLDivElement>(null);
   const offsetRef = useRef<HTMLDivElement>(null);
+  const menuActions = useRef<PopoverActions>(null);
   
   const send = useWebSocket("/audio", {
     onOpen: () => dispatch({ type: "reset" }),
@@ -30,7 +43,7 @@ export function Panel() {
     onMessage: msg => dispatch({ type: "packet", packet: JSON.parse(msg.data) as ServerPacket }),
   });
   
-  const toWorld = (ev: React.PointerEvent) => {
+  const toWorld = (ev: { clientX: number; clientY: number }) => {
     const rect = offsetRef.current?.getBoundingClientRect();
     return { x: ev.clientX - (rect?.left ?? 0), y: ev.clientY - (rect?.top ?? 0) };
   };
@@ -114,10 +127,34 @@ export function Panel() {
     send(packets.interfaceInteractPacket(device, node, event));
   }, [send]);
   
+  // Keeps the anchor around so the menu doesn't jump while fading out
+  const closeMenu = () => setMenu(menu => menu && { ...menu, open: false });
+  
   const addDevice = (deviceName: string) => {
-    setMenuAnchor(null);
-    send(packets.deviceAddPacket(deviceName, snap(-view.x), snap(-view.y)));
+    if(!menu) return;
+    closeMenu();
+    send(packets.deviceAddPacket(deviceName, snap(menu.spawn.x), snap(menu.spawn.y)));
   };
+  
+  const openAddButtonMenu = (ev: React.MouseEvent<HTMLElement>) => {
+    const rect = boardRef.current?.getBoundingClientRect();
+    const spawn = rect ? toWorld({ clientX: rect.left + rect.width / 2, clientY: rect.top + rect.height / 2 }) : { x: -view.x, y: -view.y };
+    setMenu({ open: true, anchorEl: ev.currentTarget, spawn, group: null, prevGroup: null });
+  };
+  
+  const onContextMenu = (ev: React.MouseEvent<HTMLDivElement>) => {
+    if((ev.target as HTMLElement).closest("[data-interactive]")) return;
+    ev.preventDefault();
+    setMenu({ open: true, anchorPosition: { left: ev.clientX, top: ev.clientY }, spawn: toWorld(ev), group: null, prevGroup: null });
+  };
+  
+  const setMenuGroup = (group: string | null) => setMenu(menu => menu && { ...menu, group, prevGroup: menu.group });
+  
+  // Popover only repositions on window resize, so do it manually when the submenu changes its size
+  const menuGroup = menu?.group;
+  useEffect(() => {
+    menuActions.current?.updatePosition();
+  }, [menuGroup]);
   
   const devices = drag?.kind === "device" && state.devices[drag.uuid]
     ? { ...state.devices, [drag.uuid]: { ...state.devices[drag.uuid], posx: drag.posx, posy: drag.posy } }
@@ -129,21 +166,42 @@ export function Panel() {
   }
   const sortedGroups = [...groups.entries()].sort(([a], [b]) => a === null ? 1 : b === null ? -1 : a.localeCompare(b));
   
-  const typeOption = (type: DeviceTypeData) => (
+  const typeOption = (type: DeviceTypeData, autoFocus: boolean) => (
     <MenuItem key={type.deviceName}
               dense
+              autoFocus={autoFocus}
               disabled={type.singleton && Object.values(state.devices).some(device => device.name === type.deviceName)}
               onClick={() => addDevice(type.deviceName)}>
       {type.deviceName}
     </MenuItem>
   );
   
+  const menuItems = menu?.group != null
+    ? [
+      <MenuItem key="back" dense autoFocus onClick={() => setMenuGroup(null)}>
+        <ListItemIcon><ChevronLeftIcon fontSize="small" /></ListItemIcon>
+        <ListItemText primary={menu.group} slotProps={{ primary: { fontWeight: "bold" } }} />
+      </MenuItem>,
+      <Divider key="divider" />,
+      ...(groups.get(menu.group) ?? []).map(type => typeOption(type, false)),
+    ]
+    : sortedGroups.flatMap(([group, types]) => group === null
+      ? types.map(type => typeOption(type, false))
+      : [
+        <MenuItem key={`group-${group}`} dense autoFocus={group === menu?.prevGroup} onClick={() => setMenuGroup(group)}>
+          <ListItemText primary={group} />
+          <ChevronRightIcon fontSize="small" sx={{ ml: 2, mr: -1 }} />
+        </MenuItem>,
+      ]);
+  
   return (
     <>
-      <StyledBoard onPointerDown={onPointerDown}
+      <StyledBoard ref={boardRef}
+                   onPointerDown={onPointerDown}
                    onPointerMove={onPointerMove}
                    onPointerUp={onPointerUp}
                    onPointerCancel={() => setDrag(null)}
+                   onContextMenu={onContextMenu}
                    style={{ backgroundPosition: `calc(${view.x}px + 50%) calc(${view.y}px + 50%)`, cursor: drag?.kind === "pan" ? "grabbing" : undefined }}>
         <div className="offset"
              ref={offsetRef}
@@ -159,17 +217,18 @@ export function Panel() {
       </StyledBoard>
       <LoadingOverlay active={state.loading} dark />
       <PanelButtons>
-        <Button title="Add device" onClick={ev => setMenuAnchor(ev.currentTarget)}><AddIcon /></Button>
+        <Button title="Add device" onClick={openAddButtonMenu}><AddIcon /></Button>
       </PanelButtons>
-      <Menu anchorEl={menuAnchor}
-            open={!!menuAnchor}
-            onClose={() => setMenuAnchor(null)}
+      <Menu anchorEl={menu?.anchorEl}
+            anchorReference={menu?.anchorPosition ? "anchorPosition" : "anchorEl"}
+            anchorPosition={menu?.anchorPosition}
+            open={!!menu?.open}
+            action={menuActions}
+            onClose={closeMenu}
+            onContextMenu={closeMenu /* lets the native context menu through on second right click */}
             anchorOrigin={{ vertical: "top", horizontal: "left" }}
-            transformOrigin={{ vertical: "bottom", horizontal: "left" }}>
-        {sortedGroups.flatMap(([group, types]) => [
-          group && <ListSubheader key={`group-${group}`}>{group}</ListSubheader>,
-          ...types.map(typeOption),
-        ])}
+            transformOrigin={menu?.anchorPosition ? { vertical: "top", horizontal: "left" } : { vertical: "bottom", horizontal: "left" }}>
+        {menuItems}
       </Menu>
     </>
   );
