@@ -1,5 +1,8 @@
-> ⚠️ AI Slop warning ⚠️
-> AI was used for some ports of this
+> ⚠️ AI Slopa warning ⚠️
+> 
+> - TypeScript port
+> - Darkmode
+> - Random bugfixes
 
 # Janusz V2
 
